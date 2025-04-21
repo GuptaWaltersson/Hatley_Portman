@@ -1,8 +1,12 @@
 #include <raylib.h>
 
 #include <iostream>
+
 #include <thread>
-#include <string>'
+#include <string>
+
+#include "Player/player.h"
+#include "Player/playerScriptingBridge.h"
 
 #include "lua.hpp"
 
@@ -39,6 +43,11 @@ int main()
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
 
+	player user;
+	playerScriptingBridge::bind(L, &user);
+
+
+	
 	//std::thread consolethread(ConsoleThreadFunction, L);
 	const int screenWidth = 1600;
 	const int screenHeight = 900;
@@ -62,15 +71,20 @@ int main()
 	bool running = true;
 	while (!WindowShouldClose())
 	{
+		if (luaL_dofile(L, "Player/config.lua") != LUA_OK) {
+			lua_pop(L, 1);
+		}
+
+		float speed = user.getSpeed();
+		std::string speedStr = std::to_string(speed);
 		BeginDrawing();
 
 		ClearBackground(RAYWHITE);
 		
 		DrawTexturePro(Jonas, source, destrec, origin, 0.0f, WHITE);
-		/*DrawLine((int)destrec.x, 0, (int)destrec.x, screenHeight, GRAY);
-		DrawLine(0, (int)destrec.y, screenWidth, (int)destrec.y, GRAY);*/
 
-		DrawText("The Gupt is Gupting", 190, 200, 20, BLACK);
+
+		DrawText(speedStr.c_str(), 190, 200, 20, BLACK);
 
 		EndDrawing();
 	}

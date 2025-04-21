@@ -42,16 +42,18 @@ int main()
 	//std::thread consolethread(ConsoleThreadFunction, L);
 	const int screenWidth = 1600;
 	const int screenHeight = 900;
+	const int scale = 8;
 
 	InitWindow(screenWidth, screenHeight, "Portal jonas");
 
-	Texture2D Jonas = LoadTexture("../Textures/Portman_v1_big.png");
+	//Texture2D Jonas = LoadTexture("../Textures/Portman_v1.png");
+	Texture2D Jonas = LoadTexture("../Textures/Pixel_Plattformer_Standard/Tiles/tile_0006.png");
 	float framewidth = Jonas.width;
 	float frameheight = Jonas.height;
 
 	Rectangle source = { 0.0,0.0, framewidth, frameheight };
 
-	Rectangle destrec = { screenWidth / 2,screenHeight / 2, framewidth * 2,frameheight * 2 };
+	Rectangle destrec = { screenWidth / 2, screenHeight / 2, framewidth * scale, frameheight * scale};
 
 	Vector2 origin = { framewidth, frameheight };
 
@@ -63,7 +65,7 @@ int main()
 		BeginDrawing();
 
 		ClearBackground(RAYWHITE);
-
+		
 		DrawTexturePro(Jonas, source, destrec, origin, 0.0f, WHITE);
 		/*DrawLine((int)destrec.x, 0, (int)destrec.x, screenHeight, GRAY);
 		DrawLine(0, (int)destrec.y, screenWidth, (int)destrec.y, GRAY);*/

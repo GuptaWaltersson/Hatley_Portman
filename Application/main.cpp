@@ -40,24 +40,40 @@ int main()
 	luaL_openlibs(L);
 
 	//std::thread consolethread(ConsoleThreadFunction, L);
-	const int screenWidth = 800;
-	const int screenHeight = 450;
+	const int screenWidth = 1600;
+	const int screenHeight = 900;
 
-	InitWindow(screenWidth, screenHeight, "Raylib");
+	InitWindow(screenWidth, screenHeight, "Portal jonas");
+
+	Texture2D Jonas = LoadTexture("../Textures/Portman_v1_big.png");
+	float framewidth = Jonas.width;
+	float frameheight = Jonas.height;
+
+	Rectangle source = { 0.0,0.0, framewidth, frameheight };
+
+	Rectangle destrec = { screenWidth / 2,screenHeight / 2, framewidth * 2,frameheight * 2 };
+
+	Vector2 origin = { framewidth, frameheight };
 
 	SetTargetFPS(60);
 
 	bool running = true;
-	while (running)
+	while (!WindowShouldClose())
 	{
 		BeginDrawing();
 
 		ClearBackground(RAYWHITE);
 
-		DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+		DrawTexturePro(Jonas, source, destrec, origin, 0.0f, WHITE);
+		/*DrawLine((int)destrec.x, 0, (int)destrec.x, screenHeight, GRAY);
+		DrawLine(0, (int)destrec.y, screenWidth, (int)destrec.y, GRAY);*/
+
+		DrawText("The Gupt is Gupting", 190, 200, 20, BLACK);
 
 		EndDrawing();
 	}
+	UnloadTexture(Jonas);
+
 	CloseWindow();
 
 	std::cout << "Hello World!" << std::endl;

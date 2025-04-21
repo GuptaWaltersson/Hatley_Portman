@@ -54,7 +54,7 @@ int main()
 	const int scale = 8;
 
 	InitWindow(screenWidth, screenHeight, "Portal jonas");
-	std::string texturePath = "../Textures/Pixel_Plattformer_Standard/Tiles/tile_0006.png";
+	std::string texturePath = "../Textures/Portman_v1.png";
 
 	Texture2D Jonas = LoadTexture(texturePath.c_str());
 	float framewidth = Jonas.width;
@@ -64,7 +64,6 @@ int main()
 	// we can use this to create bitmaps and animate that way
 	Rectangle source = { 0.0,0.0, framewidth, frameheight }; 
 	
-
 
 	//Defines the place for rectangle the picture fills
 	//first two x,y coordinates other two are size of picture width and height
@@ -91,13 +90,17 @@ int main()
 		}
 		float speed = user.getSpeed();
 		std::string speedStr = std::to_string(speed);
+
+		float deltaTime = GetFrameTime();
+		user.updatePlayer(deltaTime);
+		destrec.x = user.getPositon().x;
+		destrec.y = user.getPositon().y;
+
+		// DRAW
 		BeginDrawing();
 
-		ClearBackground(RAYWHITE);
-		
+		ClearBackground(RAYWHITE);	
 		DrawTexturePro(Jonas, source, destrec, origin, 0.0f, WHITE);
-
-
 		DrawText(speedStr.c_str(), 190, 200, 20, BLACK);
 
 		EndDrawing();

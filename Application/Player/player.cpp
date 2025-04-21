@@ -19,3 +19,11 @@ void player::setTextureName(std::string textureName)
 {
 	this->m_texture = textureName;
 }
+
+
+void player::updatePlayer(float deltaTime)
+{
+	if (IsKeyDown(KEY_LEFT)) this->position.x -= this->m_movementSpeed * deltaTime;
+	if (IsKeyDown(KEY_RIGHT)) this->position.x += this->m_movementSpeed * deltaTime;
+
+}

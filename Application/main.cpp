@@ -91,15 +91,16 @@ int main()
 		float speed = user.getSpeed();
 		std::string speedStr = std::to_string(speed);
 
-		float deltaTime = GetFrameTime();
-		user.updatePlayer(deltaTime);
+//		float deltaTime = GetFrameTime();
+		user.updatePlayer(0.0);
 		destrec.x = user.getPositon().x;
 		destrec.y = user.getPositon().y;
 
 		// DRAW
 		BeginDrawing();
 
-		ClearBackground(RAYWHITE);	
+		ClearBackground(RAYWHITE);
+		//DrawTexture(Jonas, destrec.x, destrec.y, WHITE);
 		DrawTexturePro(Jonas, source, destrec, origin, 0.0f, WHITE);
 		DrawText(speedStr.c_str(), 190, 200, 20, BLACK);
 

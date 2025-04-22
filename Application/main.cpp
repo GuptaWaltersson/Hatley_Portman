@@ -47,7 +47,7 @@ int main()
 	InitWindow(screenWidth, screenHeight, "Portal jonas");
 
 	//Texture2D Jonas = LoadTexture("../Textures/Portman_v1.png");
-	Texture2D Jonas = LoadTexture("../Textures/Pixel_Plattformer_Standard/Tiles/tile_0006.png");
+	Texture2D Jonas = LoadTexture("../Textures/Pixel_Plattformer_Standard/Tiles/tile_0010.png");
 	float framewidth = Jonas.width;
 	float frameheight = Jonas.height;
 

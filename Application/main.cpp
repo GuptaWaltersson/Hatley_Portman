@@ -1,3 +1,4 @@
+
 #include <raylib.h>
 
 #include <iostream>
@@ -5,9 +6,8 @@
 #include <string>'
 
 #include "lua.hpp"
-
-
-
+#include "entt.hpp"
+#include "ecs/registry.hpp"
 
 
 void DumpError(lua_State* L)

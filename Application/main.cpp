@@ -1,8 +1,12 @@
 #include <raylib.h>
 
 #include <iostream>
+
 #include <thread>
-#include <string>'
+#include <string>
+
+#include "Player/player.h"
+#include "Player/playerScriptingBridge.h"
 
 #include "lua.hpp"
 
@@ -39,22 +43,33 @@ int main()
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
 
+	player user;
+	playerScriptingBridge::bind(L, &user);
+
+
+	
 	//std::thread consolethread(ConsoleThreadFunction, L);
 	const int screenWidth = 1600;
 	const int screenHeight = 900;
 	const int scale = 8;
 
 	InitWindow(screenWidth, screenHeight, "Portal jonas");
+	std::string texturePath = "../Textures/Portman_v1.png";
 
-	//Texture2D Jonas = LoadTexture("../Textures/Portman_v1.png");
-	Texture2D Jonas = LoadTexture("../Textures/Pixel_Plattformer_Standard/Tiles/tile_0010.png");
+	Texture2D Jonas = LoadTexture(texturePath.c_str());
 	float framewidth = Jonas.width;
 	float frameheight = Jonas.height;
 
-	Rectangle source = { 0.0,0.0, framewidth, frameheight };
+	// what part of the picture we use for drawing
+	// we can use this to create bitmaps and animate that way
+	Rectangle source = { 0.0,0.0, framewidth, frameheight }; 
+	
 
-	Rectangle destrec = { screenWidth / 2, screenHeight / 2, framewidth * scale, frameheight * scale};
+	//Defines the place for rectangle the picture fills
+	//first two x,y coordinates other two are size of picture width and height
+	Rectangle destrec = { screenWidth / 2, screenHeight / 2, framewidth * scale, frameheight * scale}; 
 
+	//Defines origin of the picture, so if rotate then rotate around this point
 	Vector2 origin = { framewidth, frameheight };
 
 	SetTargetFPS(60);
@@ -62,19 +77,36 @@ int main()
 	bool running = true;
 	while (!WindowShouldClose())
 	{
+		//Check to load lua file
+		if (luaL_dofile(L, "Player/config.lua") != LUA_OK) {
+			lua_pop(L, 1);
+		} 
+
+		//change texture if needed i guess, remember to change to a texture the same size otherwise we have to also update the source dest rec
+		if (texturePath != user.getTextureName()) //update only when new texture is writen in the lua file
+		{
+			Jonas = LoadTexture(user.getTextureName().c_str());
+			texturePath = user.getTextureName();
+		}
+		float speed = user.getSpeed();
+		std::string speedStr = std::to_string(speed);
+
+//		float deltaTime = GetFrameTime();
+		user.updatePlayer(0.0);
+		destrec.x = user.getPositon().x;
+		destrec.y = user.getPositon().y;
+
+		// DRAW
 		BeginDrawing();
 
 		ClearBackground(RAYWHITE);
-		
+		//DrawTexture(Jonas, destrec.x, destrec.y, WHITE);
 		DrawTexturePro(Jonas, source, destrec, origin, 0.0f, WHITE);
-		/*DrawLine((int)destrec.x, 0, (int)destrec.x, screenHeight, GRAY);
-		DrawLine(0, (int)destrec.y, screenWidth, (int)destrec.y, GRAY);*/
-
-		DrawText("The Gupt is Gupting", 190, 200, 20, BLACK);
+		DrawText(speedStr.c_str(), 190, 200, 20, BLACK);
 
 		EndDrawing();
 	}
-	UnloadTexture(Jonas);
+	UnloadTexture(Jonas); // IMPORTANT	
 
 	CloseWindow();
 

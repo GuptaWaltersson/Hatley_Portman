@@ -41,11 +41,7 @@ void ConsoleThreadFunction(lua_State* L)
 int main()
 {
 
-	lua_State* LState = luaL_newstate();
-	luaL_openlibs(LState);
-	luaL_dofile(LState, "scripts/playerEntity.lua");
-	lua_getglobal(LState, "entities");
-
+	
 	
 
 
@@ -89,6 +85,7 @@ int main()
 
 		//change texture if needed i guess, remember to change to a texture the same size otherwise we have to also update the source dest rec
 		
+
 
 
 		// DRAW

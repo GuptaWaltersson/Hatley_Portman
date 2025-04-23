@@ -40,12 +40,20 @@ void ConsoleThreadFunction(lua_State* L)
 
 int main()
 {
+
+	lua_State* LState = luaL_newstate();
+	luaL_openlibs(LState);
+	luaL_dofile(LState, "scripts/playerEntity.lua");
+	lua_getglobal(LState, "entities");
+
+	
+
+
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
 
 	player user;
 	playerScriptingBridge::bind(L, &user);
-
 
 	
 	//std::thread consolethread(ConsoleThreadFunction, L);
@@ -78,7 +86,7 @@ int main()
 	while (!WindowShouldClose())
 	{
 		//Check to load lua file
-		if (luaL_dofile(L, "Player/config.lua") != LUA_OK) {
+		if (luaL_dofile(L, "scripts/config.lua") != LUA_OK) {
 			lua_pop(L, 1);
 		} 
 

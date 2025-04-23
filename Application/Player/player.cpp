@@ -23,7 +23,7 @@ void player::setTextureName(std::string textureName)
 
 void player::updatePlayer(float deltaTime)
 {
-	if (IsKeyDown(KEY_LEFT)) this->position.x -= this->m_movementSpeed ;
-	if (IsKeyDown(KEY_RIGHT)) this->position.x += this->m_movementSpeed ;
+	if (IsKeyPressed(KEY_LEFT)) this->position.x -= this->m_movementSpeed ;
+	if (IsKeyPressed(KEY_RIGHT)) this->position.x += this->m_movementSpeed ;
 
 }

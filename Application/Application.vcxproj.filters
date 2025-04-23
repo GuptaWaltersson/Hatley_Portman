@@ -21,10 +21,22 @@
     <ClCompile Include="ecs\registry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ecs\scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecs\registry.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ecs\components.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ecs\scene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="scripts\sceneDemo.lua" />
   </ItemGroup>
 </Project>

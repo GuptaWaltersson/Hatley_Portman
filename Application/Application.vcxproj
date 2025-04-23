@@ -162,10 +162,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ecs\registry.cpp" />
+    <ClCompile Include="ecs\scene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ecs\components.hpp" />
     <ClInclude Include="ecs\registry.hpp" />
+    <ClInclude Include="ecs\scene.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="scripts\sceneDemo.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

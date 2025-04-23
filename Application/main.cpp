@@ -52,12 +52,6 @@ int main()
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
 
-	auto& registry = ECSRegistry::instance().getRegistry();
-
-	player user;
-	playerScriptingBridge::bind(L, &user);
-
-	
 	//std::thread consolethread(ConsoleThreadFunction, L);
 	const int screenWidth = 1600;
 	const int screenHeight = 900;
@@ -94,29 +88,22 @@ int main()
 		} 
 
 		//change texture if needed i guess, remember to change to a texture the same size otherwise we have to also update the source dest rec
-		if (texturePath != user.getTextureName()) //update only when new texture is writen in the lua file
-		{
-			Jonas = LoadTexture(user.getTextureName().c_str());
-			texturePath = user.getTextureName();
-		}
-		float speed = user.getSpeed();
-		std::string speedStr = std::to_string(speed);
+		
 
-//		float deltaTime = GetFrameTime();
-		user.updatePlayer(0.0);
-		destrec.x = user.getPositon().x;
-		destrec.y = user.getPositon().y;
 
 		// DRAW
 		BeginDrawing();
 		ClearBackground(RAYWHITE);
-		//DrawTexture(Jonas, destrec.x, destrec.y, WHITE);
+		
 		DrawTexturePro(Jonas, source, destrec, origin, 0.0f, WHITE);
-		DrawText(speedStr.c_str(), 190, 200, 20, BLACK);
+		/*DrawLine((int)destrec.x, 0, (int)destrec.x, screenHeight, GRAY);
+		DrawLine(0, (int)destrec.y, screenWidth, (int)destrec.y, GRAY);*/
+
+		DrawText("The Gupt is Gupting", 190, 200, 20, BLACK);
 
 		EndDrawing();
 	}
-	UnloadTexture(Jonas); // IMPORTANT	
+	UnloadTexture(Jonas);
 
 	CloseWindow();
 	lua_close(L);

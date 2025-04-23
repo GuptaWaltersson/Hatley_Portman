@@ -11,7 +11,7 @@ player.behaviour = {
 	end
 	
 	OnUpdate = function(self)
-		self.Position.x = self.Position.x + 100 * delta
+		self.position.x = self.position.x + 100 * delta
 	end
 }
 

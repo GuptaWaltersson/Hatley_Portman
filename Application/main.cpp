@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <thread>
-#include <string>'
+#include <string>
 
 #include "lua.hpp"
 #include "entt.hpp"
@@ -39,44 +39,44 @@ int main()
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
 
+	auto& registry = ECSRegistry::instance().getRegistry();
+
 	//std::thread consolethread(ConsoleThreadFunction, L);
 	const int screenWidth = 1600;
 	const int screenHeight = 900;
 	const int scale = 8;
-
 	InitWindow(screenWidth, screenHeight, "Portal jonas");
-
-	//Texture2D Jonas = LoadTexture("../Textures/Portman_v1.png");
-	Texture2D Jonas = LoadTexture("../Textures/Pixel_Plattformer_Standard/Tiles/tile_0006.png");
-	float framewidth = Jonas.width;
-	float frameheight = Jonas.height;
-
-	Rectangle source = { 0.0,0.0, framewidth, frameheight };
-
-	Rectangle destrec = { screenWidth / 2, screenHeight / 2, framewidth * scale, frameheight * scale};
-
-	Vector2 origin = { framewidth, frameheight };
-
 	SetTargetFPS(60);
+
 
 	bool running = true;
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
-
 		ClearBackground(RAYWHITE);
 		
-		DrawTexturePro(Jonas, source, destrec, origin, 0.0f, WHITE);
-		/*DrawLine((int)destrec.x, 0, (int)destrec.x, screenHeight, GRAY);
-		DrawLine(0, (int)destrec.y, screenWidth, (int)destrec.y, GRAY);*/
 
-		DrawText("The Gupt is Gupting", 190, 200, 20, BLACK);
+		DrawText("We have something here?", 190, 200, 20, BLACK);
 
 		EndDrawing();
 	}
-	UnloadTexture(Jonas);
+
+
 
 	CloseWindow();
-
+	lua_close(L);
 	return 0;
 }
+
+
+////Texture2D Jonas = LoadTexture("../Textures/Portman_v1.png");
+//Texture2D Jonas = LoadTexture("../Textures/Pixel_Plattformer_Standard/Tiles/tile_0006.png");
+//float framewidth = Jonas.width;
+//float frameheight = Jonas.height;
+//
+//Rectangle source = { 0.0,0.0, framewidth, frameheight };
+//
+//Rectangle destrec = { screenWidth / 2, screenHeight / 2, framewidth * scale, frameheight * scale };
+//
+//Vector2 origin = { framewidth, frameheight };
+//DrawTexturePro(Jonas, source, destrec, origin, 0.0f, WHITE);

@@ -11,11 +11,9 @@
 
 #include "lua.hpp"
 #include "entt.hpp"
-#include "ecs/registry.hpp"
 #include "ecs/scene.hpp"
 #include "ecs/components.hpp"
 #include "ecs/systems.hpp"
-
 
 void DumpError(lua_State* L)
 {

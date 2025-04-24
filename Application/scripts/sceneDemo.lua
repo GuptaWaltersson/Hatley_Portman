@@ -10,3 +10,5 @@ end
 
 local Gentity = scene.CreateEntity()
 scene.SetComponent(Gentity,"gravity")
+	scene.SetComponent(entity, "behaviour", "monster.lua")
+end

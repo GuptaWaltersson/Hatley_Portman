@@ -1,4 +1,3 @@
-#include "registry.hpp"
 #include "lua.hpp"
 #include "systems.hpp"
 
@@ -43,6 +42,7 @@ public:
 	
 private:
 	static Scene* lua_GetSceneUpValue(lua_State* L);
+	static int RefAndPushBehaviour(lua_State* L, int entity, const char* path);
 
 	static int lua_GetEntityCount(lua_State* L);
 	static int lua_CreateEntity(lua_State* L);

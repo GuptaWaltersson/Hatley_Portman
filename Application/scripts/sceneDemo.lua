@@ -5,4 +5,8 @@ for _ = 1, 100 do
 	local tickDamage = math.random(1, 10)
 	scene.SetComponent(entity, "health", health)
 	scene.SetComponent(entity, "poison", tickDamage)
+	
 end
+
+local Gentity = scene.CreateEntity()
+scene.SetComponent(Gentity,"gravity")

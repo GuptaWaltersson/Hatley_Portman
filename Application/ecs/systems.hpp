@@ -26,6 +26,40 @@ public:
 	}
 };
 
+class MovementSystem : public System {
+
+public:
+	bool OnUpdate(entt::registry& registry, float delta) final {
+		if (IsKeyPressed(KEY_LEFT))
+		{
+			//left operation
+		}
+		if (IsKeyPressed(KEY_RIGHT))
+		{
+			//Right operation
+		}
+		if (IsKeyPressed(KEY_SPACE))
+		{
+			//Jump operation
+		}
+		return false;
+	}
+};
+
+class GravitySystem : public System {
+	float m_acceleration;
+public :
+	GravitySystem(float acceleration) : m_acceleration(acceleration){}
+
+	bool OnUpdate(entt::registry& registry, float delta) final {
+		auto view = registry.view<velocity, Gravity>();
+		view.each([&](velocity& vel, const Gravity& acceleration) {
+			vel.dy += acceleration.acceleration * delta;
+			});
+		return false;
+	}
+};
+
 class CleanupSystem : public System {
 public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
@@ -49,9 +83,11 @@ public:
 		int count = registry.view<entt::entity>().size();
 		auto healthView = registry.view<Health>();
 		auto poisonView = registry.view<Poison>();
+		auto gravityView = registry.view<Gravity>();
 		printf("\n-- Update %i --\n", ++m_updateCounter);
 		printf("Living entities:\t%i\n", static_cast<int>(healthView.size()));
 		printf("Poisoned entities:\t%i\n", static_cast<int>(poisonView.size()));
+		printf("Gravity entitie: \t%i\n", static_cast<int>(gravityView.size()));
 
 		return false;
 	}

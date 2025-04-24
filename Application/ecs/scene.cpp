@@ -114,6 +114,10 @@ int Scene::lua_HasComponent(lua_State* L)
 	else if (type == "poison") {
 		hasComponent = scene->HasComponents<Poison>(entity);
 	}
+	else if (type == "gravity") {
+		hasComponent = scene->HasComponents<Gravity>(entity);
+	}
+	lua_pushboolean(L, hasComponent);
 	return 1;
 }
 
@@ -132,6 +136,11 @@ int Scene::lua_GetComponent(lua_State* L)
 	{
 		Poison& poison = scene->GetComponent<Poison>(entity);
 		lua_pushnumber(L, poison.tickDamage);
+	}
+	else if (type == "gravity" && scene->HasComponents<Gravity>(entity))
+	{
+		Gravity& grav = scene->GetComponent<Gravity>(entity);
+		lua_pushnumber(L, grav.acceleration);
 	}
 	return 1;
 }
@@ -152,6 +161,11 @@ int Scene::lua_SetComponent(lua_State* L)
 		float value = lua_tonumber(L, 3);
 		scene->SetComponent<Poison>(entity, value);
 	}
+	else if (type == "gravity")
+	{
+		float value = lua_tonumber(L, 3);
+		scene->SetComponent<Gravity>(entity, value);
+	}
 
 	return 0;
 }
@@ -169,6 +183,10 @@ int Scene::lua_RemoveComponent(lua_State* L)
 	else if (type == "poison")
 	{
 		scene->RemoveComponent<Poison>(entity);
+	}
+	else if (type == "gravity")
+	{
+		scene->RemoveComponent<Gravity>(entity);
 	}
 	return 0;
 }

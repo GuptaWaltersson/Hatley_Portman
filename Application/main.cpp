@@ -45,10 +45,6 @@ void ConsoleThreadFunction(lua_State* L)
 int main()
 {
 
-	
-	
-
-
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
 
@@ -57,6 +53,8 @@ int main()
 
 	scene.CreateSystem<PoisonSystem>(5);
 	scene.CreateSystem<CleanupSystem>();
+	scene.CreateSystem<GravitySystem>(9.8);
+	scene.CreateSystem<MovementSystem>();
 	scene.CreateSystem<InfoSystem>();
 	luaL_dofile(L, "scripts/sceneDemo.lua");
 
@@ -90,8 +88,6 @@ int main()
 	//Defines origin of the picture, so if rotate then rotate around this point
 	Vector2 origin = { framewidth, frameheight };
 
-
-	InitWindow(screenWidth, screenHeight, "Hatley Portman");
 	SetTargetFPS(60);
 
 
@@ -99,9 +95,9 @@ int main()
 	while (!WindowShouldClose())
 	{
 		//Check to load lua file
-		if (luaL_dofile(L, "scripts/config.lua") != LUA_OK) {
+		/*if (luaL_dofile(L, "scripts/config.lua") != LUA_OK) {
 			lua_pop(L, 1);
-		} 
+		} */
 
 		//change texture if needed i guess, remember to change to a texture the same size otherwise we have to also update the source dest rec
 		

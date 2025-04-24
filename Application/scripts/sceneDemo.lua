@@ -1,8 +1,8 @@
-local health = 30
+local health = 10
 
-for _ = 1, 10 do
+for _ = 1, 100 do
 	local entity = scene.CreateEntity()
 	local tickDamage = math.random(1, 10)
-	scene.SetComponent(entity, "health", {value = health})
-	scene.SetComponent(entity, "poison", {tickDamge = tickDamage})
+	scene.SetComponent(entity, "health", health)
+	scene.SetComponent(entity, "poison", tickDamage)
 end

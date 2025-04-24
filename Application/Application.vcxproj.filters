@@ -35,6 +35,9 @@
     <ClInclude Include="ecs\scene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ecs\systems.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="scripts\sceneDemo.lua" />

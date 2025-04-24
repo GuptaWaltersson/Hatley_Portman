@@ -1,12 +1,8 @@
 #include "registry.hpp"
 #include "lua.hpp"
+#include "systems.hpp"
 
 
-class System
-{
-public:
-	virtual bool OnUpdate(entt::registry& registry, float delta) = 0;
-};
 
 class Scene
 {
@@ -46,9 +42,17 @@ public:
 	void CreateSystem(Args ... args);
 	
 private:
-	static Scene lua_GetSceneUpValue(lua_State* L);
+	static Scene* lua_GetSceneUpValue(lua_State* L);
+
+	static int lua_GetEntityCount(lua_State* L);
 	static int lua_CreateEntity(lua_State* L);
+	static int lua_IsEntity(lua_State* L);
+	static int lua_RemoveEntity(lua_State* L);
+
+	static int lua_HasComponent(lua_State* L);
+	static int lua_GetComponent(lua_State* L);
 	static int lua_SetComponent(lua_State* L);
+	static int lua_RemoveComponent(lua_State* L);
 
 };
 

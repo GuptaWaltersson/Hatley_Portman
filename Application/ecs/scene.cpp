@@ -1,6 +1,8 @@
+#include <iostream>
+
 #include "scene.hpp"
 #include "components.hpp"
-#include <iostream>
+
 
 Scene::Scene(lua_State* L)
 {
@@ -55,30 +57,118 @@ void Scene::UpdateSystems(float delta)
 	}
 }
 
-Scene Scene::lua_GetSceneUpValue(lua_State* L)
+Scene* Scene::lua_GetSceneUpValue(lua_State* L)
 {
-	return 0;
+	Scene* scene = nullptr;
+	if (lua_isuserdata(L, lua_upvalueindex(1)))
+	{
+		scene = static_cast<Scene*>(lua_touserdata(L, lua_upvalueindex(1)));
+	}
+	return scene;
+}
+
+int Scene::lua_GetEntityCount(lua_State* L)
+{
+	Scene* scene = lua_GetSceneUpValue(L);
+	int count = scene->GetEntityCount();
+	lua_pushinteger(L, count);
+	return 1;
 }
 
 int Scene::lua_CreateEntity(lua_State* L)
 {
-	Scene* scene = static_cast<Scene*>(lua_touserdata(L, lua_upvalueindex(1)));
+	Scene* scene = lua_GetSceneUpValue(L);
 	int entity = scene->CreateEntity();
 	lua_pushinteger(L, entity);
+	return 1;
+}
+
+int Scene::lua_IsEntity(lua_State* L)
+{
+	Scene* scene = lua_GetSceneUpValue(L);
+	int entity = lua_tointeger(L, 1);
+	bool alive = scene->IsEntity(entity);
+	lua_pushboolean(L, alive);
+	return 1;
+}
+
+int Scene::lua_RemoveEntity(lua_State* L)
+{
+	Scene* scene = lua_GetSceneUpValue(L);
+	int entity = lua_tointeger(L, 1);
+	scene->RemoveEntity(entity);
 	return 0;
 }
 
+int Scene::lua_HasComponent(lua_State* L)
+{
+	Scene* scene = lua_GetSceneUpValue(L);
+	int entity = lua_tointeger(L, 1);
+	std::string type = lua_tostring(L, 2);
+
+	bool hasComponent = false;
+
+	if (type == "health") {
+		hasComponent = scene->HasComponents<Health>(entity);
+	}
+	else if (type == "poison") {
+		hasComponent = scene->HasComponents<Poison>(entity);
+	}
+	return 1;
+}
+
+int Scene::lua_GetComponent(lua_State* L)
+{
+	Scene* scene = lua_GetSceneUpValue(L);
+	int entity = lua_tointeger(L, 1);
+	std::string type = lua_tostring(L, 2);
+	
+	if (type == "health" && scene->HasComponents<Health>(entity))
+	{
+		Health& health = scene->GetComponent<Health>(entity);
+		lua_pushnumber(L, health.value);
+	}
+	else if (type == "poison" && scene->HasComponents<Poison>(entity))
+	{
+		Poison& poison = scene->GetComponent<Poison>(entity);
+		lua_pushnumber(L, poison.tickDamage);
+	}
+	return 1;
+}
 
 int Scene::lua_SetComponent(lua_State* L) 
 {
 	Scene* scene = static_cast<Scene*>(lua_touserdata(L, lua_upvalueindex(1)));
 	int entity = lua_tointeger(L, 1);
+	std::string type = lua_tostring(L, 2);
 
-	lua_getfield(L, 3, "value");
-	float value = luaL_checkinteger(L, -1);
-	lua_pop(L, 1);
+	if (type == "health")
+	{
+		float value = lua_tonumber(L, 3);
+		scene->SetComponent<Health>(entity, value);
+	}
+	else if (type == "poison")
+	{
+		float value = lua_tonumber(L, 3);
+		scene->SetComponent<Poison>(entity, value);
+	}
 
-	scene->SetComponent<Health>(entity, value);
+	return 0;
+}
 
+int Scene::lua_RemoveComponent(lua_State* L)
+{
+	Scene* scene = lua_GetSceneUpValue(L);
+	int entity = lua_tointeger(L, 1);
+	std::string type = lua_tostring(L, 2);
+
+	if (type == "health")
+	{
+		scene->RemoveComponent<Health>(entity);
+	}
+	else if (type == "poison")
+	{
+		scene->RemoveComponent<Poison>(entity);
+	}
 	return 0;
 }

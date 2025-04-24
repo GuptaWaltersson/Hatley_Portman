@@ -15,7 +15,6 @@
 #include "ecs/components.hpp"
 #include "ecs/systems.hpp"
 
-
 void DumpError(lua_State* L)
 {
 	if (lua_gettop(L) && lua_isstring(L, -1))

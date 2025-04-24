@@ -53,6 +53,14 @@ int main()
 	scene.CreateSystem<SpriteSystem>();
 	//luaL_dofile(L, "scripts/sceneDemo.lua");
 	luaL_dofile(L, "scripts/player.lua");
+	scene.CreateSystem<GravitySystem>(9.8);
+	scene.CreateSystem<MovementSystem>();
+	luaL_dofile(L, "scripts/sceneDemo.lua");
+
+	for (int i = 0; i < 10; ++i)
+	{
+		scene.UpdateSystems(1);
+	}
 
 
 	//std::thread consolethread(ConsoleThreadFunction, L);
@@ -79,13 +87,16 @@ int main()
 	////Defines origin of the picture, so if rotate then rotate around this point
 	//Vector2 origin = { framewidth, frameheight };
 
+	SetTargetFPS(60);
+
+
 	bool running = true;
 	while (!WindowShouldClose())
 	{
 		//Check to load lua file
-		if (luaL_dofile(L, "scripts/config.lua") != LUA_OK) {
+		/*if (luaL_dofile(L, "scripts/config.lua") != LUA_OK) {
 			lua_pop(L, 1);
-		} 
+		} */
 
 		//change texture if needed i guess, remember to change to a texture the same size otherwise we have to also update the source dest rec
 		

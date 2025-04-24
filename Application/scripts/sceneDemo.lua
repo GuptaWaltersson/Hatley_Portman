@@ -6,3 +6,10 @@ for _ = 1, 100 do
 	scene.SetComponent(entity, "health", health)
 	scene.SetComponent(entity, "poison", tickDamage)
 end
+
+
+local Gentity = scene.CreateEntity()
+scene.SetComponent(Gentity,"gravity")
+scene.SetComponent(entity, "behaviour", "monster.lua")
+
+

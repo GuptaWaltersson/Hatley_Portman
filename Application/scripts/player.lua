@@ -4,6 +4,8 @@ player.components = {
 	position = {x = 0, y = 0},
 	sprite = {texture = "../Textures/Portman_v1.png"}
 }
+scene.SetComponent(entity, "health", health)
+scene.SetComponent(entity, "poison", tickDamage)
 
 player.behaviour = {
 	OnCreate = function(self)

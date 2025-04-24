@@ -36,6 +36,7 @@ void Scene::lua_openScene(lua_State* L, Scene* scene)
 	luaL_Reg methods[] = {
 		{ "CreateEntity", lua_CreateEntity },
 		{ "SetComponent", lua_SetComponent },
+		
 		{ NULL, NULL }
 	};
 
@@ -65,6 +66,26 @@ Scene* Scene::lua_GetSceneUpValue(lua_State* L)
 		scene = static_cast<Scene*>(lua_touserdata(L, lua_upvalueindex(1)));
 	}
 	return scene;
+}
+
+int Scene::RefAndPushBehaviour(lua_State* L, int entity, const char* path) 
+{
+	luaL_dofile(L, path);
+
+	lua_pushvalue(L, -1);
+	int luaTableRef = luaL_ref(L, LUA_REGISTRYINDEX);
+
+	lua_pushinteger(L, entity);
+	lua_setfield(L, -2, "ID");
+
+	lua_pushstring(L, path);
+	lua_setfield(L, -2, "path");
+
+	lua_getfield(L, -1, "OnCreate");
+	lua_pushvalue(L, -2);
+	lua_pcall(L, 1, 0, 0);
+
+	return luaTableRef;
 }
 
 int Scene::lua_GetEntityCount(lua_State* L)
@@ -114,6 +135,8 @@ int Scene::lua_HasComponent(lua_State* L)
 	else if (type == "poison") {
 		hasComponent = scene->HasComponents<Poison>(entity);
 	}
+
+	lua_pushboolean(L, hasComponent);
 	return 1;
 }
 
@@ -151,6 +174,18 @@ int Scene::lua_SetComponent(lua_State* L)
 	{
 		float value = lua_tonumber(L, 3);
 		scene->SetComponent<Poison>(entity, value);
+	}
+	else if (type == "behaviour")
+	{
+		if (scene->HasComponents<Behaviour>(entity))
+		{
+			scene->RemoveComponent<Behaviour>(entity);
+		}
+
+		const char* path = lua_tostring(L, 3);
+		int ref = RefAndPushBehaviour(L, entity, path);
+		scene->SetComponent<Behaviour>(entity, Behaviour(path, ref));
+		return 1;
 	}
 
 	return 0;

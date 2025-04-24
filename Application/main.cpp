@@ -11,7 +11,6 @@
 
 #include "lua.hpp"
 #include "entt.hpp"
-#include "ecs/registry.hpp"
 #include "ecs/scene.hpp"
 #include "ecs/components.hpp"
 #include "ecs/systems.hpp"
@@ -44,10 +43,6 @@ void ConsoleThreadFunction(lua_State* L)
 
 int main()
 {
-
-	
-	
-
 
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
@@ -89,11 +84,6 @@ int main()
 
 	//Defines origin of the picture, so if rotate then rotate around this point
 	Vector2 origin = { framewidth, frameheight };
-
-
-	InitWindow(screenWidth, screenHeight, "Hatley Portman");
-	SetTargetFPS(60);
-
 
 	bool running = true;
 	while (!WindowShouldClose())

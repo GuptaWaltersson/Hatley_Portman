@@ -8,9 +8,13 @@ struct Position
 	float y;
 };
 
-struct Sprite
-{
+struct Sprite {
 	Texture2D texture;
+	std::string texturePath;
+
+	Sprite(const std::string& path)
+		: texture(LoadTexture(path.c_str())), texturePath(path) {
+	}
 };
 
 struct Health

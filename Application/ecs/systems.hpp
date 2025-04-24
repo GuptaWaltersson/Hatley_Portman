@@ -10,6 +10,25 @@ public:
 	virtual bool OnUpdate(entt::registry& registry, float delta) = 0;
 };
 
+class SpriteSystem : public System 
+{
+public:
+	bool OnUpdate(entt::registry& registry, float delta) final {
+		auto view = registry.view<Position, Sprite>();
+
+		view.each([](Position& position, const Sprite& sprite) {
+
+			Rectangle source = { 0.0,0.0, sprite.texture.width, sprite.texture.height};
+			Rectangle destrec = { 100, 100, sprite.texture.width * 8, sprite.texture.height * 8 };
+			Vector2 origin = { sprite.texture.width, sprite.texture.height};
+
+			DrawTexturePro(sprite.texture, source, destrec, origin, 0.0f, WHITE);
+		
+		});
+		return false;
+	}
+};
+
 class PoisonSystem : public System {
 	int m_lifetime;
 

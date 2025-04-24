@@ -2,6 +2,7 @@
 
 #include "scene.hpp"
 #include "components.hpp"
+#include <string>
 
 
 Scene::Scene(lua_State* L)
@@ -36,7 +37,12 @@ void Scene::lua_openScene(lua_State* L, Scene* scene)
 	luaL_Reg methods[] = {
 		{ "CreateEntity", lua_CreateEntity },
 		{ "SetComponent", lua_SetComponent },
-		
+		{ "GetComponent", lua_GetComponent },
+		{ "RemoveComponent", lua_RemoveComponent },
+		{ "HasComponent", lua_HasComponent },
+		{ "IsEntity", lua_IsEntity },
+		{ "GetEntityCount", lua_GetEntityCount },
+		{ "RemoveEntity", lua_RemoveEntity },
 		{ NULL, NULL }
 	};
 
@@ -129,6 +135,13 @@ int Scene::lua_HasComponent(lua_State* L)
 
 	bool hasComponent = false;
 
+	if (type == "sprite") {
+		hasComponent = scene->HasComponents<Sprite>(entity);
+	}
+	else if (type == "behaviour") {
+		hasComponent = scene->HasComponents<Behaviour>(entity);
+	}
+	else
 	if (type == "health") {
 		hasComponent = scene->HasComponents<Health>(entity);
 	}
@@ -146,7 +159,13 @@ int Scene::lua_GetComponent(lua_State* L)
 	int entity = lua_tointeger(L, 1);
 	std::string type = lua_tostring(L, 2);
 	
-	if (type == "health" && scene->HasComponents<Health>(entity))
+	if (type == "sprite" && scene->HasComponents<Sprite>(entity))
+	{
+		Sprite& sprite = scene->GetComponent<Sprite>(entity);
+		std::string textureId = std::to_string(sprite.texture.id);
+		lua_pushstring(L, textureId.c_str());
+	}
+	else if (type == "health" && scene->HasComponents<Health>(entity))
 	{
 		Health& health = scene->GetComponent<Health>(entity);
 		lua_pushnumber(L, health.value);
@@ -165,6 +184,11 @@ int Scene::lua_SetComponent(lua_State* L)
 	int entity = lua_tointeger(L, 1);
 	std::string type = lua_tostring(L, 2);
 
+	if (type == "sprite")
+	{
+		std::string path = lua_tostring(L, 3);
+		scene->SetComponent<Sprite>(entity, path.c_str());
+	}
 	if (type == "health")
 	{
 		float value = lua_tonumber(L, 3);
@@ -197,6 +221,15 @@ int Scene::lua_RemoveComponent(lua_State* L)
 	int entity = lua_tointeger(L, 1);
 	std::string type = lua_tostring(L, 2);
 
+	if (type == "sprite")
+	{
+		scene->RemoveComponent<Sprite>(entity);
+	}
+	else if (type == "behaviour")
+	{
+		scene->RemoveComponent<Behaviour>(entity);
+	}
+	else
 	if (type == "health")
 	{
 		scene->RemoveComponent<Health>(entity);

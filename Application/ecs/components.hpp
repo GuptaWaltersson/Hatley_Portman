@@ -52,3 +52,5 @@ struct Behaviour
 		strcpy_s(ScriptPath, path);
 	}
 };
+
+struct PLayerTag {};

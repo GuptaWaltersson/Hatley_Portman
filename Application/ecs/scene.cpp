@@ -186,6 +186,41 @@ int Scene::lua_SetComponent(lua_State* L)
 	{
 		float value = lua_tonumber(L, 3);
 		scene->SetComponent<Gravity>(entity, value);
+	}
+	else if (type == "position")
+	{
+		if (!lua_istable(L, 3)) {
+			luaL_error(L, "Expected a table for position component.");
+			return 0;
+		}
+
+		lua_getfield(L, 3, "x");
+		float x = luaL_optnumber(L, -1, 0.0f);
+		lua_pop(L, 1);
+
+		lua_getfield(L, 3, "y");
+		float y = luaL_optnumber(L, -1, 0.0f);
+		lua_pop(L, 1);
+
+		scene->SetComponent<Position>(entity, { x, y });
+	}
+	else if (type == "velocity")
+	{
+		if (!lua_istable(L, 3)) {
+			luaL_error(L, "Excpected a table for velocity component");
+			return 0;
+		}
+
+		lua_getfield(L, 3, "dx");
+		float dx = luaL_optnumber(L, -1, 0.0f);
+		lua_pop(L, 1);
+
+		lua_getfield(L, 3, "dy");
+		float dy = luaL_optnumber(L, -1, 0.0f);
+		lua_pop(L, 1);
+
+		scene->SetComponent<velocity>(entity, { dx, dy });
+	}
 	else if (type == "behaviour")
 	{
 		if (scene->HasComponents<Behaviour>(entity))

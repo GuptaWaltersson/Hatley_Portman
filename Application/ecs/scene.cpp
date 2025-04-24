@@ -210,6 +210,7 @@ int Scene::lua_SetComponent(lua_State* L)
 	{
 		float value = lua_tonumber(L, 3);
 		scene->SetComponent<Gravity>(entity, value);
+	}
 	else if (type == "behaviour")
 	{
 		if (scene->HasComponents<Behaviour>(entity))

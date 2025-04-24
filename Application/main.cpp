@@ -12,6 +12,9 @@
 #include "lua.hpp"
 #include "entt.hpp"
 #include "ecs/registry.hpp"
+#include "ecs/scene.hpp"
+#include "ecs/components.hpp"
+#include "ecs/systems.hpp"
 
 
 void DumpError(lua_State* L)
@@ -38,6 +41,7 @@ void ConsoleThreadFunction(lua_State* L)
 	}
 }
 
+
 int main()
 {
 
@@ -48,10 +52,25 @@ int main()
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
 
+	Scene scene(L);
+	Scene::lua_openScene(L, &scene);
+
+	scene.CreateSystem<PoisonSystem>(5);
+	scene.CreateSystem<CleanupSystem>();
+	scene.CreateSystem<InfoSystem>();
+	luaL_dofile(L, "scripts/sceneDemo.lua");
+
+	for (int i = 0; i < 10; ++i)
+	{
+		scene.UpdateSystems(1);
+	}
+
+
 	//std::thread consolethread(ConsoleThreadFunction, L);
 	const int screenWidth = 1600;
 	const int screenHeight = 900;
 	const int scale = 8;
+
 	InitWindow(screenWidth, screenHeight, "Portal jonas");
 	std::string texturePath = "../Textures/Portman_v1.png";
 
@@ -72,6 +91,7 @@ int main()
 	Vector2 origin = { framewidth, frameheight };
 
 
+	InitWindow(screenWidth, screenHeight, "Hatley Portman");
 	SetTargetFPS(60);
 
 
@@ -106,16 +126,3 @@ int main()
 	lua_close(L);
 	return 0;
 }
-
-
-////Texture2D Jonas = LoadTexture("../Textures/Portman_v1.png");
-//Texture2D Jonas = LoadTexture("../Textures/Pixel_Plattformer_Standard/Tiles/tile_0006.png");
-//float framewidth = Jonas.width;
-//float frameheight = Jonas.height;
-//
-//Rectangle source = { 0.0,0.0, framewidth, frameheight };
-//
-//Rectangle destrec = { screenWidth / 2, screenHeight / 2, framewidth * scale, frameheight * scale };
-//
-//Vector2 origin = { framewidth, frameheight };
-//DrawTexturePro(Jonas, source, destrec, origin, 0.0f, WHITE);

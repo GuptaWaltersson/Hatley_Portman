@@ -25,6 +25,9 @@
     <ClCompile Include="Player\playerScriptingBridge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ecs\scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecs\registry.hpp">
@@ -34,5 +37,17 @@
     <ClInclude Include="Player\playerScriptingBridge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ecs\components.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ecs\scene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ecs\systems.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="scripts\sceneDemo.lua" />
   </ItemGroup>
 </Project>

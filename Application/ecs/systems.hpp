@@ -30,18 +30,22 @@ class MovementSystem : public System {
 
 public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
-		if (IsKeyPressed(KEY_LEFT))
-		{
-			//left operation
-		}
-		if (IsKeyPressed(KEY_RIGHT))
-		{
-			//Right operation
-		}
-		if (IsKeyPressed(KEY_SPACE))
-		{
-			//Jump operation
-		}
+		auto view = registry.view<Position, Velocity>();
+		view.each([&](Position& pos, const Velocity& velocity) {
+			if (IsKeyPressed(KEY_LEFT))
+			{
+				pos.x -= velocity.dx;
+			}
+			if (IsKeyPressed(KEY_RIGHT))
+			{
+				pos.x += velocity.dx;
+			}
+			if (IsKeyPressed(KEY_SPACE))
+			{
+				//Jump operation
+			}
+			
+		});
 		return false;
 	}
 };
@@ -52,8 +56,8 @@ public :
 	GravitySystem(float acceleration) : m_acceleration(acceleration){}
 
 	bool OnUpdate(entt::registry& registry, float delta) final {
-		auto view = registry.view<velocity, Gravity>();
-		view.each([&](velocity& vel, const Gravity& acceleration) {
+		auto view = registry.view<Velocity, Gravity>();
+		view.each([&](Velocity& vel, const Gravity& acceleration) {
 			vel.dy += acceleration.acceleration * delta;
 			});
 		return false;

@@ -219,7 +219,7 @@ int Scene::lua_SetComponent(lua_State* L)
 		float dy = luaL_optnumber(L, -1, 0.0f);
 		lua_pop(L, 1);
 
-		scene->SetComponent<velocity>(entity, { dx, dy });
+		scene->SetComponent<Velocity>(entity, { dx, dy });
 	}
 	else if (type == "behaviour")
 	{

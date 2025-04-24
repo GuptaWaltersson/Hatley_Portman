@@ -15,7 +15,7 @@ struct HitBox
 	Position Origin;
 };
 
-struct velocity
+struct Velocity
 {
 	float dx;
 	float dy;

@@ -55,12 +55,12 @@ int main()
 	scene.CreateSystem<MovementSystem>();
 	scene.CreateSystem<InfoSystem>();
 	luaL_dofile(L, "scripts/sceneDemo.lua");
-
+	
 	for (int i = 0; i < 10; ++i)
 	{
 		scene.UpdateSystems(1);
 	}
-
+	//printf(std::to_string(scene.GetEntityCount()).c_str());
 
 	//std::thread consolethread(ConsoleThreadFunction, L);
 	const int screenWidth = 1600;
@@ -81,6 +81,7 @@ int main()
 
 	//Defines the place for rectangle the picture fills
 	//first two x,y coordinates other two are size of picture width and height
+	
 	Rectangle destrec = { screenWidth / 2, screenHeight / 2, framewidth * scale, frameheight * scale}; 
 
 	//Defines origin of the picture, so if rotate then rotate around this point

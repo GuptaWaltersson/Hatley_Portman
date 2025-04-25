@@ -70,8 +70,8 @@ int main()
 		// DRAW
 		BeginDrawing();
 		ClearBackground(RAYWHITE);
-		
-		scene.UpdateSystems(1);
+		float delta = GetFrameTime();
+		scene.UpdateSystems(delta);
 
 		DrawText("The Gupt is Gupting", 190, 200, 20, BLACK);
 

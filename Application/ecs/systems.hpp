@@ -19,7 +19,6 @@ public:
 		view.each([](const Sprite& sprite, const Position& pos) {
 
 			Rectangle source = { 0.0,0.0, sprite.texture.width, sprite.texture.height};
-			//Rectangle destrec = { position.x, position.y, sprite.texture.width * 8, sprite.texture.height * 8 };
 			Rectangle destrec = { pos.x, pos.y, sprite.texture.width * 8, sprite.texture.height * 8 };
 			Vector2 origin = { sprite.texture.width, sprite.texture.height};
 
@@ -39,16 +38,16 @@ public:
 		view.each([&](Position& pos, Velocity& velocity) {
 			if (IsKeyDown(KEY_LEFT))
 			{
-				if (velocity.dx > -1.5)
+				if (velocity.dx > -75)
 				{
-					velocity.dx -= 0.1;
+					velocity.dx -= 5*delta;
 				}
 			}
 			else if (IsKeyDown(KEY_RIGHT))
 			{
-				if (velocity.dx < 1.5)
+				if (velocity.dx < 75)
 				{
-					velocity.dx += 0.1;
+					velocity.dx += 5*delta;
 				}
 			}
 			else
@@ -57,14 +56,15 @@ public:
 			}
 			if (IsKeyPressed(KEY_SPACE))
 			{
-				velocity.dy -= 0.5;
+				velocity.dy -= 1000;
 			}
-			else if (pos.y > 700)
+			else if (pos.y >= 700)
 			{
+				pos.y = 700;
 				velocity.dy = 0;
 			}
-			pos.x += velocity.dx;
-			pos.y += velocity.dy;
+			pos.x += velocity.dx*delta;
+			pos.y += velocity.dy*delta;
 
 			
 		});

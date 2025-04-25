@@ -36,19 +36,36 @@ class MovementSystem : public System {
 public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
 		auto view = registry.view<Position, Velocity>();
-		view.each([&](Position& pos, const Velocity& velocity) {
+		view.each([&](Position& pos, Velocity& velocity) {
 			if (IsKeyDown(KEY_LEFT))
 			{
-				pos.x -= velocity.dx;
+				if (velocity.dx > -1.5)
+				{
+					velocity.dx -= 0.1;
+				}
 			}
-			if (IsKeyDown(KEY_RIGHT))
+			else if (IsKeyDown(KEY_RIGHT))
 			{
-				pos.x += velocity.dx;
+				if (velocity.dx < 1.5)
+				{
+					velocity.dx += 0.1;
+				}
+			}
+			else
+			{
+				velocity.dx = 0;
 			}
 			if (IsKeyPressed(KEY_SPACE))
 			{
-				//Jump operation
+				velocity.dy -= 0.5;
 			}
+			else if (pos.y > 700)
+			{
+				velocity.dy = 0;
+			}
+			pos.x += velocity.dx;
+			pos.y += velocity.dy;
+
 			
 		});
 		return false;
@@ -96,4 +113,19 @@ public:
 			}
 		});
 	}
+};
+
+class InfoSystem : public System
+{
+public:
+	bool OnUpdate(entt::registry& registry, float delta) final
+	{
+		auto gravityView = registry.view<Gravity>();
+		printf("\n----update---\n");
+		printf("gravityentitites: \t%i\n", gravityView.size());
+
+		return false;
+	}
+
+
 };

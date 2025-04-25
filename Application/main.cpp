@@ -56,6 +56,7 @@ int main()
 	scene.CreateSystem<SpriteSystem>();
 	scene.CreateSystem<GravitySystem>(9.8);
 	scene.CreateSystem<MovementSystem>();
+	//scene.CreateSystem<InfoSystem>();
 
 	if (luaL_dofile(L, "scripts/player.lua") != LUA_OK) {
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;

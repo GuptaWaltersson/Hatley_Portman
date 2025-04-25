@@ -14,12 +14,13 @@ class SpriteSystem : public System
 {
 public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
-		auto view = registry.view<Sprite>();
-		view.each([](const Sprite& sprite) {
+		auto view = registry.view<Sprite,Position>();
+
+		view.each([](const Sprite& sprite, const Position& pos) {
 
 			Rectangle source = { 0.0,0.0, sprite.texture.width, sprite.texture.height};
 			//Rectangle destrec = { position.x, position.y, sprite.texture.width * 8, sprite.texture.height * 8 };
-			Rectangle destrec = { 100, 100, sprite.texture.width * 8, sprite.texture.height * 8 };
+			Rectangle destrec = { pos.x, pos.y, sprite.texture.width * 8, sprite.texture.height * 8 };
 			Vector2 origin = { sprite.texture.width, sprite.texture.height};
 
 			DrawTexturePro(sprite.texture, source, destrec, origin, 0.0f, WHITE);

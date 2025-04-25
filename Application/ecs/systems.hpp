@@ -14,12 +14,13 @@ class SpriteSystem : public System
 {
 public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
-		auto view = registry.view<Sprite>();
+		auto view = registry.view<Position, Sprite>();
 		//std::cout << "Entities with Sprite: " << view.size() << std::endl;
-		view.each([](const Sprite& sprite) {
+		view.each([](const Position& position, const Sprite& sprite) {
 
 			Rectangle source = { 0.0,0.0, sprite.texture.width, sprite.texture.height};
-			Rectangle destrec = { 500, 100, sprite.texture.width * 8, sprite.texture.height * 8 };
+			//Rectangle destrec = { position.x, position.y, sprite.texture.width * 8, sprite.texture.height * 8 };
+			Rectangle destrec = { 100, 100, sprite.texture.width * 8, sprite.texture.height * 8 };
 			Vector2 origin = { sprite.texture.width, sprite.texture.height};
 
 			DrawTexturePro(sprite.texture, source, destrec, origin, 0.0f, WHITE);
@@ -29,21 +30,6 @@ public:
 	}
 };
 
-class PoisonSystem : public System {
-	int m_lifetime;
-
-public:
-	PoisonSystem(int lifetime) : m_lifetime(lifetime) {}
-
-	bool OnUpdate(entt::registry& registry, float delta) final {
-		auto view = registry.view<Health, Poison>();
-		view.each([](Health& health, const Poison& poison) {
-			health.value -= poison.tickDamage;
-			});
-
-		return (--m_lifetime) <= 0;
-	}
-};
 
 class MovementSystem : public System {
 
@@ -79,41 +65,6 @@ public :
 		view.each([&](Velocity& vel, const Gravity& acceleration) {
 			vel.dy += acceleration.acceleration * delta;
 			});
-		return false;
-	}
-};
-
-class CleanupSystem : public System {
-public:
-	bool OnUpdate(entt::registry& registry, float delta) final {
-		auto view = registry.view<Health>();
-		view.each([&](entt::entity entity, const Health& health) {
-			if (health.value <= 0.f) {
-				registry.destroy(entity);
-			}
-			});
-		return false;
-	}
-};
-
-class InfoSystem : public System {
-	int m_updateCounter = 0;
-
-public:
-	InfoSystem() = default;
-
-	bool OnUpdate(entt::registry& registry, float delta) final {
-		int count = registry.view<entt::entity>().size();
-		auto healthView = registry.view<Health>();
-		auto poisonView = registry.view<Poison>();
-		auto gravityView = registry.view<Gravity>();
-		auto positionView = registry.view<Position>();
-		printf("\n-- Update %i --\n", ++m_updateCounter);
-		printf("Living entities:\t%i\n", static_cast<int>(healthView.size()));
-		printf("Poisoned entities:\t%i\n", static_cast<int>(poisonView.size()));
-		printf("Gravity entitie: \t%i\n", static_cast<int>(gravityView.size()));
-		printf("position entitie: \t%i\n", static_cast<int>(positionView.size()));
-
 		return false;
 	}
 };

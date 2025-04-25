@@ -36,16 +36,6 @@ struct Sprite
 	}
 };
 
-struct Health
-{
-	float value;
-};
-
-struct Poison
-{
-	float tickDamage;
-};
-
 struct Behaviour
 {
 	char ScriptPath[64];

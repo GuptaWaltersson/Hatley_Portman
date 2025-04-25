@@ -160,13 +160,6 @@ int Scene::lua_HasComponent(lua_State* L)
 	else if (type == "behaviour") {
 		hasComponent = scene->HasComponents<Behaviour>(entity);
 	}
-	else
-	if (type == "health") {
-		hasComponent = scene->HasComponents<Health>(entity);
-	}
-	else if (type == "poison") {
-		hasComponent = scene->HasComponents<Poison>(entity);
-	}
 	else if (type == "gravity") {
 		hasComponent = scene->HasComponents<Gravity>(entity);
 	}
@@ -192,16 +185,6 @@ int Scene::lua_GetComponent(lua_State* L)
 		std::string textureId = std::to_string(sprite.texture.id);
 		lua_pushstring(L, textureId.c_str());
 	}
-	else if (type == "health" && scene->HasComponents<Health>(entity))
-	{
-		Health& health = scene->GetComponent<Health>(entity);
-		lua_pushnumber(L, health.value);
-	}
-	else if (type == "poison" && scene->HasComponents<Poison>(entity))
-	{
-		Poison& poison = scene->GetComponent<Poison>(entity);
-		lua_pushnumber(L, poison.tickDamage);
-	}
 	else if (type == "gravity" && scene->HasComponents<Gravity>(entity))
 	{
 		Gravity& grav = scene->GetComponent<Gravity>(entity);
@@ -220,16 +203,6 @@ int Scene::lua_SetComponent(lua_State* L)
 	{
 		std::string path = lua_tostring(L, 3);
 		scene->SetComponent<Sprite>(entity, path.c_str());
-	}
-	if (type == "health")
-	{
-		float value = lua_tonumber(L, 3);
-		scene->SetComponent<Health>(entity, value);
-	}
-	else if (type == "poison")
-	{
-		float value = lua_tonumber(L, 3);
-		scene->SetComponent<Poison>(entity, value);
 	}
 	else if (type == "gravity")
 	{
@@ -283,10 +256,6 @@ int Scene::lua_SetComponent(lua_State* L)
 		scene->SetComponent<Behaviour>(entity, Behaviour(path, ref));
 		return 1;
 	}
-	else if (type == "player")
-	{
-		
-	}
 
 	return 0;
 }
@@ -304,15 +273,6 @@ int Scene::lua_RemoveComponent(lua_State* L)
 	else if (type == "behaviour")
 	{
 		scene->RemoveComponent<Behaviour>(entity);
-	}
-	else
-	if (type == "health")
-	{
-		scene->RemoveComponent<Health>(entity);
-	}
-	else if (type == "poison")
-	{
-		scene->RemoveComponent<Poison>(entity);
 	}
 	else if (type == "gravity")
 	{

@@ -77,7 +77,6 @@ int main()
 
 		EndDrawing();
 	}
-	//UnloadTexture(Jonas);
 
 	CloseWindow();
 	lua_close(L);

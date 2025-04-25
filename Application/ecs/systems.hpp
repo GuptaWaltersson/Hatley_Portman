@@ -14,9 +14,8 @@ class SpriteSystem : public System
 {
 public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
-		auto view = registry.view<Position, Sprite>();
-		//std::cout << "Entities with Sprite: " << view.size() << std::endl;
-		view.each([](const Position& position, const Sprite& sprite) {
+		auto view = registry.view<Sprite>();
+		view.each([](const Sprite& sprite) {
 
 			Rectangle source = { 0.0,0.0, sprite.texture.width, sprite.texture.height};
 			//Rectangle destrec = { position.x, position.y, sprite.texture.width * 8, sprite.texture.height * 8 };

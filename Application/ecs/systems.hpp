@@ -36,33 +36,48 @@ public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
 		auto view = registry.view<Position, Velocity>();
 		view.each([&](Position& pos, Velocity& velocity) {
-			if (IsKeyDown(KEY_LEFT))
+			if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_RIGHT))
 			{
-				if (velocity.dx > -75)
+				if (IsKeyDown(KEY_LEFT))
 				{
-					velocity.dx -= 5*delta;
+					if (velocity.dx > -600)
+					{
+						velocity.dx -= 1000 * delta;
+					}
 				}
-			}
-			else if (IsKeyDown(KEY_RIGHT))
-			{
-				if (velocity.dx < 75)
+				if (IsKeyDown(KEY_RIGHT))
 				{
-					velocity.dx += 5*delta;
+					if (velocity.dx < 600)
+					{
+						velocity.dx += 1000 * delta;
+					}
 				}
 			}
 			else
 			{
-				velocity.dx = 0;
+				if (velocity.dx < -100) {
+					velocity.dx += 600 * delta;
+				}
+				else if (velocity.dx > 100) {
+					velocity.dx -= 600 * delta;
+				}
+				else {
+					velocity.dx = 0;
+				}
 			}
+
+
 			if (IsKeyPressed(KEY_SPACE))
 			{
-				velocity.dy -= 1000;
+				velocity.dy -= 800;
 			}
 			else if (pos.y >= 700)
 			{
 				pos.y = 700;
 				velocity.dy = 0;
 			}
+			
+
 			pos.x += velocity.dx*delta;
 			pos.y += velocity.dy*delta;
 

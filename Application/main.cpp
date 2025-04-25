@@ -72,6 +72,23 @@ int main()
 	const int scale = 8;
 
 	InitWindow(screenWidth, screenHeight, "Hatman");
+
+
+	lua_State* L = luaL_newstate();
+	luaL_openlibs(L);
+
+	Scene scene(L);
+	Scene::lua_openScene(L, &scene);
+
+	scene.CreateSystem<SpriteSystem>();
+	if (luaL_dofile(L, "scripts/player.lua") != LUA_OK) {
+		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
+		lua_pop(L, 1);
+	}
+
+
+
+
 	
 	//std::string texturePath = "../Textures/Portman_v1.png";
 

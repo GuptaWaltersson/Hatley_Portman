@@ -29,6 +29,25 @@ void Scene::RemoveEntity(int entity)
 	m_registry.destroy((entt::entity)entity);
 }
 
+
+
+
+
+Vector2 Scene::GetPlayerPosition() 
+{
+	Vector2 pos = { 0,0 };
+	auto view = m_registry.view<Position>();
+	
+	for (auto entity : view)
+	{
+		const auto& player = view.get<Position>(entity);
+		pos = { player.x,player.y };
+		return pos;
+	}
+
+	return { 0,0 };
+}
+
 void Scene::lua_openScene(lua_State* L, Scene* scene)
 {
 	lua_newtable(L);
@@ -138,6 +157,12 @@ int Scene::lua_HasComponent(lua_State* L)
 	else if (type == "gravity") {
 		hasComponent = scene->HasComponents<Gravity>(entity);
 	}
+	else if (type == "position") {
+		hasComponent = scene->HasComponents<Position>(entity);
+	}
+	else if (type == "velocity") {
+		hasComponent = scene->HasComponents<Velocity>(entity);
+	}
 	lua_pushboolean(L, hasComponent);
 	return 1;
 }
@@ -202,6 +227,7 @@ int Scene::lua_SetComponent(lua_State* L)
 		float y = luaL_optnumber(L, -1, 0.0f);
 		lua_pop(L, 1);
 
+		printf("Setting position : x = % f, y = % f\n", x, y);
 		scene->SetComponent<Position>(entity, { x, y });
 	}
 	else if (type == "velocity")
@@ -233,6 +259,10 @@ int Scene::lua_SetComponent(lua_State* L)
 		scene->SetComponent<Behaviour>(entity, Behaviour(path, ref));
 		return 1;
 	}
+	else if (type == "player")
+	{
+		
+	}
 
 	return 0;
 }
@@ -254,6 +284,14 @@ int Scene::lua_RemoveComponent(lua_State* L)
 	else if (type == "gravity")
 	{
 		scene->RemoveComponent<Gravity>(entity);
+	}
+	else if (type == "position")
+	{
+		scene->RemoveComponent<Position>(entity);
+	}
+	else if (type == "velocity")
+	{
+		scene->RemoveComponent<Velocity>(entity);
 	}
 	return 0;
 }

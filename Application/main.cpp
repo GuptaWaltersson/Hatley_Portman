@@ -53,13 +53,15 @@ int main()
 	scene.CreateSystem<CleanupSystem>();
 	scene.CreateSystem<GravitySystem>(9.8);
 	scene.CreateSystem<MovementSystem>();
-	scene.CreateSystem<InfoSystem>();
+	//scene.CreateSystem<InfoSystem>();
 	luaL_dofile(L, "scripts/sceneDemo.lua");
+	
 	
 	for (int i = 0; i < 10; ++i)
 	{
 		scene.UpdateSystems(1);
 	}
+	Vector2 pos = scene.GetPlayerPosition();
 	//printf(std::to_string(scene.GetEntityCount()).c_str());
 
 	//std::thread consolethread(ConsoleThreadFunction, L);
@@ -99,9 +101,11 @@ int main()
 		} */
 
 		//change texture if needed i guess, remember to change to a texture the same size otherwise we have to also update the source dest rec
-		
-
-
+		//scene.UpdateSystems(1);
+		scene.UpdateSystems(1);
+		Vector2 pos = scene.GetPlayerPosition();
+		destrec.x = pos.x;
+		destrec.y = pos.y;
 
 		// DRAW
 		BeginDrawing();

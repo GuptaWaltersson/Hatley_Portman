@@ -1,5 +1,6 @@
 #include "lua.hpp"
 #include "systems.hpp"
+#include "raylib.h"
 
 
 
@@ -16,10 +17,13 @@ public:
 	int CreateEntity();
 	bool IsEntity(int entity);
 	void RemoveEntity(int entity);
+	
+	Vector2 GetPlayerPosition() ;
 
 	static void lua_openScene(lua_State* L, Scene* scene);
 
 	void UpdateSystems(float delta);
+	
 
 public:
 	template <typename... Args>

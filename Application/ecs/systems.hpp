@@ -32,11 +32,11 @@ public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
 		auto view = registry.view<Position, Velocity>();
 		view.each([&](Position& pos, const Velocity& velocity) {
-			if (IsKeyPressed(KEY_LEFT))
+			if (IsKeyDown(KEY_LEFT))
 			{
 				pos.x -= velocity.dx;
 			}
-			if (IsKeyPressed(KEY_RIGHT))
+			if (IsKeyDown(KEY_RIGHT))
 			{
 				pos.x += velocity.dx;
 			}
@@ -88,10 +88,12 @@ public:
 		auto healthView = registry.view<Health>();
 		auto poisonView = registry.view<Poison>();
 		auto gravityView = registry.view<Gravity>();
+		auto positionView = registry.view<Position>();
 		printf("\n-- Update %i --\n", ++m_updateCounter);
 		printf("Living entities:\t%i\n", static_cast<int>(healthView.size()));
 		printf("Poisoned entities:\t%i\n", static_cast<int>(poisonView.size()));
 		printf("Gravity entitie: \t%i\n", static_cast<int>(gravityView.size()));
+		printf("position entitie: \t%i\n", static_cast<int>(positionView.size()));
 
 		return false;
 	}

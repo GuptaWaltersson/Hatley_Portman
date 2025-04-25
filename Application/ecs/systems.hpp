@@ -42,24 +42,24 @@ public:
 				{
 					if (velocity.dx > -600)
 					{
-						velocity.dx -= 1000 * delta;
+						velocity.dx -= 2400 * delta;
 					}
 				}
 				if (IsKeyDown(KEY_RIGHT))
 				{
 					if (velocity.dx < 600)
 					{
-						velocity.dx += 1000 * delta;
+						velocity.dx += 2400 * delta;
 					}
 				}
 			}
 			else
 			{
 				if (velocity.dx < -100) {
-					velocity.dx += 600 * delta;
+					velocity.dx += 1800 * delta;
 				}
 				else if (velocity.dx > 100) {
-					velocity.dx -= 600 * delta;
+					velocity.dx -= 1800 * delta;
 				}
 				else {
 					velocity.dx = 0;

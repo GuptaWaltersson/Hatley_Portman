@@ -58,15 +58,14 @@ int main()
 	scene.CreateSystem<MovementSystem>();
 	
 
-	scene.CreateSystem<SpriteSystem>();
-	if (luaL_dofile(L, "scripts/player.lua") != LUA_OK) {
-		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
-		lua_pop(L, 1);
-	}
 
 	bool running = true;
 	while (!WindowShouldClose())
 	{
+		if (luaL_dofile(L, "scripts/player.lua") != LUA_OK) {
+			std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
+			lua_pop(L, 1);
+		}
 		// DRAW
 		BeginDrawing();
 		ClearBackground(RAYWHITE);

@@ -43,7 +43,7 @@ int main()
 {
 	const int screenWidth = 1600;
 	const int screenHeight = 900;
-	const int scale = 8;
+	
 
 	InitWindow(screenWidth, screenHeight, "Hatman");
 
@@ -56,16 +56,16 @@ int main()
 	scene.CreateSystem<SpriteSystem>();
 	scene.CreateSystem<GravitySystem>(9.8);
 	scene.CreateSystem<MovementSystem>();
-	
+	if (luaL_dofile(L, "scripts/player.lua") != LUA_OK) {
+		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
+		lua_pop(L, 1);
+	}
 
 
 	bool running = true;
 	while (!WindowShouldClose())
 	{
-		if (luaL_dofile(L, "scripts/player.lua") != LUA_OK) {
-			std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
-			lua_pop(L, 1);
-		}
+
 		// DRAW
 		BeginDrawing();
 		ClearBackground(RAYWHITE);

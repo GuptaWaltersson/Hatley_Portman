@@ -19,7 +19,6 @@ public:
 		view.each([](const Sprite& sprite, const Position& pos) {
 
 			Rectangle source = { 0.0,0.0, sprite.texture.width, sprite.texture.height};
-			//Rectangle destrec = { position.x, position.y, sprite.texture.width * 8, sprite.texture.height * 8 };
 			Rectangle destrec = { pos.x, pos.y, sprite.texture.width * 8, sprite.texture.height * 8 };
 			Vector2 origin = { sprite.texture.width, sprite.texture.height};
 
@@ -29,7 +28,6 @@ public:
 		return false;
 	}
 };
-
 
 class MovementSystem : public System {
 

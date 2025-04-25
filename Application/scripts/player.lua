@@ -3,7 +3,7 @@ local player = {}
 -- Compontents
 local entity = scene.CreateEntity()
 
-scene.SetComponent(entity, "sprite", "../Textures/Portman_v1_big.png")
+scene.SetComponent(entity, "sprite", "../Textures/Portman_v1.png")
 player.position = {x = 0, y = 0}
 
 position = {x=400,y=400}

@@ -19,12 +19,35 @@ public:
 		view.each([](const Sprite& sprite, const Position& pos) {
 
 			Rectangle source = { 0.0,0.0, sprite.texture.width, sprite.texture.height};
-			Rectangle destrec = { pos.x, pos.y, sprite.texture.width * 8, sprite.texture.height * 8 };
+			Rectangle destrec = { pos.x, pos.y, sprite.texture.width * 4, sprite.texture.height * 4 };
 			Vector2 origin = { sprite.texture.width, sprite.texture.height};
-
+			   
 			DrawTexturePro(sprite.texture, source, destrec, origin, 0.0f, WHITE);
 		
 		});
+		return false;
+	}
+};
+
+class CollisionSystem : public System
+{
+	bool OnUpdate(entt::registry& registry, float delta) final
+	{
+		auto playerEntity = registry.view<Position, BBox>().front();
+		Position playerPos = registry.get<Position>(playerEntity);
+		BBox playerBox = registry.get<BBox>(playerEntity);
+
+		auto view = registry.view<Position, BBox>();
+		view.each([&](Position& pos, BBox& box) {
+			if (playerPos.x != pos.x && playerPos.x != pos.y) // Skip the player entity
+			{
+				if (CheckCollisionRecs({ playerPos.x, playerPos.y, playerBox.width, playerBox.height }, { pos.x, pos.y, box.width, box.height }))
+				{
+					// Handle collision
+					std::cout << "Collision detected!" << std::endl;
+				}
+			}
+			});
 		return false;
 	}
 };
@@ -35,17 +58,21 @@ public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
 		auto view = registry.view<Position, Velocity>();
 		view.each([&](Position& pos, const Velocity& velocity) {
-			if (IsKeyDown(KEY_LEFT))
+			if (IsKeyDown('A'))
 			{
 				pos.x -= velocity.dx;
 			}
-			if (IsKeyDown(KEY_RIGHT))
+			if (IsKeyDown('D'))
 			{
 				pos.x += velocity.dx;
 			}
-			if (IsKeyPressed(KEY_SPACE))
+			if (IsKeyDown('W'))
 			{
-				//Jump operation
+				pos.y -= velocity.dy;
+			}
+			if (IsKeyDown('S'))
+			{
+				pos.y += velocity.dy;
 			}
 			
 		});

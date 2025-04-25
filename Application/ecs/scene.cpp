@@ -1,3 +1,5 @@
+
+
 #include <iostream>
 
 #include "scene.hpp"
@@ -153,6 +155,9 @@ int Scene::lua_HasComponent(lua_State* L)
 	if (type == "sprite") {
 		hasComponent = scene->HasComponents<Sprite>(entity);
 	}
+	else if (type == "boundingbox") {
+		hasComponent = scene->HasComponents<BBox>(entity);
+	}
 	else if (type == "behaviour") {
 		hasComponent = scene->HasComponents<Behaviour>(entity);
 	}
@@ -181,6 +186,12 @@ int Scene::lua_GetComponent(lua_State* L)
 		std::string textureId = std::to_string(sprite.texture.id);
 		lua_pushstring(L, textureId.c_str());
 	}
+	else if (type == "boundingbox")
+	{
+		BBox& box = scene->GetComponent<BBox>(entity);
+		lua_pushnumber(L, box.width);
+		lua_pushnumber(L, box.height);
+	}
 	else if (type == "gravity" && scene->HasComponents<Gravity>(entity))
 	{
 		Gravity& grav = scene->GetComponent<Gravity>(entity);
@@ -189,6 +200,8 @@ int Scene::lua_GetComponent(lua_State* L)
 	else if (type == "position")
 	{
 		Position& pos = scene->GetComponent<Position>(entity);
+		lua_pushnumber(L, pos.x);
+		lua_pushnumber(L, pos.y);
 	}
 	return 1;
 }
@@ -203,6 +216,24 @@ int Scene::lua_SetComponent(lua_State* L)
 	{
 		std::string path = lua_tostring(L, 3);
 		scene->SetComponent<Sprite>(entity, path.c_str());
+	}
+	else if (type == "boundingbox")
+	{
+		if (!lua_istable(L, 3)) {
+			luaL_error(L, "Expected a table for boundingbox component.");
+			return 0;
+		}
+
+		lua_getfield(L, 3, "width");
+		float width = luaL_optnumber(L, -1, 0.0f);
+		lua_pop(L, 1);
+
+		lua_getfield(L, 3, "height");
+		float height = luaL_optnumber(L, -1, 0.0f);
+		lua_pop(L, 1);
+
+		printf("Setting boundingbox : width = % f, height = % f\n", width, height);
+		scene->SetComponent<BBox>(entity, { width, height });
 	}
 	else if (type == "gravity")
 	{
@@ -269,6 +300,10 @@ int Scene::lua_RemoveComponent(lua_State* L)
 	if (type == "sprite")
 	{
 		scene->RemoveComponent<Sprite>(entity);
+	}
+	else if (type == "boundingbox")
+	{
+		scene->RemoveComponent<BoundingBox>(entity);
 	}
 	else if (type == "behaviour")
 	{

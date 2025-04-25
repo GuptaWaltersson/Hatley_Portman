@@ -15,7 +15,7 @@ struct HitBox
 	Position Origin;
 };
 
-struct velocity
+struct Velocity
 {
 	float dx;
 	float dy;
@@ -57,3 +57,5 @@ struct Behaviour
 		strcpy_s(ScriptPath, path);
 	}
 };
+
+struct PLayerTag {};

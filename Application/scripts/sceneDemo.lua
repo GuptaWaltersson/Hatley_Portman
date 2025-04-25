@@ -12,4 +12,8 @@ local Gentity = scene.CreateEntity()
 scene.SetComponent(Gentity,"gravity")
 scene.SetComponent(entity, "behaviour", "monster.lua")
 
-
+local player = scene.CreatePlayerEntity()
+position = {x=800,y=450}
+scene.SetComponent(player,"position",position)
+velocity = {dx = 10.0, dy=10.0}
+scene.SetComponent(player,"velocity",velocity)

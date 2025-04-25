@@ -207,6 +207,10 @@ int Scene::lua_GetComponent(lua_State* L)
 		Gravity& grav = scene->GetComponent<Gravity>(entity);
 		lua_pushnumber(L, grav.acceleration);
 	}
+	else if (type == "position")
+	{
+		Position& pos = scene->GetComponent<Position>(entity);
+	}
 	return 1;
 }
 

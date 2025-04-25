@@ -41,6 +41,12 @@ void ConsoleThreadFunction(lua_State* L)
 
 int main()
 {
+	const int screenWidth = 1600;
+	const int screenHeight = 900;
+	const int scale = 8;
+
+	InitWindow(screenWidth, screenHeight, "Hatman");
+
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
 
@@ -55,7 +61,7 @@ int main()
 	luaL_dofile(L, "scripts/player.lua");
 	scene.CreateSystem<GravitySystem>(9.8);
 	scene.CreateSystem<MovementSystem>();
-	//scene.CreateSystem<InfoSystem>();
+	scene.CreateSystem<InfoSystem>();
 	luaL_dofile(L, "scripts/sceneDemo.lua");
 	
 	
@@ -67,18 +73,10 @@ int main()
 	//printf(std::to_string(scene.GetEntityCount()).c_str());
 
 	//std::thread consolethread(ConsoleThreadFunction, L);
-	const int screenWidth = 1600;
-	const int screenHeight = 900;
-	const int scale = 8;
-
-	InitWindow(screenWidth, screenHeight, "Hatman");
 
 
-	lua_State* L = luaL_newstate();
-	luaL_openlibs(L);
 
-	Scene scene(L);
-	Scene::lua_openScene(L, &scene);
+
 
 	scene.CreateSystem<SpriteSystem>();
 	if (luaL_dofile(L, "scripts/player.lua") != LUA_OK) {
@@ -120,10 +118,6 @@ int main()
 
 		//change texture if needed i guess, remember to change to a texture the same size otherwise we have to also update the source dest rec
 		//scene.UpdateSystems(1);
-		scene.UpdateSystems(1);
-		Vector2 pos = scene.GetPlayerPosition();
-		destrec.x = pos.x;
-		destrec.y = pos.y;
 
 		// DRAW
 		BeginDrawing();

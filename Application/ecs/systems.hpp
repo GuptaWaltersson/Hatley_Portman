@@ -33,18 +33,59 @@ class CollisionSystem : public System
 {
 	bool OnUpdate(entt::registry& registry, float delta) final
 	{
-		auto playerEntity = registry.view<Position, BBox>().front();
-		Position playerPos = registry.get<Position>(playerEntity);
-		BBox playerBox = registry.get<BBox>(playerEntity);
-
 		auto view = registry.view<Position, BBox>();
 		view.each([&](Position& pos, BBox& box) {
-			if (playerPos.x != pos.x && playerPos.x != pos.y) // Skip the player entity
+
+			auto playerEntity = registry.view<Position, BBox>().front();
+			Position& playerPos = registry.get<Position>(playerEntity);
+			BBox& playerBox = registry.get<BBox>(playerEntity);
+
+			Rectangle playerRect = { playerPos.x, playerPos.y, playerBox.width, playerBox.height };
+
+			if (playerPos.x != pos.x && playerPos.y != pos.y)
 			{
-				if (CheckCollisionRecs({ playerPos.x, playerPos.y, playerBox.width, playerBox.height }, { pos.x, pos.y, box.width, box.height }))
+
+				Rectangle otherRect = { pos.x, pos.y, box.width, box.height };
+
+				if (CheckCollisionRecs(playerRect, otherRect))
 				{
-					// Handle collision
-					std::cout << "Collision detected!" << std::endl;
+					Rectangle collision = GetCollisionRec(playerRect, otherRect);
+
+					// Calculate centers
+					float playerCenterX = playerPos.x + playerBox.width / 2.0f;
+					float playerCenterY = playerPos.y + playerBox.height / 2.0f;
+					float blockCenterX = pos.x + box.width / 2.0f;
+					float blockCenterY = pos.y + box.height / 2.0f;
+
+					if (collision.width < collision.height)
+					{
+						if (playerCenterX < blockCenterX)
+						{
+							playerPos.x -= collision.width;
+							std::cout << "LEFT" << std::endl;
+						}
+						else
+						{
+							playerPos.x += collision.width;
+							std::cout << "RIGHT" << std::endl;
+						}
+					}
+					else
+					{
+						if (playerCenterY < blockCenterY)
+						{
+							playerPos.y -= collision.height;
+							std::cout << "TOP" << std::endl;
+						}
+						else
+						{
+							playerPos.y += collision.height;
+							std::cout << "BOTTOM" << std::endl;
+						}
+					}
+					// Update player rect after move
+					playerRect = {0, 0, playerBox.width, playerBox.height };
+						
 				}
 			}
 			});

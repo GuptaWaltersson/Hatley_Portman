@@ -65,7 +65,10 @@ int main()
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
 		lua_pop(L, 1);
 	}
-
+	//if (luaL_dofile(L, "scripts/block2.lua") != LUA_OK) {
+	//	std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
+	//	lua_pop(L, 1);
+	//}
 
 	bool running = true;
 	while (!WindowShouldClose())
@@ -76,7 +79,7 @@ int main()
 		
 		scene.UpdateSystems(1);
 
-		DrawText("The Gupt is Gupting", 190, 200, 20, BLACK);
+		//DrawText("The Gupt is Gupting", 190, 200, 20, BLACK);
 
 		EndDrawing();
 	}

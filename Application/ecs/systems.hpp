@@ -88,7 +88,7 @@ class CollisionSystem : public System
 						
 				}
 			}
-			});
+		});
 		return false;
 	}
 };

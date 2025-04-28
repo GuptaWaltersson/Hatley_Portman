@@ -82,6 +82,7 @@ class CollisionSystem : public System
 							playerPos.y -= collision.height;
 							//std::cout << "TOP" << std::endl;
 							playerVel.dy = 0;
+							playerVel.canJump = true;
 						}
 						else
 						{
@@ -109,24 +110,24 @@ public:
 				{
 					if (velocity.dx > -600)
 					{
-						velocity.dx -= 2400 * delta;
+						velocity.dx -= velocity.ax * delta;
 					}
 				}
 				if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D))
 				{
 					if (velocity.dx < 600)
 					{
-						velocity.dx += 2400 * delta;
+						velocity.dx += velocity.ax * delta;
 					}
 				}
 			}
 			else
 			{
 				if (velocity.dx < -100) {
-					velocity.dx += 1800 * delta;
+					velocity.dx += velocity.ax *3/4 * delta;
 				}
 				else if (velocity.dx > 100) {
-					velocity.dx -= 1800 * delta;
+					velocity.dx -= velocity.ax *3/4 * delta;
 				}
 				else {
 					velocity.dx = 0;
@@ -134,9 +135,10 @@ public:
 			}
 
 
-			if (IsKeyPressed(KEY_SPACE))
+			if (IsKeyPressed(KEY_SPACE) && velocity.canJump)
 			{
-				velocity.dy -= 800;
+				velocity.dy -= velocity.ay;
+				velocity.canJump = false;
 			}
 			else if (pos.y >= 1000)
 			{

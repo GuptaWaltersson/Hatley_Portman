@@ -18,6 +18,9 @@ struct Velocity
 {
 	float dx;
 	float dy;
+	float ax;
+	float ay;
+	bool canJump;
 };
 
 

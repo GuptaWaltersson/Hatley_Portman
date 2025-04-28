@@ -263,6 +263,7 @@ int Scene::lua_SetComponent(lua_State* L)
 		float y = luaL_optnumber(L, -1, 0.0f);
 		lua_pop(L, 1);
 
+
 		printf("Setting position : x = % f, y = % f\n", x, y);
 		scene->SetComponent<Position>(entity, { x, y });
 	}
@@ -281,7 +282,17 @@ int Scene::lua_SetComponent(lua_State* L)
 		float dy = luaL_optnumber(L, -1, 0.0f);
 		lua_pop(L, 1);
 
-		scene->SetComponent<Velocity>(entity, { dx, dy });
+		lua_getfield(L, 3, "ax");
+		float ax =luaL_optnumber(L,-1,0.0f);
+		lua_pop(L, 1);
+
+
+		lua_getfield(L, 3, "ay");
+		float ay = luaL_optnumber(L, -1, 0.0f);
+		lua_pop(L, 1);
+
+
+		scene->SetComponent<Velocity>(entity, { dx, dy,ax,ay });
 	}
 	else if (type == "behaviour")
 	{

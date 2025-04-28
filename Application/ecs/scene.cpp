@@ -178,6 +178,9 @@ int Scene::lua_HasComponent(lua_State* L)
 	else if (type == "playertag") {
 		hasComponent = scene->HasComponents<PlayerTag>(entity);
 	}
+	else if (type == "hattag") {
+		hasComponent = scene->HasComponents<HatTag>(entity);
+	}
 	lua_pushboolean(L, hasComponent);
 	return 1;
 }
@@ -215,6 +218,11 @@ int Scene::lua_GetComponent(lua_State* L)
 	{
 		PlayerTag& ptag = scene->GetComponent<PlayerTag>(entity);
 		lua_pushboolean(L, ptag.isPlayer);
+	}
+	else if (type == "hattag")
+	{
+		HatTag& htag = scene->GetComponent<HatTag>(entity);
+		lua_pushnumber(L, htag.hatType);
 	}
 	return 1;
 }
@@ -315,6 +323,11 @@ int Scene::lua_SetComponent(lua_State* L)
 	{
 		bool ptag = lua_toboolean(L, 3);
 		scene->SetComponent<PlayerTag>(entity,ptag);
+	}
+	else if (type == "hattag")
+	{
+		int htag = lua_tointeger(L, 3);
+		scene->SetComponent<HatTag>(entity, htag);
 	}
 
 	return 0;

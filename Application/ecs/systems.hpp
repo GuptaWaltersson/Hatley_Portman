@@ -138,6 +138,8 @@ public:
 			if (IsKeyPressed(KEY_SPACE) && velocity.canJump)
 			{
 				velocity.dy -= velocity.ay;
+				pos.y += velocity.dy * delta;
+
 				velocity.canJump = false;
 			}
 			else if (pos.y >= 1000)
@@ -148,7 +150,7 @@ public:
 			
 
 			pos.x += velocity.dx*delta;
-			pos.y += velocity.dy*delta;
+			
 
 			
 		});
@@ -162,12 +164,23 @@ public :
 	GravitySystem(float acceleration) : m_acceleration(acceleration){}
 
 	bool OnUpdate(entt::registry& registry, float delta) final {
-		auto view = registry.view<Movement, Gravity>();
-		view.each([&](Movement& vel, const Gravity& acceleration) {
+		auto view = registry.view<Movement, Gravity,Position>();
+		view.each([&](Movement& vel, const Gravity& acceleration,Position& pos) {
 			vel.dy += acceleration.acceleration * delta;
+			pos.y += vel.dy * delta;
 			});
 		return false;
 	}
+};
+
+class HatSystem : public System {
+public:
+	bool OnUpdate(entt::registry& registry, float delta) final {
+
+
+		return false;
+	}
+
 };
 
 class BehaviourSystem : public System 

@@ -36,9 +36,10 @@ class CollisionSystem : public System
 		auto view = registry.view<Position, BBox>();
 		view.each([&](Position& pos, BBox& box) {
 			auto plaView = registry.view<Position, BBox, PlayerTag>();
-			auto p = plaView.front();
-			auto playerEntity = registry.view<Position, BBox>().front();
+			
+			auto playerEntity = plaView.front();
 			Position& playerPos = registry.get<Position>(playerEntity);
+			Velocity& playerVel = registry.get<Velocity>(playerEntity);
 			BBox& playerBox = registry.get<BBox>(playerEntity);
 
 			Rectangle playerRect = { playerPos.x, playerPos.y, playerBox.width, playerBox.height };
@@ -63,25 +64,29 @@ class CollisionSystem : public System
 						if (playerCenterX < blockCenterX)
 						{
 							playerPos.x -= collision.width;
-							std::cout << "LEFT" << std::endl;
+							//std::cout << "LEFT" << std::endl;
+							playerVel.dx = 0;
 						}
 						else
 						{
 							playerPos.x += collision.width;
-							std::cout << "RIGHT" << std::endl;
+							//std::cout << "RIGHT" << std::endl;
+							playerVel.dx = 0;
 						}
+						
 					}
 					else
 					{
 						if (playerCenterY < blockCenterY)
 						{
 							playerPos.y -= collision.height;
-							std::cout << "TOP" << std::endl;
+							//std::cout << "TOP" << std::endl;
+							playerVel.dy = 0;
 						}
 						else
 						{
 							playerPos.y += collision.height;
-							std::cout << "BOTTOM" << std::endl;
+							//std::cout << "BOTTOM" << std::endl;
 						}
 					}
 						

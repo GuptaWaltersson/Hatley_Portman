@@ -68,6 +68,7 @@ int main()
 	scene.CreateSystem<CollisionSystem>();
 	scene.CreateSystem<GravitySystem>(9.8);
 	scene.CreateSystem<MovementSystem>();
+	scene.CreateSystem<BehaviourSystem>(L);
 
 	LoadScene(L, &scene);
 
@@ -82,7 +83,6 @@ int main()
 			LoadScene(L, &scene);
 
 		scene.UpdateSystems(delta);
-		//DrawText("The Gupt is Gupting", 190, 200, 20, BLACK);
 
 		EndDrawing();
 	}

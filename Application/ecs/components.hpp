@@ -31,6 +31,7 @@ struct Sprite
 {
 	Texture2D texture;
 	std::string texturePath;
+	int scale = 4;
 
 	Sprite(const std::string& path)
 		: texture(LoadTexture(path.c_str())), texturePath(path) {

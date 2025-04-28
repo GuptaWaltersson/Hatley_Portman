@@ -19,7 +19,7 @@ public:
 		view.each([](const Sprite& sprite, const Position& pos) {
 
 			Rectangle source = { 0.0,0.0, sprite.texture.width, sprite.texture.height};
-			Rectangle destrec = { pos.x, pos.y, sprite.texture.width * 4, sprite.texture.height * 4 };
+			Rectangle destrec = { pos.x, pos.y, sprite.texture.width * sprite.scale, sprite.texture.height * sprite.scale };
 			Vector2 origin = { sprite.texture.width, sprite.texture.height};
 			   
 			DrawTexturePro(sprite.texture, source, destrec, origin, 0.0f, WHITE);
@@ -138,7 +138,7 @@ public:
 			{
 				velocity.dy -= 800;
 			}
-			else if (pos.y >= 900)
+			else if (pos.y >= 1000)
 			{
 				pos.y = 700;
 				velocity.dy = 0;

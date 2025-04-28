@@ -67,12 +67,11 @@ int main()
 		lua_pop(L, 1);
 	}
 
-
 	bool running = true;
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
-		ClearBackground(RAYWHITE);
+		ClearBackground(SKYBLUE);
 		float delta = GetFrameTime();
 		scene.UpdateSystems(delta);
 

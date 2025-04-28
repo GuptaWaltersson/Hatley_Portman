@@ -56,3 +56,7 @@ struct Behaviour
 struct PlayerTag {
 	bool isPlayer = true;
 };
+
+struct HatTag {
+	int hatType;
+};

@@ -84,8 +84,6 @@ class CollisionSystem : public System
 							std::cout << "BOTTOM" << std::endl;
 						}
 					}
-					// Update player rect after move
-					playerRect = {0, 0, playerBox.width, playerBox.height };
 						
 				}
 			}
@@ -100,16 +98,16 @@ public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
 		auto view = registry.view<Position, Velocity, PlayerTag>();
 		view.each([&](Position& pos, Velocity& velocity, PlayerTag& pTag) {
-			if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_RIGHT))
+			if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_A) || IsKeyDown(KEY_D))
 			{
-				if (IsKeyDown(KEY_LEFT))
+				if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A))
 				{
 					if (velocity.dx > -600)
 					{
 						velocity.dx -= 2400 * delta;
 					}
 				}
-				if (IsKeyDown(KEY_RIGHT))
+				if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D))
 				{
 					if (velocity.dx < 600)
 					{

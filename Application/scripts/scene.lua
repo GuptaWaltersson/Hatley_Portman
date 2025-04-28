@@ -1,7 +1,5 @@
-local scene = {}
 
-function scene.load()
-	scene.Spawn("player.lua", {x = 100, y = 100})
-end
+-- Compontents
+local playerEntity = scene.CreateEntity()
+scene.SetComponent(playerEntity,"behaviour", "scripts/player.lua")
 
-return scene

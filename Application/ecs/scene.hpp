@@ -18,7 +18,7 @@ public:
 	bool IsEntity(int entity);
 	void RemoveEntity(int entity);
 	void Clear();
-	
+
 	Vector2 GetPlayerPosition() ;
 
 	static void lua_openScene(lua_State* L, Scene* scene);

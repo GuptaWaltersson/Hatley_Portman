@@ -209,6 +209,7 @@ public:
 				lua_pop(m_L, 1);
 			}
 		});
+		return false;
 	}
 };
 

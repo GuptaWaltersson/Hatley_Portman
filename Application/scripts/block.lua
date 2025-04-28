@@ -21,16 +21,16 @@ for i = 0, 22 do
 	scene.SetComponent(entity, "boundingbox", { width = 72, height = 72})
 	scene.SetComponent(entity, "position", { x = 18+(72*i), y = 908})
 end
-
-for i = 0, 2 do
+local last = 3
+for i = 0, last do
     local entity = scene.CreateEntity()
   
     if i == 0 then
         scene.SetComponent(entity, "sprite", "../Textures/tile_0153.png")
-    elseif i == 1 then
-        scene.SetComponent(entity, "sprite", "../Textures/tile_0154.png")
-    elseif i == 2 then
+    elseif i == last then
         scene.SetComponent(entity, "sprite", "../Textures/tile_0155.png")
+	else
+        scene.SetComponent(entity, "sprite", "../Textures/tile_0154.png")
     end
 
     scene.SetComponent(entity, "boundingbox", { width = 60, height = 30 })

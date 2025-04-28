@@ -163,12 +163,6 @@
   <ItemGroup>
     <ClCompile Include="ecs\scene.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player\player.cpp" />
-    <ClCompile Include="Player\playerScriptingBridge.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Player\player.h" />
-    <ClInclude Include="Player\playerScriptingBridge.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecs\components.hpp" />
@@ -181,6 +175,7 @@
     <None Include="scripts\hat.lua" />
     <None Include="scripts\monster.lua" />
     <None Include="scripts\player.lua" />
+    <None Include="scripts\scene.lua" />
     <None Include="scripts\sceneDemo.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

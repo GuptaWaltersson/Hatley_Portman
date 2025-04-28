@@ -3,12 +3,8 @@
   <ItemGroup>
     <ClCompile Include="ecs\scene.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player\player.cpp" />
-    <ClCompile Include="Player\playerScriptingBridge.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player\player.h" />
-    <ClInclude Include="Player\playerScriptingBridge.h" />
     <ClInclude Include="ecs\components.hpp" />
     <ClInclude Include="ecs\scene.hpp" />
     <ClInclude Include="ecs\systems.hpp" />
@@ -20,5 +16,6 @@
     <None Include="scripts\block.lua" />
     <None Include="scripts\block2.lua" />
     <None Include="scripts\hat.lua" />
+    <None Include="scripts\scene.lua" />
   </ItemGroup>
 </Project>

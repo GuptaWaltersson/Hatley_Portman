@@ -1,4 +1,4 @@
-local block = {}
+
 
 --Components
 for i = 0, 22 do
@@ -31,5 +31,3 @@ end
 function block.OnUpdate(delta)
 	print("Block updated")
 end
-
-return block

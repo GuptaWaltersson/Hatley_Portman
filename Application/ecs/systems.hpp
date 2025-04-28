@@ -133,7 +133,7 @@ public:
 			{
 				velocity.dy -= 800;
 			}
-			else if (pos.y >= 700)
+			else if (pos.y >= 900)
 			{
 				pos.y = 700;
 				velocity.dy = 0;

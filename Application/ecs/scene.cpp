@@ -172,8 +172,8 @@ int Scene::lua_HasComponent(lua_State* L)
 	else if (type == "position") {
 		hasComponent = scene->HasComponents<Position>(entity);
 	}
-	else if (type == "velocity") {
-		hasComponent = scene->HasComponents<Velocity>(entity);
+	else if (type == "movement") {
+		hasComponent = scene->HasComponents<Movement>(entity);
 	}
 	else if (type == "playertag") {
 		hasComponent = scene->HasComponents<PlayerTag>(entity);
@@ -272,10 +272,10 @@ int Scene::lua_SetComponent(lua_State* L)
 		printf("Setting position : x = % f, y = % f\n", x, y);
 		scene->SetComponent<Position>(entity, { x, y });
 	}
-	else if (type == "velocity")
+	else if (type == "movement")
 	{
 		if (!lua_istable(L, 3)) {
-			luaL_error(L, "Excpected a table for velocity component");
+			luaL_error(L, "Excpected a table for movement component");
 			return 0;
 		}
 
@@ -297,7 +297,7 @@ int Scene::lua_SetComponent(lua_State* L)
 		lua_pop(L, 1);
 
 
-		scene->SetComponent<Velocity>(entity, { dx, dy,ax,ay });
+		scene->SetComponent<Movement>(entity, { dx, dy,ax,ay });
 	}
 	else if (type == "behaviour")
 	{
@@ -346,9 +346,9 @@ int Scene::lua_RemoveComponent(lua_State* L)
 	{
 		scene->RemoveComponent<Position>(entity);
 	}
-	else if (type == "velocity")
+	else if (type == "movement")
 	{
-		scene->RemoveComponent<Velocity>(entity);
+		scene->RemoveComponent<Movement>(entity);
 	}
 	else if (type == "playertag")
 	{

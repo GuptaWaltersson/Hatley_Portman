@@ -14,7 +14,7 @@ struct BBox
 	float height;
 };
 
-struct Velocity
+struct Movement
 {
 	float dx;
 	float dy;

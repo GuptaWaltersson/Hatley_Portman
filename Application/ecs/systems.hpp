@@ -39,7 +39,7 @@ class CollisionSystem : public System
 			
 			auto playerEntity = plaView.front();
 			Position& playerPos = registry.get<Position>(playerEntity);
-			Velocity& playerVel = registry.get<Velocity>(playerEntity);
+			Movement& playerVel = registry.get<Movement>(playerEntity);
 			BBox& playerBox = registry.get<BBox>(playerEntity);
 
 			Rectangle playerRect = { playerPos.x, playerPos.y, playerBox.width, playerBox.height };
@@ -102,8 +102,8 @@ class MovementSystem : public System {
 
 public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
-		auto view = registry.view<Position, Velocity, PlayerTag>();
-		view.each([&](Position& pos, Velocity& velocity, PlayerTag& pTag) {
+		auto view = registry.view<Position, Movement, PlayerTag>();
+		view.each([&](Position& pos, Movement& velocity, PlayerTag& pTag) {
 			if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_A) || IsKeyDown(KEY_D))
 			{
 				if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A))
@@ -162,8 +162,8 @@ public :
 	GravitySystem(float acceleration) : m_acceleration(acceleration){}
 
 	bool OnUpdate(entt::registry& registry, float delta) final {
-		auto view = registry.view<Velocity, Gravity>();
-		view.each([&](Velocity& vel, const Gravity& acceleration) {
+		auto view = registry.view<Movement, Gravity>();
+		view.each([&](Movement& vel, const Gravity& acceleration) {
 			vel.dy += acceleration.acceleration * delta;
 			});
 		return false;

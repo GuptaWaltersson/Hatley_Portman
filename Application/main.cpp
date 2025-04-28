@@ -44,7 +44,7 @@ void LoadScene(lua_State* L, Scene* scene)
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
 		lua_pop(L, 1);
 	}
-	if (luaL_dofile(L, "scripts/player.lua") != LUA_OK) {
+	if (luaL_dofile(L, "scripts/scene.lua") != LUA_OK) {
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
 		lua_pop(L, 1);
 	}
@@ -71,15 +71,12 @@ int main()
 
 	LoadScene(L, &scene);
 
-	bool running = true;
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
 		ClearBackground(SKYBLUE);
 		float delta = GetFrameTime();
 
-		if (IsKeyPressed(KEY_ESCAPE))
-			running = false;
 
 		if (IsKeyPressed(KEY_ENTER))
 			LoadScene(L, &scene);

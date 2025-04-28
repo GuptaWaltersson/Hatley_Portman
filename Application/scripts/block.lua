@@ -21,7 +21,7 @@ for i = 0, 22 do
 	scene.SetComponent(entity, "boundingbox", { width = 72, height = 72})
 	scene.SetComponent(entity, "position", { x = 18+(72*i), y = 908})
 end
-local last = 15
+local last = 10
 for i = 0, last do
     local entity = scene.CreateEntity()
   

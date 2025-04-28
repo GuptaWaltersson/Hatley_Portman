@@ -173,7 +173,7 @@
     <None Include="scripts\block.lua" />
     <None Include="scripts\monster.lua" />
     <None Include="scripts\player.lua" />
-    <None Include="scripts\playerB.lua" />
+    <None Include="scripts\scene.lua" />
     <None Include="scripts\sceneDemo.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -64,13 +64,13 @@ class CollisionSystem : public System
 						if (playerCenterX < blockCenterX)
 						{
 							playerPos.x -= collision.width;
-							std::cout << "LEFT" << std::endl;
+							//std::cout << "LEFT" << std::endl;
 							playerVel.dx = 0;
 						}
 						else
 						{
 							playerPos.x += collision.width;
-							std::cout << "RIGHT" << std::endl;
+							//std::cout << "RIGHT" << std::endl;
 							playerVel.dx = 0;
 						}
 						
@@ -80,13 +80,13 @@ class CollisionSystem : public System
 						if (playerCenterY < blockCenterY)
 						{
 							playerPos.y -= collision.height;
-							std::cout << "TOP" << std::endl;
+							//std::cout << "TOP" << std::endl;
 							playerVel.dy = 0;
 						}
 						else
 						{
 							playerPos.y += collision.height;
-							std::cout << "BOTTOM" << std::endl;
+							//std::cout << "BOTTOM" << std::endl;
 						}
 					}
 						

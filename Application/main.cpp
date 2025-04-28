@@ -81,9 +81,6 @@ int main()
 		ClearBackground(SKYBLUE);
 		float delta = GetFrameTime();
 
-		
-
-
 		if (IsKeyPressed(KEY_ESCAPE))
 			running = false;
 

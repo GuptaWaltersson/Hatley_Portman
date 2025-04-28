@@ -6,7 +6,7 @@ local entity = scene.CreateEntity()
 scene.SetComponent(entity, "sprite", "../Textures/Portman_v1.png")
 player.position = {x = 0, y = 0}
 
-position = {x=800,y=600}
+position = {x=0,y=0}
 movement = {dx=0.0,dy=-300.0,ax = 2400, ay=700}
 
 scene.SetComponent(entity,"position",position)
@@ -16,10 +16,13 @@ scene.SetComponent(entity,"movement",movement)
 scene.SetComponent(entity,"gravity",1800)
 scene.SetComponent(entity,"playertag",true)
 
+
+player.ID = entity
+
 -- Behaviours
 function player.OnCreate(self)
 	print("Player created!")
-	scene.SetComponent(self.ID, "position", {x = 400, y = 500})
+	scene.SetComponent(self.ID, "position", {x = 400, y = 200})
 end
 
 function player.OnUpdate(delta)

@@ -35,7 +35,8 @@ class CollisionSystem : public System
 	{
 		auto view = registry.view<Position, BBox>();
 		view.each([&](Position& pos, BBox& box) {
-
+			auto plaView = registry.view<Position, BBox, PlayerTag>();
+			auto p = plaView.front();
 			auto playerEntity = registry.view<Position, BBox>().front();
 			Position& playerPos = registry.get<Position>(playerEntity);
 			BBox& playerBox = registry.get<BBox>(playerEntity);
@@ -57,7 +58,7 @@ class CollisionSystem : public System
 					float blockCenterX = pos.x + box.width / 2.0f;
 					float blockCenterY = pos.y + box.height / 2.0f;
 
-					if (collision.width < collision.height)
+					if (collision.width <= collision.height)
 					{
 						if (playerCenterX < blockCenterX)
 						{

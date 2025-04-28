@@ -9,7 +9,7 @@ player.position = {x = 0, y = 0}
 position = {x=800,y=600}
 velocity = {dx=0.0,dy=-300.0}
 scene.SetComponent(entity,"position",position)
-scene.SetComponent(entity, "boundingbox", { width = 72, height = 72})
+scene.SetComponent(entity, "boundingbox", { width = 64, height = 64})
 
 scene.SetComponent(entity,"velocity",velocity)
 scene.SetComponent(entity,"gravity",980)

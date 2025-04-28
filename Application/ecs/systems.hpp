@@ -176,8 +176,12 @@ public :
 class HatSystem : public System {
 public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
+		auto view = registry.view<HatTag, Position>();
 
+		view.each([&](Position& pos)
+			{
 
+			});
 		return false;
 	}
 

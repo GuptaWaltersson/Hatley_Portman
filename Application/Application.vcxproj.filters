@@ -14,6 +14,6 @@
     <None Include="scripts\player.lua" />
     <None Include="scripts\monster.lua" />
     <None Include="scripts\block.lua" />
-    <None Include="scripts\block2.lua" />
+    <None Include="scripts\playerB.lua" />
   </ItemGroup>
 </Project>

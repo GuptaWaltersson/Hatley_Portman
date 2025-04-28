@@ -6,10 +6,14 @@ local entity = scene.CreateEntity()
 scene.SetComponent(entity, "sprite", "../Textures/Portman_v1.png")
 player.position = {x = 0, y = 0}
 
-position = {x=400,y=400}
-velocity = {dx=0.3,dy=1.0}
+position = {x=800,y=600}
+velocity = {dx=0.0,dy=-300.0}
 scene.SetComponent(entity,"position",position)
+scene.SetComponent(entity, "boundingbox", { width = 64, height = 64})
+
 scene.SetComponent(entity,"velocity",velocity)
+scene.SetComponent(entity,"gravity",980)
+scene.SetComponent(entity,"playertag",true)
 -- Behaviours
 function player.OnCreate(self)
 	print("Player created!")

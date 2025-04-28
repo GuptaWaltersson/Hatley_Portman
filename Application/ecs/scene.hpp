@@ -1,8 +1,8 @@
+#pragma once
+
 #include "lua.hpp"
 #include "systems.hpp"
 #include "raylib.h"
-
-
 
 class Scene
 {

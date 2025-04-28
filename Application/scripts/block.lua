@@ -24,7 +24,7 @@ end
 
 for i = 0, 2 do
     local entity = scene.CreateEntity()
-    
+  
     if i == 0 then
         scene.SetComponent(entity, "sprite", "../Textures/tile_0153.png")
     elseif i == 1 then

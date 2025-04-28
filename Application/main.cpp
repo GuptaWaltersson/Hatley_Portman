@@ -39,6 +39,20 @@ void ConsoleThreadFunction(lua_State* L)
 	}
 }
 
+void LoadScene(lua_State* L, Scene* scene)
+{
+	scene->Clear();
+
+	if (luaL_dofile(L, "scripts/block.lua") != LUA_OK) {
+		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
+		lua_pop(L, 1);
+	}
+	if (luaL_dofile(L, "scripts/player.lua") != LUA_OK) {
+		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
+		lua_pop(L, 1);
+	}
+}
+
 int main()
 {
 	const int screenWidth = 1600;
@@ -58,14 +72,7 @@ int main()
 	scene.CreateSystem<GravitySystem>(9.8);
 	scene.CreateSystem<MovementSystem>();
 
-	if (luaL_dofile(L, "scripts/block.lua") != LUA_OK) {
-		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
-		lua_pop(L, 1);
-	}
-	if (luaL_dofile(L, "scripts/player.lua") != LUA_OK) {
-		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
-		lua_pop(L, 1);
-	}
+	LoadScene(L, &scene);
 
 	bool running = true;
 	while (!WindowShouldClose())
@@ -73,8 +80,17 @@ int main()
 		BeginDrawing();
 		ClearBackground(SKYBLUE);
 		float delta = GetFrameTime();
-		scene.UpdateSystems(delta);
 
+		
+
+
+		if (IsKeyPressed(KEY_ESCAPE))
+			running = false;
+
+		if (IsKeyPressed(KEY_ENTER))
+			LoadScene(L, &scene);
+
+		scene.UpdateSystems(delta);
 		//DrawText("The Gupt is Gupting", 190, 200, 20, BLACK);
 
 		EndDrawing();

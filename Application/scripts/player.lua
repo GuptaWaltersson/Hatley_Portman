@@ -14,6 +14,7 @@ scene.SetComponent(entity, "boundingbox", { width = 64, height = 64})
 scene.SetComponent(entity,"velocity",velocity)
 scene.SetComponent(entity,"gravity",1800)
 scene.SetComponent(entity,"playertag",true)
+
 -- Behaviours
 function player.OnCreate(self)
 	print("Player created!")

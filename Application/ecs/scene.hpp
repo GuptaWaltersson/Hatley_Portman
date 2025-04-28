@@ -17,6 +17,7 @@ public:
 	int CreateEntity();
 	bool IsEntity(int entity);
 	void RemoveEntity(int entity);
+	void Clear();
 	
 	Vector2 GetPlayerPosition() ;
 

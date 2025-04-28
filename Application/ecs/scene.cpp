@@ -32,6 +32,11 @@ void Scene::RemoveEntity(int entity)
 	m_registry.destroy((entt::entity)entity);
 }
 
+void Scene::Clear()
+{
+	m_registry.clear();
+}
+
 Vector2 Scene::GetPlayerPosition() 
 {
 	Vector2 pos = { 0,0 };

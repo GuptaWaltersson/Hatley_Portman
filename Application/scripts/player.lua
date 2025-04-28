@@ -11,6 +11,7 @@ velocity = {dx=0.0,dy=-300.0}
 scene.SetComponent(entity,"position",position)
 scene.SetComponent(entity,"velocity",velocity)
 scene.SetComponent(entity,"gravity",980)
+scene.SetComponent(entity,"playertag",true)
 -- Behaviours
 function player.OnCreate(self)
 	print("Player created!")

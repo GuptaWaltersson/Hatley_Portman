@@ -34,8 +34,8 @@ class MovementSystem : public System {
 
 public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
-		auto view = registry.view<Position, Velocity>();
-		view.each([&](Position& pos, Velocity& velocity) {
+		auto view = registry.view<Position, Velocity, PlayerTag>();
+		view.each([&](Position& pos, Velocity& velocity, PlayerTag& pTag) {
 			if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_RIGHT))
 			{
 				if (IsKeyDown(KEY_LEFT))
@@ -136,8 +136,10 @@ public:
 	bool OnUpdate(entt::registry& registry, float delta) final
 	{
 		auto gravityView = registry.view<Gravity>();
+		auto playertagView = registry.view<PlayerTag>();
 		printf("\n----update---\n");
 		printf("gravityentitites: \t%i\n", gravityView.size());
+		printf("player entities: \t%i\n", playertagView.size());
 
 		return false;
 	}

@@ -48,4 +48,6 @@ struct Behaviour
 	}
 };
 
-struct PLayerTag {};
+struct PlayerTag {
+	bool isPlayer = true;
+};

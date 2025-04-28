@@ -165,6 +165,9 @@ int Scene::lua_HasComponent(lua_State* L)
 	else if (type == "velocity") {
 		hasComponent = scene->HasComponents<Velocity>(entity);
 	}
+	else if (type == "playertag") {
+		hasComponent = scene->HasComponents<PlayerTag>(entity);
+	}
 	lua_pushboolean(L, hasComponent);
 	return 1;
 }
@@ -189,6 +192,11 @@ int Scene::lua_GetComponent(lua_State* L)
 	else if (type == "position")
 	{
 		Position& pos = scene->GetComponent<Position>(entity);
+	}
+	else if (type == "playertag")
+	{
+		PlayerTag& ptag = scene->GetComponent<PlayerTag>(entity);
+		lua_pushboolean(L, ptag.isPlayer);
 	}
 	return 1;
 }
@@ -256,6 +264,11 @@ int Scene::lua_SetComponent(lua_State* L)
 		scene->SetComponent<Behaviour>(entity, Behaviour(path, ref));
 		return 1;
 	}
+	else if (type == "playertag")
+	{
+		bool ptag = lua_toboolean(L, 3);
+		scene->SetComponent<PlayerTag>(entity,ptag);
+	}
 
 	return 0;
 }
@@ -285,6 +298,10 @@ int Scene::lua_RemoveComponent(lua_State* L)
 	else if (type == "velocity")
 	{
 		scene->RemoveComponent<Velocity>(entity);
+	}
+	else if (type == "playertag")
+	{
+		scene->RemoveComponent<PlayerTag>(entity);
 	}
 	return 0;
 }

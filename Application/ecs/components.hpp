@@ -8,11 +8,10 @@ struct Position
 	float y;
 };
 
-struct HitBox
+struct BBox
 {
-	float length_x;
-	float length_y;
-	Position Origin;
+	float width;
+	float height;
 };
 
 struct Velocity

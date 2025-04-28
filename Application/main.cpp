@@ -43,7 +43,7 @@ int main()
 {
 	const int screenWidth = 1600;
 	const int screenHeight = 900;
-	const int scale = 8;
+	
 
 	InitWindow(screenWidth, screenHeight, "Hatman");
 
@@ -54,6 +54,7 @@ int main()
 	Scene::lua_openScene(L, &scene);
 
 	scene.CreateSystem<SpriteSystem>();
+	scene.CreateSystem<CollisionSystem>();
 	scene.CreateSystem<GravitySystem>(9.8);
 	scene.CreateSystem<MovementSystem>();
 	//scene.CreateSystem<InfoSystem>();
@@ -62,7 +63,14 @@ int main()
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
 		lua_pop(L, 1);
 	}
-
+	if (luaL_dofile(L, "scripts/block.lua") != LUA_OK) {
+		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
+		lua_pop(L, 1);
+	}
+	//if (luaL_dofile(L, "scripts/block2.lua") != LUA_OK) {
+	//	std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
+	//	lua_pop(L, 1);
+	//}
 
 	bool running = true;
 	while (!WindowShouldClose())
@@ -73,7 +81,7 @@ int main()
 		float delta = GetFrameTime();
 		scene.UpdateSystems(delta);
 
-		DrawText("The Gupt is Gupting", 190, 200, 20, BLACK);
+		//DrawText("The Gupt is Gupting", 190, 200, 20, BLACK);
 
 		EndDrawing();
 	}

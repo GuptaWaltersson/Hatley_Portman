@@ -19,9 +19,9 @@ public:
 		view.each([](const Sprite& sprite, const Position& pos) {
 
 			Rectangle source = { 0.0,0.0, sprite.texture.width, sprite.texture.height};
-			Rectangle destrec = { pos.x, pos.y, sprite.texture.width * 8, sprite.texture.height * 8 };
+			Rectangle destrec = { pos.x, pos.y, sprite.texture.width * 4, sprite.texture.height * 4 };
 			Vector2 origin = { sprite.texture.width, sprite.texture.height};
-
+			   
 			DrawTexturePro(sprite.texture, source, destrec, origin, 0.0f, WHITE);
 		
 		});
@@ -29,6 +29,69 @@ public:
 	}
 };
 
+class CollisionSystem : public System
+{
+	bool OnUpdate(entt::registry& registry, float delta) final
+	{
+		auto view = registry.view<Position, BBox>();
+		view.each([&](Position& pos, BBox& box) {
+
+			auto playerEntity = registry.view<Position, BBox>().front();
+			Position& playerPos = registry.get<Position>(playerEntity);
+			BBox& playerBox = registry.get<BBox>(playerEntity);
+
+			Rectangle playerRect = { playerPos.x, playerPos.y, playerBox.width, playerBox.height };
+
+			if (playerPos.x != pos.x && playerPos.y != pos.y)
+			{
+
+				Rectangle otherRect = { pos.x, pos.y, box.width, box.height };
+
+				if (CheckCollisionRecs(playerRect, otherRect))
+				{
+					Rectangle collision = GetCollisionRec(playerRect, otherRect);
+
+					// Calculate centers
+					float playerCenterX = playerPos.x + playerBox.width / 2.0f;
+					float playerCenterY = playerPos.y + playerBox.height / 2.0f;
+					float blockCenterX = pos.x + box.width / 2.0f;
+					float blockCenterY = pos.y + box.height / 2.0f;
+
+					if (collision.width < collision.height)
+					{
+						if (playerCenterX < blockCenterX)
+						{
+							playerPos.x -= collision.width;
+							std::cout << "LEFT" << std::endl;
+						}
+						else
+						{
+							playerPos.x += collision.width;
+							std::cout << "RIGHT" << std::endl;
+						}
+					}
+					else
+					{
+						if (playerCenterY < blockCenterY)
+						{
+							playerPos.y -= collision.height;
+							std::cout << "TOP" << std::endl;
+						}
+						else
+						{
+							playerPos.y += collision.height;
+							std::cout << "BOTTOM" << std::endl;
+						}
+					}
+					// Update player rect after move
+					playerRect = {0, 0, playerBox.width, playerBox.height };
+						
+				}
+			}
+		});
+		return false;
+	}
+};
 
 class MovementSystem : public System {
 

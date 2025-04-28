@@ -15,7 +15,7 @@ function player.OnCreate(self)
 end
 
 function player.OnUpdate(delta)
-	print("Player Update!")
+	--print("Player Update!")
 	--position = { x = 0, y = 0}
 	--scene.SetComponent(player.ID, "position", position)
 end

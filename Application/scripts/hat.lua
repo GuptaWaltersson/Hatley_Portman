@@ -17,7 +17,13 @@ function hat.OnCreate(self)
 end
 
 function hat.OnUpdate(delta)
-	print("Hat updated (:")
+	--print("Hat updated (:")
+end
+
+function hat.throw(delta)
+	print("hat kast")
+	position = {x=800,y=500}
+	scene.SetComponent(hat.ID,"position",position)
 end
 
 return hat

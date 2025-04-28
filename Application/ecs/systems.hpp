@@ -174,14 +174,35 @@ public :
 };
 
 class HatSystem : public System {
+	lua_State* m_L;
 public:
+	HatSystem(lua_State* L) : m_L(L){}
 	bool OnUpdate(entt::registry& registry, float delta) final {
-		auto view = registry.view<HatTag, Position>();
+		auto view = registry.view<HatTag, Position,Behaviour>();
 
-		view.each([&](Position& pos)
+		view.each([&](HatTag& htag, Position& pos, Behaviour& script ) {
+
+			if (IsKeyPressed(KEY_Q))
 			{
+				lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
+				lua_getfield(m_L, -1, "throw");
+				lua_pushvalue(m_L, -2);
+				lua_pushnumber(m_L, delta);
 
-			});
+				if (lua_pcall(m_L, 2, 0, 0) != LUA_OK)
+				{
+					if (lua_gettop(m_L) && lua_isstring(m_L, -1))
+					{
+						std::cout << "Lua error: " << lua_tostring(m_L, -1) << std::endl;
+						lua_pop(m_L, 1);
+					}
+					lua_pop(m_L, 1);
+				}
+
+			}
+			
+				// Get the function from lua and call it with delta time as argument
+		});
 		return false;
 	}
 

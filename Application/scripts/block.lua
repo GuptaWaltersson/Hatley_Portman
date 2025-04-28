@@ -22,7 +22,7 @@ for i = 0, 22 do
 	scene.SetComponent(entity, "position", { x = 18+(72*i), y = 908})
 end
 
-for i = 0, 3 do
+for i = 0, 2 do
     local entity = scene.CreateEntity()
     
     if i == 0 then

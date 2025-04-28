@@ -6,9 +6,6 @@
 #include <thread>
 #include <string>
 
-#include "Player/player.h"
-#include "Player/playerScriptingBridge.h"
-
 #include "lua.hpp"
 #include "entt.hpp"
 #include "ecs/scene.hpp"

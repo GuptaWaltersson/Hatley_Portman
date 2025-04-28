@@ -20,6 +20,8 @@ struct Velocity
 	float dy;
 };
 
+
+
 struct Gravity
 {
 	float acceleration = 9.8;

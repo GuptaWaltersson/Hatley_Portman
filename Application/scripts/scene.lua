@@ -8,14 +8,15 @@ scene.SetComponent(playerEntity, "behaviour", "scripts/player.lua")
 
 
 
-nrOfCoins = 4
+nrOfCoins = 5
 cCounter = 0
 
 local coinPositions = {
     {x=100, y=450},
-    {x=300, y=450},
+    {x=300, y=250},
     {x=500, y=450},
-    {x=700, y=550},
+    {x=700, y=250},
+    {x=1300,y=300}
 }
 
 for i = 1, nrOfCoins do

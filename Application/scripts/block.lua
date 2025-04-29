@@ -23,14 +23,14 @@ for i = 0, 22 do
 	scene.SetComponent(entity, "boundingbox", { width = 72, height = 72})
 	scene.SetComponent(entity, "position", { x = 18+(72*i), y = 908})
 end
-local last = 3
-for i = 0, last do
+local cloudLength = 3
+for i = 0, cloudLength do
     local entity = scene.CreateEntity()
 	scene.SetComponent(entity, "tag", "block")
   
     if i == 0 then
         scene.SetComponent(entity, "sprite", "../Textures/tile_0153.png")
-    elseif i == last then
+    elseif i == cloudLength then
         scene.SetComponent(entity, "sprite", "../Textures/tile_0155.png")
 	else
         scene.SetComponent(entity, "sprite", "../Textures/tile_0154.png")
@@ -48,12 +48,32 @@ for i = 0, 1 do
 	scene.SetComponent(entity, "position", { x = 700 + (300 * i), y = 650 })
 end
 
+local mushroomLength = 6
+local mushroomHeight = 3
+local mushroomMid = mushroomLength/2
 
---Behaviors
-function block.OnCreate(self)
-	print("Block spawned")
+for i = 0, mushroomLength do
+    local entity = scene.CreateEntity()
+	scene.SetComponent(entity, "tag", "block")
+  
+    if i == 0 then
+        scene.SetComponent(entity, "sprite", "../Textures/tile_0014.png")
+    elseif i == mushroomLength then
+        scene.SetComponent(entity, "sprite", "../Textures/tile_0015.png")
+	elseif i==mushroomLength/2 then
+		scene.SetComponent(entity, "sprite", "../Textures/tile_0012.png")
+	else
+        scene.SetComponent(entity, "sprite", "../Textures/tile_0013.png")
+    end
+
+    scene.SetComponent(entity, "boundingbox", { width = 60, height = 30 })
+    scene.SetComponent(entity, "position", { x = 1000 + (60 * i), y = 700-(mushroomHeight+1)*72 })
 end
 
-function block.OnUpdate(delta)
-	print("Block updated")
+
+for i = 0, mushroomHeight do
+	local entity = scene.CreateEntity()
+	scene.SetComponent(entity, "tag", "block")
+	scene.SetComponent(entity, "sprite", "../Textures/tile_0032.png")
+	scene.SetComponent(entity, "position", { x = 1000 + (60 * mushroomLength/2), y = 700 - 72 *i })
 end

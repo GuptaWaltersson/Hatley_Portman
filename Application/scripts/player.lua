@@ -1,7 +1,7 @@
 
 local player = {}
 
-position = {x=800,y=200}
+position = {x=800,y=650}
 movement = {dx=0.0,dy=-300.0,ax = 2400, ay=700}
 
 -- Behaviours

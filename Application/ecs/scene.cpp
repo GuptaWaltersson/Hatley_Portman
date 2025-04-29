@@ -205,6 +205,7 @@ int Scene::lua_GetComponent(lua_State* L)
 		BBox& box = scene->GetComponent<BBox>(entity);
 		lua_pushnumber(L, box.width);
 		lua_pushnumber(L, box.height);
+		return 2;
 	}
 	else if (type == "gravity" && scene->HasComponents<Gravity>(entity))
 	{

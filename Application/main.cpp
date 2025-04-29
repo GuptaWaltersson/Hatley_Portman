@@ -59,7 +59,6 @@ int main()
 	const int screenWidth = 1600;
 	const int screenHeight = 900;
 	
-
 	InitWindow(screenWidth, screenHeight, "Hatman");
 
 	lua_State* L = luaL_newstate();

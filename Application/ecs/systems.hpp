@@ -182,7 +182,8 @@ public:
 			pos.x += velocity.dx*delta;
 			
 
-			
+			if (pos.x <= -60) pos.x = 1650;
+			if (pos.x >= 1660) pos.x = -50;
 		});
 		return false;
 	}

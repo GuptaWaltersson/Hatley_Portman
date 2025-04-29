@@ -184,6 +184,9 @@ int Scene::lua_HasComponent(lua_State* L)
 	else if (type == "hattag") {
 		hasComponent = scene->HasComponents<HatTag>(entity);
 	}
+	else if (type == "lastmove") {
+		hasComponent = scene->HasComponents<LastMove>(entity);
+	}
 	lua_pushboolean(L, hasComponent);
 	return 1;
 }
@@ -199,6 +202,12 @@ int Scene::lua_GetComponent(lua_State* L)
 		Sprite& sprite = scene->GetComponent<Sprite>(entity);
 		std::string textureId = std::to_string(sprite.texture.id);
 		lua_pushstring(L, textureId.c_str());
+	}
+	else if (type == "lastmove")
+	{
+		LastMove& LMove = scene->GetComponent<LastMove>(entity);
+		
+		lua_pushstring(L, LMove.lastKey.c_str());
 	}
 	else if (type == "boundingbox")
 	{
@@ -218,6 +227,27 @@ int Scene::lua_GetComponent(lua_State* L)
 		lua_pushnumber(L, pos.x);
 		lua_pushnumber(L, pos.y);
 		return 2;
+	}
+	else if (type == "movement")
+	{
+		Movement& mov = scene->GetComponent<Movement>(entity);
+
+		lua_newtable(L);
+
+		lua_pushnumber(L, mov.dx);
+		lua_setfield(L, -2, "dx");
+
+		lua_pushnumber(L, mov.dy);
+		lua_setfield(L, -2, "dy");
+
+		lua_pushnumber(L, mov.ax);
+		lua_setfield(L, -2, "ax");
+
+		lua_pushnumber(L, mov.ay);
+		lua_setfield(L, -2, "ay");
+
+		lua_pushboolean(L, mov.canJump);
+		lua_setfield(L, -2, "canJump");
 	}
 	else if (type == "playertag")
 	{
@@ -247,6 +277,11 @@ int Scene::lua_SetComponent(lua_State* L)
 	{
 		std::string path = lua_tostring(L, 3);
 		scene->SetComponent<Sprite>(entity, path.c_str());
+	}
+	else if (type == "lastmove")
+	{
+		std::string move = lua_tostring(L, 3);
+		scene->SetComponent<LastMove>(entity, move);
 	}
 	else if (type == "boundingbox")
 	{
@@ -385,6 +420,14 @@ int Scene::lua_RemoveComponent(lua_State* L)
 	else if (type == "tag")
 	{
 		scene->RemoveComponent<Tag>(entity);
+	}
+	else if (type == "hattag")
+	{
+		scene->RemoveComponent<HatTag>(entity);
+	}
+	else if (type == "lastmove")
+	{
+		scene->RemoveComponent<LastMove>(entity);
 	}
 	else
 	{

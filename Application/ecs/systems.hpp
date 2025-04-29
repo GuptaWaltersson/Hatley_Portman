@@ -133,6 +133,8 @@ class MovementSystem : public System {
 public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
 		auto view = registry.view<Position, Movement, PlayerTag>();
+		auto hatEntity = registry.view<HatTag, LastMove>().front();
+		LastMove& LMove = registry.get<LastMove>(hatEntity);
 		view.each([&](Position& pos, Movement& velocity, PlayerTag& pTag) {
 			if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_A) || IsKeyDown(KEY_D))
 			{
@@ -142,6 +144,7 @@ public:
 					{
 						velocity.dx -= velocity.ax * delta;
 					}
+					LMove.lastKey = "left";
 				}
 				if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D))
 				{
@@ -149,6 +152,7 @@ public:
 					{
 						velocity.dx += velocity.ax * delta;
 					}
+					LMove.lastKey = "right";
 				}
 			}
 			else
@@ -205,10 +209,55 @@ public :
 };
 
 class HatSystem : public System {
+	lua_State* m_L;
 public:
+	HatSystem(lua_State* L) : m_L(L){}
 	bool OnUpdate(entt::registry& registry, float delta) final {
+		auto view = registry.view<HatTag, Position,Behaviour>();
+		auto playerEntity = registry.view<Position, PlayerTag>().front();
+		Position& playerPos = registry.get<Position>(playerEntity);
 
+		view.each([&](HatTag& htag, Position& pos, Behaviour& script ) {
 
+			if (htag.hatType == 0) // hat is on head
+			{
+				pos.x = playerPos.x;
+				pos.y = playerPos.y;
+			}
+			
+			if (IsKeyPressed(KEY_Q) && htag.hatType != 0)
+			{
+				htag.hatType = 0;
+			}
+			else if (IsKeyPressed(KEY_Q))
+			{
+				htag.hatType = 1;
+				lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
+				lua_getfield(m_L, -1, "throw");
+				lua_pushvalue(m_L, -2);
+				lua_pushnumber(m_L, delta);
+
+				if (lua_pcall(m_L, 2, 0, 0) != LUA_OK)
+				{
+					if (lua_gettop(m_L) && lua_isstring(m_L, -1))
+					{
+						std::cout << "Lua error: " << lua_tostring(m_L, -1) << std::endl;
+						lua_pop(m_L, 1);
+					}
+					lua_pop(m_L, 1);
+				}
+
+			}
+
+			if (IsKeyPressed(KEY_E) && htag.hatType != 0)
+			{
+				playerPos.x = pos.x;
+				playerPos.y = pos.y;
+				htag.hatType = 0;
+			}
+			
+				// Get the function from lua and call it with delta time as argument
+		});
 		return false;
 	}
 

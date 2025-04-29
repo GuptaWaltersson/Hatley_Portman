@@ -1,4 +1,3 @@
-
 #include <raylib.h>
 
 #include <iostream>
@@ -72,6 +71,7 @@ int main()
 	scene.CreateSystem<GravitySystem>(9.8);
 	scene.CreateSystem<MovementSystem>();
 	scene.CreateSystem<BehaviourSystem>(L);
+	scene.CreateSystem<HatSystem>(L);
 
 	LoadScene(L, &scene);
 

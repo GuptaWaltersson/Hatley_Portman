@@ -58,5 +58,9 @@ struct PlayerTag {
 };
 
 struct HatTag {
+	// On Head = 0
+	// Default = 1
+	// Magic = 2
+	//Legendary = 3
 	int hatType;
 };

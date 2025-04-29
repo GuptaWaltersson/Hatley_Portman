@@ -40,7 +40,7 @@ end
 
 function hat.OnUpdate(self,delta)
 	
-	position = scene.GetComponent(self.ID, "position",position)
+	position.x,position.y = scene.GetComponent(self.ID, "position")
 	--scene.SetComponent(self.ID,"hattag",hat_tag)
 	--hat.throw(delta)
 	if currentThrow then

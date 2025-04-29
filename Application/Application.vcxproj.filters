@@ -20,5 +20,10 @@
     <None Include="scripts\coin.lua" />
     <None Include="scripts\coinCounter.lua" />
     <None Include="scripts\coinNumber.lua" />
+    <None Include="scripts\coin\coin.lua" />
+    <None Include="scripts\coin\coinCounter.lua" />
+    <None Include="scripts\coin\coinNumber.lua" />
+    <None Include="scripts\timer\timer.lua" />
+    <None Include="scripts\timer\timerDisplay.lua" />
   </ItemGroup>
 </Project>

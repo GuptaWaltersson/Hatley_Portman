@@ -277,7 +277,7 @@ int Scene::lua_SetComponent(lua_State* L)
 		lua_pop(L, 1);
 
 
-		printf("Setting position : x = % f, y = % f\n", x, y);
+		//printf("Setting position : x = % f, y = % f\n", x, y);
 		scene->SetComponent<Position>(entity, { x, y });
 	}
 	else if (type == "movement")

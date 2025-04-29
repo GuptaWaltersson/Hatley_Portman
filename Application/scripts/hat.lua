@@ -1,5 +1,7 @@
 local hat = {}
-
+local instance ={
+	ID = nil
+}
 HatType = 
 {
 	DEFAULT = 1,
@@ -8,35 +10,52 @@ HatType =
 
 }
 
-position = {x=1000,y=500}
+position = {x=1000,y=700}
 movement = {dx=0.0,dy=0.0,ax = 2400, ay=700}
 local hat_tag = 1
+local currentThrow = nil
+
 
 -- Behaviours
 function hat.OnCreate(self)
-	print("Hat created!")
-	scene.SetComponent(self.ID,"sprite","../Textures/Portman_hat.png")
-	scene.SetComponent(self.ID,"hattag",hat_tag)
-	scene.SetComponent(self.ID,"position",position)
-	scene.SetComponent(self.ID, "boundingbox", { width = 64, height = 32})
-	scene.SetComponent(self.ID,"movement",movement)
+		print("Hat created!")
+	print("Self:", self)
+	print("Self.ID:", self and self.ID)
+
+	instance.ID = self and self.ID
+	
+
+	if self.ID == nil then
+		print("nil at start")
+	end
+
+	
+
+	scene.SetComponent(instance.ID,"sprite","../Textures/Portman_hat.png")
+	scene.SetComponent(instance.ID,"hattag",hat_tag)
+	scene.SetComponent(instance.ID,"position",position)
+	--scene.SetComponent(instance.ID, "boundingbox", { width = 64, height = 32})
+	scene.SetComponent(instance.ID,"movement",movement)
+	
 end
 
-function hat.OnUpdate(delta)
-	position.x = position.x + movement.dx
-	print(movement.dx)
-	scene.SetComponent(hat.ID,"position",position)
-	scene.SetComponent(hat.ID,"movement",movement)
+function hat.OnUpdate(self,delta)
+	
+	if self.ID == nil then
+		print( "no id in onUpdate")
+	end
 
+	if currentThrow then
+		currentThrow(self,delta)
+	end
 end
 
 function hat.throw(delta)
 	print("hat kast")
-	scene.GetComponent(hat.ID,"hattag",hat_tag)
 	
     if hat_tag == HatType.DEFAULT then
         print("Default Hat Behavior")
-		
+		currentThrow = defaultThrow
     elseif hat_tag == HatType.MAGIC then
         print("Magic Hat Behavior")
     elseif hat_tag == HatType.LEGENDARY then
@@ -47,10 +66,12 @@ function hat.throw(delta)
 
 end
 
-local function defaultThrow()
-	xSpeed = 50
-	movement.dx = xSpeed
-	scene.SetComponent(hat.ID,"movement",movement)
+function defaultThrow(self,delta)
+
+
+	movement.dx = -100
+	position = {x= position.x +movement.dx * delta, y= position.y}
+	scene.SetComponent(self.ID,"position",position)
 end
 
 return hat

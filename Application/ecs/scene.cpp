@@ -211,8 +211,14 @@ int Scene::lua_GetComponent(lua_State* L)
 	else if (type == "position")
 	{
 		Position& pos = scene->GetComponent<Position>(entity);
-		lua_pushnumber(L, pos.x);
-		lua_pushnumber(L, pos.y);
+
+		lua_newtable(L);               // Create a new table
+
+		lua_pushnumber(L, pos.x);      // Push x
+		lua_setfield(L, -2, "x");      // table.x = pos.x
+
+		lua_pushnumber(L, pos.y);      // Push y
+		lua_setfield(L, -2, "y");
 	}
 	else if (type == "playertag")
 	{

@@ -12,7 +12,7 @@ HatType =
 }
 --Start values
 position = {x=1000,y=700}
-movement = {dx=0.0,dy=0.0,ax = 2400, ay=700}
+local movement = {dx=0.0,dy=0.0,ax = 2400, ay=700}
 local hat_tag = 0
 local currentThrow = nil
 
@@ -42,8 +42,9 @@ end
 
 function hat.OnUpdate(self,delta)
 	hat_tag = scene.GetComponent(self.ID,"hattag",hat_tag)
+	position = scene.GetComponent(self.ID, "position",position)
 	--scene.SetComponent(self.ID,"hattag",hat_tag)
-	--hat.throw(delta)
+	hat.throw(delta)
 	if currentThrow then
 		currentThrow(self,delta)
 	end
@@ -59,8 +60,7 @@ function hat.throw(delta)
 		currentThrow = defaultThrow
     elseif hat_tag == HatType.MAGIC then
         print("Magic Hat Behavior")
-		self.movement.dx = -200
-		self.movement.dy = -500
+
 		currentThrow= magicThrow
     elseif hat_tag == HatType.LEGENDARY then
         print("Legendary Hat Behavior")
@@ -79,6 +79,8 @@ function defaultThrow(self,delta)
 end
 
 function magicThrow(self, delta)
+	self.movement.dx = -200
+	self.movement.dy = -500
     -- Simulate gravity pulling downward
     local gravity = 980  -- pixels per second squared
 

@@ -187,11 +187,12 @@ public:
 			if (htag.hatType == 0) // hat is on head
 			{
 				pos.x = playerPos.x;
+				pos.y = playerPos.y;
 			}
 
 			if (IsKeyPressed(KEY_Q))
 			{
-				htag.hatType = 2;
+				htag.hatType = 1;
 				lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
 				lua_getfield(m_L, -1, "throw");
 				lua_pushvalue(m_L, -2);

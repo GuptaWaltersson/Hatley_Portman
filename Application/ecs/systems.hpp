@@ -31,10 +31,13 @@ public:
 
 class CollisionSystem : public System
 {
+	lua_State* m_L;
+public:
+	CollisionSystem(lua_State* L) : m_L(L) {}
 	bool OnUpdate(entt::registry& registry, float delta) final
 	{
-		auto view = registry.view<Position, BBox>();
-		view.each([&](Position& pos, BBox& box) {
+		auto view = registry.view<Position, BBox, Tag>();
+		view.each([&](entt::entity entity, Position& pos, BBox& box, Tag& tag) {
 			auto plaView = registry.view<Position, BBox, PlayerTag>();
 			
 			auto playerEntity = plaView.front();
@@ -51,46 +54,73 @@ class CollisionSystem : public System
 
 				if (CheckCollisionRecs(playerRect, otherRect))
 				{
-					Rectangle collision = GetCollisionRec(playerRect, otherRect);
-
-					// Calculate centers
-					float playerCenterX = playerPos.x + playerBox.width / 2.0f;
-					float playerCenterY = playerPos.y + playerBox.height / 2.0f;
-					float blockCenterX = pos.x + box.width / 2.0f;
-					float blockCenterY = pos.y + box.height / 2.0f;
-
-					if (collision.width <= collision.height)
+					if (tag.name == "coin") 
 					{
-						if (playerCenterX < blockCenterX)
+						if (registry.any_of<Behaviour>(entity)) {
+							Behaviour& script = registry.get<Behaviour>(entity);
+
+							lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);  // push self table
+							lua_getfield(m_L, -1, "OnCollision");                      // push function
+
+							if (lua_isfunction(m_L, -1)) {
+								lua_pushvalue(m_L, -2); // push self table as 'self'
+								lua_pushnumber(m_L, delta); // push delta time
+
+								if (lua_pcall(m_L, 2, 0, 0) != LUA_OK) {
+									if (lua_isstring(m_L, -1)) {
+										std::cout << "Lua error: " << lua_tostring(m_L, -1) << std::endl;
+									}
+									lua_pop(m_L, 1); // pop error message
+								}
+							}
+							else {
+								lua_pop(m_L, 2); // pop nil and self table
+							}
+						}
+
+					}
+					else {
+
+						Rectangle collision = GetCollisionRec(playerRect, otherRect);
+
+						// Calculate centers
+						float playerCenterX = playerPos.x + playerBox.width / 2.0f;
+						float playerCenterY = playerPos.y + playerBox.height / 2.0f;
+						float blockCenterX = pos.x + box.width / 2.0f;
+						float blockCenterY = pos.y + box.height / 2.0f;
+
+						if (collision.width <= collision.height)
 						{
-							playerPos.x -= collision.width;
-							//std::cout << "LEFT" << std::endl;
-							playerVel.dx = 0;
+							if (playerCenterX < blockCenterX)
+							{
+								playerPos.x -= collision.width;
+								//std::cout << "LEFT" << std::endl;
+								playerVel.dx = 0;
+							}
+							else
+							{
+								playerPos.x += collision.width;
+								//std::cout << "RIGHT" << std::endl;
+								playerVel.dx = 0;
+							}
+
 						}
 						else
 						{
-							playerPos.x += collision.width;
-							//std::cout << "RIGHT" << std::endl;
-							playerVel.dx = 0;
-						}
-						
-					}
-					else
-					{
-						if (playerCenterY < blockCenterY)
-						{
-							playerPos.y -= collision.height;
-							//std::cout << "TOP" << std::endl;
-							playerVel.dy = 0;
-							playerVel.canJump = true;
-						}
-						else
-						{
-							playerPos.y += collision.height;
-							//std::cout << "BOTTOM" << std::endl;
+							if (playerCenterY < blockCenterY)
+							{
+								playerPos.y -= collision.height;
+								//std::cout << "TOP" << std::endl;
+								playerVel.dy = 0;
+								playerVel.canJump = true;
+							}
+							else
+							{
+								playerPos.y += collision.height;
+								//std::cout << "BOTTOM" << std::endl;
+							}
 						}
 					}
-						
 				}
 			}
 		});
@@ -209,6 +239,7 @@ public:
 				lua_pop(m_L, 1);
 			}
 		});
+		return false;
 	}
 };
 

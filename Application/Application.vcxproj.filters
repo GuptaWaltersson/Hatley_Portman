@@ -16,5 +16,7 @@
     <None Include="scripts\block.lua" />
     <None Include="scripts\block2.lua" />
     <None Include="scripts\hat.lua" />
+    <None Include="scripts\scene.lua" />
+    <None Include="scripts\coin.lua" />
   </ItemGroup>
 </Project>

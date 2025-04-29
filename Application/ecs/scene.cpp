@@ -169,6 +169,9 @@ int Scene::lua_HasComponent(lua_State* L)
 	else if (type == "gravity") {
 		hasComponent = scene->HasComponents<Gravity>(entity);
 	}
+	else if (type == "tag") {
+		hasComponent = scene->HasComponents<Tag>(entity);
+	}
 	else if (type == "position") {
 		hasComponent = scene->HasComponents<Position>(entity);
 	}
@@ -213,6 +216,7 @@ int Scene::lua_GetComponent(lua_State* L)
 		Position& pos = scene->GetComponent<Position>(entity);
 		lua_pushnumber(L, pos.x);
 		lua_pushnumber(L, pos.y);
+		return 2;
 	}
 	else if (type == "playertag")
 	{
@@ -223,6 +227,11 @@ int Scene::lua_GetComponent(lua_State* L)
 	{
 		HatTag& htag = scene->GetComponent<HatTag>(entity);
 		lua_pushnumber(L, htag.hatType);
+	}
+	else if (type == "tag") 
+	{
+		Tag& tag = scene->GetComponent<Tag>(entity);
+		lua_pushstring(L, tag.name.c_str());
 	}
 	return 1;
 }
@@ -277,7 +286,7 @@ int Scene::lua_SetComponent(lua_State* L)
 		lua_pop(L, 1);
 
 
-		printf("Setting position : x = % f, y = % f\n", x, y);
+		//printf("Setting position : x = % f, y = % f\n", x, y);
 		scene->SetComponent<Position>(entity, { x, y });
 	}
 	else if (type == "movement")
@@ -329,6 +338,11 @@ int Scene::lua_SetComponent(lua_State* L)
 		int htag = lua_tointeger(L, 3);
 		scene->SetComponent<HatTag>(entity, htag);
 	}
+	else if (type == "tag")
+	{
+		std::string tag = lua_tostring(L, 3);
+		scene->SetComponent<Tag>(entity, tag);
+	}
 
 	return 0;
 }
@@ -366,6 +380,14 @@ int Scene::lua_RemoveComponent(lua_State* L)
 	else if (type == "playertag")
 	{
 		scene->RemoveComponent<PlayerTag>(entity);
+	}
+	else if (type == "tag")
+	{
+		scene->RemoveComponent<Tag>(entity);
+	}
+	else
+	{
+		luaL_error(L, "Unknown component type: %s", type.c_str());
 	}
 	return 0;
 }

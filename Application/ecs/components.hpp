@@ -2,6 +2,11 @@
 
 #include <raylib.h>
 
+struct Tag
+{
+	std::string name;
+};
+
 struct Position
 {
 	float x;
@@ -22,7 +27,6 @@ struct Movement
 	float ay;
 	bool canJump;
 };
-
 
 
 struct Gravity

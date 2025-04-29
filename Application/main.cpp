@@ -65,7 +65,7 @@ int main()
 	Scene::lua_openScene(L, &scene);
 
 	scene.CreateSystem<SpriteSystem>();
-	scene.CreateSystem<CollisionSystem>();
+	scene.CreateSystem<CollisionSystem>(L);
 	scene.CreateSystem<GravitySystem>(9.8);
 	scene.CreateSystem<MovementSystem>();
 	scene.CreateSystem<BehaviourSystem>(L);

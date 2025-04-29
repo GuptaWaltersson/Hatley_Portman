@@ -3,7 +3,7 @@ coinCounter = {}
 -- Behaviours
 function coinCounter.OnCreate(self)
 	scene.SetComponent(self.ID, "tag", "counter")
-	scene.SetComponent(self.ID, "position", {x=1400, y=30})
+	scene.SetComponent(self.ID, "position", {x=1390, y=30})
 	scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/0.png")
 end
 

@@ -172,6 +172,8 @@
   <ItemGroup>
     <None Include="scripts\block.lua" />
     <None Include="scripts\coin.lua" />
+    <None Include="scripts\coinCounter.lua" />
+    <None Include="scripts\coinNumber.lua" />
     <None Include="scripts\monster.lua" />
     <None Include="scripts\player.lua" />
     <None Include="scripts\scene.lua" />

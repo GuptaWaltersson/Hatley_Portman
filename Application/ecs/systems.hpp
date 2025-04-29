@@ -180,8 +180,8 @@ public:
 			pos.x += velocity.dx*delta;
 			pos.y += velocity.dy*delta;
 
-			if (pos.x <= -100) pos.x = 1650;
-			if (pos.x >= 1700) pos.x = -50;
+			if (pos.x <= -60) pos.x = 1650;
+			if (pos.x >= 1660) pos.x = -50;
 		});
 		return false;
 	}

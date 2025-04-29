@@ -19,11 +19,8 @@ local currentThrow = nil
 
 -- Behaviours
 function hat.OnCreate(self)
-		print("Hat created!")
-	print("Self:", self)
-	print("Self.ID:", self and self.ID)
 
-	instance.ID = self and self.ID
+	instance.ID= self and self.ID
 	
 
 	if self.ID == nil then
@@ -41,23 +38,24 @@ function hat.OnCreate(self)
 end
 
 function hat.OnUpdate(self,delta)
-	hat_tag = scene.GetComponent(self.ID,"hattag",hat_tag)
+	
 	position = scene.GetComponent(self.ID, "position",position)
 	--scene.SetComponent(self.ID,"hattag",hat_tag)
-	hat.throw(delta)
+	--hat.throw(delta)
 	if currentThrow then
 		currentThrow(self,delta)
 	end
 end
 
-function hat.throw(delta)
+function hat.throw(self,delta)
 	--print("hat kast")
-	
-	
+	hat_tag = scene.GetComponent(self.ID,"hattag",hat_tag)
 
+	
     if hat_tag == HatType.DEFAULT then
         --print("Default Hat Behavior")
 		currentThrow = defaultThrow
+		currentThrow(self,delta)
     elseif hat_tag == HatType.MAGIC then
         print("Magic Hat Behavior")
 
@@ -67,6 +65,8 @@ function hat.throw(delta)
     else
         --print("Unknown hat type:"..hat_tag..", no throw")
     end
+
+	
 
 end
 
@@ -79,8 +79,8 @@ function defaultThrow(self,delta)
 end
 
 function magicThrow(self, delta)
-	self.movement.dx = -200
-	self.movement.dy = -500
+	
+	
     -- Simulate gravity pulling downward
     local gravity = 980  -- pixels per second squared
 

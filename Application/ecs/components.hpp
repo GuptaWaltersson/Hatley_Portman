@@ -23,8 +23,6 @@ struct Movement
 	bool canJump;
 };
 
-
-
 struct Gravity
 {
 	float acceleration = 9.8;
@@ -63,4 +61,9 @@ struct HatTag {
 	// Magic = 2
 	//Legendary = 3
 	int hatType;
+};
+
+struct LastMove {
+	std::string lastKey;
+
 };

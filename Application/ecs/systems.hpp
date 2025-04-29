@@ -189,8 +189,12 @@ public:
 				pos.x = playerPos.x;
 				pos.y = playerPos.y;
 			}
-
-			if (IsKeyPressed(KEY_Q))
+			
+			if (IsKeyPressed(KEY_Q) && htag.hatType != 0)
+			{
+				htag.hatType = 0;
+			}
+			else if (IsKeyPressed(KEY_Q))
 			{
 				htag.hatType = 1;
 				lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
@@ -208,6 +212,13 @@ public:
 					lua_pop(m_L, 1);
 				}
 
+			}
+
+			if (IsKeyPressed(KEY_E) && htag.hatType != 0)
+			{
+				playerPos.x = pos.x;
+				playerPos.y = pos.y;
+				htag.hatType = 0;
 			}
 			
 				// Get the function from lua and call it with delta time as argument

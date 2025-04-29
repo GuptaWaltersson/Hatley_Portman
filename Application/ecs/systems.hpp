@@ -103,6 +103,8 @@ class MovementSystem : public System {
 public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
 		auto view = registry.view<Position, Movement, PlayerTag>();
+		auto hatEntity = registry.view<HatTag, LastMove>().front();
+		LastMove& LMove = registry.get<LastMove>(hatEntity);
 		view.each([&](Position& pos, Movement& velocity, PlayerTag& pTag) {
 			if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_A) || IsKeyDown(KEY_D))
 			{
@@ -112,6 +114,7 @@ public:
 					{
 						velocity.dx -= velocity.ax * delta;
 					}
+					LMove.lastKey = "left";
 				}
 				if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D))
 				{
@@ -119,6 +122,7 @@ public:
 					{
 						velocity.dx += velocity.ax * delta;
 					}
+					LMove.lastKey = "right";
 				}
 			}
 			else

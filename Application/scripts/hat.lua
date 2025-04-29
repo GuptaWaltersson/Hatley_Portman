@@ -15,7 +15,7 @@ position = {x=1000,y=700}
 local movement = {dx=0.0,dy=0.0,ax = 2400, ay=700}
 local hat_tag = 0
 local currentThrow = nil
-
+local lastmove =""
 
 -- Behaviours
 function hat.OnCreate(self)
@@ -34,6 +34,7 @@ function hat.OnCreate(self)
 	scene.SetComponent(instance.ID,"position",position)
 	--scene.SetComponent(instance.ID, "boundingbox", { width = 64, height = 32})
 	scene.SetComponent(instance.ID,"movement",movement)
+	scene.SetComponent(self.ID,"lastmove","left")
 	
 end
 
@@ -43,7 +44,7 @@ function hat.OnUpdate(self,delta)
 	--scene.SetComponent(self.ID,"hattag",hat_tag)
 	--hat.throw(delta)
 	if currentThrow then
-		currentThrow(self,delta)
+		currentThrow(self,delta,lastmove)
 	end
 end
 
@@ -54,8 +55,10 @@ function hat.throw(self,delta)
 	
     if hat_tag == HatType.DEFAULT then
         --print("Default Hat Behavior")
+		lastmove = scene.GetComponent(self.ID,"lastmove",lastmove)
+		
 		currentThrow = defaultThrow
-		currentThrow(self,delta)
+		currentThrow(self,delta,lastmove)
     elseif hat_tag == HatType.MAGIC then
         print("Magic Hat Behavior")
 
@@ -70,10 +73,14 @@ function hat.throw(self,delta)
 
 end
 
-function defaultThrow(self,delta)
+function defaultThrow(self,delta,lastmove)
+		
 
-
-	movement.dx = -100
+	if lastmove == "left" then
+		movement.dx = -1000
+	else
+		movement.dx = 1000
+	end
 	position = {x= position.x + movement.dx*delta, y=position.y}
 	scene.SetComponent(self.ID,"position",position)
 end

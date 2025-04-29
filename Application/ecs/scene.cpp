@@ -220,6 +220,27 @@ int Scene::lua_GetComponent(lua_State* L)
 		lua_pushnumber(L, pos.y);      // Push y
 		lua_setfield(L, -2, "y");
 	}
+	else if (type == "movement")
+	{
+		Movement& mov = scene->GetComponent<Movement>(entity);
+
+		lua_newtable(L);
+
+		lua_pushnumber(L, mov.dx);
+		lua_setfield(L, -2, "dx");
+
+		lua_pushnumber(L, mov.dy);
+		lua_setfield(L, -2, "dy");
+
+		lua_pushnumber(L, mov.ax);
+		lua_setfield(L, -2, "ax");
+
+		lua_pushnumber(L, mov.ay);
+		lua_setfield(L, -2, "ay");
+
+		lua_pushboolean(L, mov.canJump);
+		lua_setfield(L, -2, "canJump");
+	}
 	else if (type == "playertag")
 	{
 		PlayerTag& ptag = scene->GetComponent<PlayerTag>(entity);

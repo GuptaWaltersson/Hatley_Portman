@@ -5,6 +5,18 @@ scene.SetComponent(playerEntity, "behaviour", "scripts/player.lua")
 
 
 
+nrOfCoins = 3
+cCounter = 0
+local coinCounterEntity = scene.CreateEntity()
+scene.SetComponent(coinCounterEntity, "behaviour", "scripts/coinCounter.lua")
+
+local TextEntity = scene.CreateEntity()
+scene.SetComponent(TextEntity, "sprite", "../Textures/Numbers/tile_0159.png")
+scene.SetComponent(TextEntity, "position", {x=1460, y=30})
+
+local coinNumberEntity = scene.CreateEntity()
+scene.SetComponent(coinNumberEntity, "behaviour", "scripts/coinNumber.lua")
+
 local coin1 = scene.CreateEntity()
 scene.SetComponent(coin1, "position", {x=400, y=450})
 scene.SetComponent(coin1, "behaviour", "scripts/coin.lua")

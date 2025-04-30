@@ -22,7 +22,7 @@ function coinNumber.OnCreate(self)
 	elseif nrOfCoins == 8 then
 		scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/8.png")
 	elseif nrOfCoins == 9 then
-		scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/8.png")
+		scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/9.png")
 	else	
 		scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/0.png")
 	end

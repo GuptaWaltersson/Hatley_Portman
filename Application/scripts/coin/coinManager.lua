@@ -1,8 +1,9 @@
 
-nrOfCoins = 8
+nrOfCoins = 9
 cCounter = 0
 
 local coinPositions = {
+    {x=300,y=700},
     {x=100, y=450},
     {x=300, y=250},
     {x=500, y=450},
@@ -10,8 +11,7 @@ local coinPositions = {
     {x=1300,y=300},
     {x=1000,y=100},
     {x=1500,y=700},
-    {x=100,y=100},
-    {x=1500,y=100}
+    {x=100,y=100}
 }
 
 for i = 1, nrOfCoins do

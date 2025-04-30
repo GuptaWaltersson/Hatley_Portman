@@ -35,4 +35,5 @@ scene.SetComponent(TextEntity, "position", {x=1460, y=30})
 local coinNumberEntity = scene.CreateEntity()
 scene.SetComponent(coinNumberEntity, "behaviour", "scripts/coin/coinNumber.lua")
 
-
+dofile("scripts/hat.lua")
+dofile("scripts/block.lua")

@@ -44,16 +44,7 @@ void LoadScene(lua_State* L, Scene* scene)
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
 		lua_pop(L, 1);
 	}
-	if (luaL_dofile(L, "scripts/hat.lua") != LUA_OK) {
-		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
-		lua_pop(L, 1);
-	}
-	if (luaL_dofile(L, "scripts/block.lua") != LUA_OK) {
-		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
-		lua_pop(L, 1);
-	}
 }
-
 int main()
 {
 	const int screenWidth = 1600;

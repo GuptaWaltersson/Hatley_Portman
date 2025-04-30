@@ -11,29 +11,17 @@
 #include "ecs/components.hpp"
 #include "ecs/systems.hpp"
 
-void DumpError(lua_State* L)
-{
-	if (lua_gettop(L) && lua_isstring(L, -1))
-	{
-		std::cout << "Lua error: " << lua_tostring(L, -1) << std::endl;
-		lua_pop(L, 1);
-	}
-}
+#define ScreenWidth 1656
+#define ScreenHeight 936
 
-void ConsoleThreadFunction(lua_State* L)
+enum class GameState
 {
-	std::string input;
-	while (!WindowShouldClose()) 
-	{
-		std::cout << "> ";
-		std::getline(std::cin, input);
-
-		if (luaL_dostring(L, input.c_str()) != LUA_OK);
-		{
-			DumpError(L);
-		}
-	}
-}
+	StartMenu,
+	EditingTool,
+	Game,
+	Quit
+};
+GameState gameState = GameState::StartMenu;
 
 void LoadScene(lua_State* L, Scene* scene)
 {
@@ -44,41 +32,125 @@ void LoadScene(lua_State* L, Scene* scene)
 		lua_pop(L, 1);
 	}
 }
+
+void StartMenu(Scene* scene, lua_State* L)
+{
+	Rectangle playButton = { (float)(ScreenWidth / 2) - 100, (float)(ScreenHeight / 2) - 150, 200, 100 };
+	Rectangle editingButton = { (float)(ScreenWidth / 2) - 100, (float)(ScreenHeight / 2), 200, 100 };
+	Rectangle quitButton = { (float)(ScreenWidth / 2) - 100, (float)(ScreenHeight / 2) + 150, 200, 100 };
+
+	bool running = true;
+	while (running)
+	{
+		BeginDrawing();
+		ClearBackground(SKYBLUE);
+
+		DrawText("Hat-Trick", (float)(ScreenWidth / 2 - 220), 100, 100, WHITE);
+
+		DrawRectangleRec(playButton, WHITE);
+		DrawText("Play", playButton.x + 25, playButton.y + 25, 20, BLACK);
+
+		DrawRectangleRec(editingButton, WHITE);
+		DrawText("Edit", editingButton.x + 25, editingButton.y + 25, 20, BLACK);
+
+		DrawRectangleRec(quitButton, WHITE);
+		DrawText("Quit", quitButton.x + 25, quitButton.y + 25, 20, BLACK);
+
+		Vector2 mousePos = GetMousePosition();
+
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+		{
+			if (CheckCollisionPointRec(mousePos, playButton))
+			{
+				gameState = GameState::Game;
+			}
+			else if (CheckCollisionPointRec(mousePos, quitButton))
+			{
+				gameState = GameState::Quit;
+			}
+			running = false;
+		}
+
+		EndDrawing();
+	}
+
+}
+
+void EditingTool(Scene* scene, lua_State* L)
+{
+
+}
+
+void GameLoop(Scene* scene, lua_State* L)
+{
+	Scene::lua_openScene(L, scene);
+
+	LoadScene(L, scene);
+
+	bool running = true;
+	while (running)
+	{
+		BeginDrawing();
+		ClearBackground(SKYBLUE);
+
+		if (IsKeyPressed(KEY_ENTER))
+			LoadScene(L, scene);
+
+		if (IsKeyPressed(KEY_ESCAPE)) {
+			gameState = GameState::StartMenu;
+			running = false;
+		}
+
+		float delta = GetFrameTime();
+		scene->UpdateSystems(delta);
+
+		EndDrawing();
+	}
+	
+	scene->Clear();
+}
+
 int main()
 {
-	const int screenWidth = 1656;
-	const int screenHeight = 936;
-	
-	InitWindow(screenWidth, screenHeight, "Hatman");
+	InitWindow(ScreenWidth, ScreenHeight, "Hat-Trick");
 
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
 
-	Scene scene(L);
-	Scene::lua_openScene(L, &scene);
+	Scene startScene(L);
+	Scene editingScene(L);
+	Scene gameScene(L);
 
-	scene.CreateSystem<SpriteSystem>();
-	scene.CreateSystem<CollisionSystem>(L);
-	scene.CreateSystem<GravitySystem>(9.8);
-	scene.CreateSystem<MovementSystem>();
-	scene.CreateSystem<BehaviourSystem>(L);
-	scene.CreateSystem<HatSystem>(L);
+	gameScene.CreateSystem<SpriteSystem>();
+	gameScene.CreateSystem<CollisionSystem>(L);
+	gameScene.CreateSystem<GravitySystem>(9.8);
+	gameScene.CreateSystem<MovementSystem>();
+	gameScene.CreateSystem<BehaviourSystem>(L);
+	gameScene.CreateSystem<HatSystem>(L);
 
-	LoadScene(L, &scene);
-
-	while (!WindowShouldClose())
+	bool running = true;
+	while (running)
 	{
-		BeginDrawing();
-		ClearBackground(SKYBLUE);
-		float delta = GetFrameTime();
-
-		if (IsKeyPressed(KEY_ENTER))
-			LoadScene(L, &scene);
-
-		scene.UpdateSystems(delta);
-
-		EndDrawing();
+		if (gameState == GameState::StartMenu)
+		{
+			StartMenu(&startScene, L);
+		}
+		else if (gameState == GameState::EditingTool)
+		{
+			EditingTool(&editingScene, L);
+		}
+		else if (gameState == GameState::Game)
+		{
+			GameLoop(&gameScene, L);
+		} 
+		else if (gameState == GameState::Quit)
+		{
+			running = false;
+		}
 	}
+
+
+	
 
 	CloseWindow();
 	lua_close(L);

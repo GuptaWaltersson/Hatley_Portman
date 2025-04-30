@@ -1,12 +1,12 @@
 
 local player = {}
 
-position = {x=800,y=650}
+position = {x=200,y=700}
 movement = {dx=0.0,dy=-300.0,ax = 2400, ay=700}
 
 -- Behaviours
 function player.OnCreate(self)
-	scene.SetComponent(self.ID, "sprite", "../Textures/Portman_No_Hat.png")
+	scene.SetComponent(self.ID, "sprite", "../Textures/Portman.png")
 	scene.SetComponent(self.ID, "position", position)
 	scene.SetComponent(self.ID, "boundingbox", { width = 64, height = 64})
 	scene.SetComponent(self.ID, "movement",movement)

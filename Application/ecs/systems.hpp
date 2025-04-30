@@ -213,16 +213,18 @@ class HatSystem : public System {
 public:
 	HatSystem(lua_State* L) : m_L(L){}
 	bool OnUpdate(entt::registry& registry, float delta) final {
-		auto view = registry.view<HatTag, Position,Behaviour>();
+		auto view = registry.view<HatTag, Position,Behaviour,Movement>();
 		auto playerEntity = registry.view<Position, PlayerTag>().front();
 		Position& playerPos = registry.get<Position>(playerEntity);
 
-		view.each([&](HatTag& htag, Position& pos, Behaviour& script ) {
+		view.each([&](HatTag& htag, Position& pos, Behaviour& script, Movement& mov ) {
 
 			if (htag.hatType == 0) // hat is on head
 			{
 				pos.x = playerPos.x;
 				pos.y = playerPos.y;
+				mov.dx = 0;
+				mov.dy = 0;
 			}
 			
 			if (IsKeyPressed(KEY_Q) && htag.hatType != 0)
@@ -231,7 +233,7 @@ public:
 			}
 			else if (IsKeyPressed(KEY_Q))
 			{
-				htag.hatType = 1;
+				htag.hatType = 2;
 				lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
 				lua_getfield(m_L, -1, "throw");
 				lua_pushvalue(m_L, -2);

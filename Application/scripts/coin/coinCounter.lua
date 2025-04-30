@@ -7,7 +7,7 @@ function coinCounter.OnCreate(self)
 	scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/0.png")
 end
 
-function coinCounter.OnUpdate(self, delta)
+function coinCounter.OnUpdate(self,delta)
 	if cCounter == 1 then
 		scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/1.png")
 	elseif cCounter == 2 then
@@ -25,10 +25,11 @@ function coinCounter.OnUpdate(self, delta)
 	elseif cCounter == 8 then
 		scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/8.png")
 	elseif cCounter == 9 then
-		scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/8.png")
+		scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/9.png")
 	else	
 		scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/0.png")
 	end
+
 end
 
 return coinCounter

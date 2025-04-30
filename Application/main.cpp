@@ -39,7 +39,6 @@ void LoadScene(lua_State* L, Scene* scene)
 {
 	scene->Clear();
 
-
 	if (luaL_dofile(L, "scripts/scene.lua") != LUA_OK) {
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
 		lua_pop(L, 1);
@@ -47,8 +46,8 @@ void LoadScene(lua_State* L, Scene* scene)
 }
 int main()
 {
-	const int screenWidth = 1600;
-	const int screenHeight = 900;
+	const int screenWidth = 1656;
+	const int screenHeight = 936;
 	
 	InitWindow(screenWidth, screenHeight, "Hatman");
 
@@ -72,7 +71,6 @@ int main()
 		BeginDrawing();
 		ClearBackground(SKYBLUE);
 		float delta = GetFrameTime();
-
 
 		if (IsKeyPressed(KEY_ENTER))
 			LoadScene(L, &scene);

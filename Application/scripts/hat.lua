@@ -29,7 +29,7 @@ function hat.OnCreate(self)
 
 	
 
-	scene.SetComponent(instance.ID,"sprite","../Textures/Portman_hat.png")
+	scene.SetComponent(instance.ID,"sprite","../Textures/Hat.png")
 	scene.SetComponent(instance.ID,"hattag",hat_tag)
 	scene.SetComponent(instance.ID,"position",position)
 	--scene.SetComponent(instance.ID, "boundingbox", { width = 64, height = 32})

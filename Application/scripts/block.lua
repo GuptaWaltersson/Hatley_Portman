@@ -23,7 +23,8 @@ for i = 0, 22 do
 	scene.SetComponent(entity, "boundingbox", { width = 72, height = 72})
 	scene.SetComponent(entity, "position", { x = 18+(72*i), y = 908})
 end
-local cloudLength = 3
+
+local cloudLength = 5
 for i = 0, cloudLength do
     local entity = scene.CreateEntity()
 	scene.SetComponent(entity, "tag", "block")
@@ -50,7 +51,6 @@ end
 
 local mushroomLength = 6
 local mushroomHeight = 3
-local mushroomMid = mushroomLength/2
 
 for i = 0, mushroomLength do
     local entity = scene.CreateEntity()

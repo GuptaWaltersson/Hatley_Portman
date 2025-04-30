@@ -75,7 +75,7 @@ void StartMenu(Scene* scene, lua_State* L)
 	}
 
 }
-
+  
 void EditingTool(Scene* scene, lua_State* L)
 {
 

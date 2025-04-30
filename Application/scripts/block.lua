@@ -33,12 +33,29 @@ for i = 0, cloudLength do
     scene.SetComponent(entity, "position", { x = 300 + (60 * i), y = 550 })
 end
 
+local cloudLength2 = 7
+for i = 0, cloudLength2 do
+    local entity = scene.CreateEntity()
+	scene.SetComponent(entity, "tag", "block")
+  
+    if i == 0 then
+        scene.SetComponent(entity, "sprite", "../Textures/tile_0153.png")
+    elseif i == cloudLength2 then
+        scene.SetComponent(entity, "sprite", "../Textures/tile_0155.png")
+	else
+        scene.SetComponent(entity, "sprite", "../Textures/tile_0154.png")
+    end
+
+    scene.SetComponent(entity, "boundingbox", { width = 60, height = 30 })
+    scene.SetComponent(entity, "position", { x = 500 + (60 * i), y = 150 })
+end
+
 for i = 0, 1 do
 	local entity = scene.CreateEntity()
 	scene.SetComponent(entity, "tag", "block")
-	scene.SetComponent(entity, "sprite", "../Textures/tile_0156.png")
+	scene.SetComponent(entity, "sprite", "../Textures/tile_0146.png")
 	scene.SetComponent(entity, "boundingbox", { width = 60, height = 30 })
-	scene.SetComponent(entity, "position", { x = 770 + (300 * i), y = 700 })
+	scene.SetComponent(entity, "position", { x = 770 + (300 * i), y = 750 })
 end
 
 local mushroomLength = 6

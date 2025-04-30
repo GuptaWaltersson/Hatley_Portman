@@ -216,6 +216,7 @@ public:
 		auto view = registry.view<HatTag, Position,Behaviour,Movement>();
 		auto playerEntity = registry.view<Position, PlayerTag>().front();
 		Position& playerPos = registry.get<Position>(playerEntity);
+		Movement& playerMov = registry.get<Movement>(playerEntity);
 
 		view.each([&](HatTag& htag, Position& pos, Behaviour& script, Movement& mov ) {
 
@@ -230,6 +231,7 @@ public:
 			if (IsKeyPressed(KEY_Q) && htag.hatType != 0)
 			{
 				htag.hatType = 0;
+				playerMov.dy = 0;
 			}
 			else if (IsKeyPressed(KEY_Q))
 			{

@@ -73,7 +73,7 @@ local function createMushroom(length,height,posX,posY)
 	end
 end
 
-createMushroom(6,4,1000,488) --Length, Height, X position, Y position
+createMushroom(6,6,1000,400) --Length, Height, X position, Y position
 createCloud(5,300,550) --Length of cloud, X position, Y position
 createCloud(8,500,170)
 createSmallBlock(770,750) -- X postion, Y position

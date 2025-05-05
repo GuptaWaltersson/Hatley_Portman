@@ -162,4 +162,4 @@ end
 --createSmallBlock(770,750) -- X postion, Y position
 --createSmallBlock(1070,750)
 createTree(3,3,500,500)
-createTree(1,1,200,200)
+createTree(1,1,18,18)

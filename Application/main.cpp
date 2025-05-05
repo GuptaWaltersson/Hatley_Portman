@@ -44,7 +44,6 @@ void StartMenu(Scene* scene, lua_State* L)
 	{
 		BeginDrawing();
 		ClearBackground(SKYBLUE);
-
 		DrawText("Hat-Trick", (float)(ScreenWidth / 2 - 220), 100, 100, WHITE);
 
 		DrawRectangleRec(playButton, WHITE);

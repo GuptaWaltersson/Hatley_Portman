@@ -26,5 +26,7 @@
     <None Include="scripts\timer\timer.lua" />
     <None Include="scripts\timer\timerDisplay.lua" />
     <None Include="scripts\coin\coinManager.lua" />
+    <None Include="scripts\editingScene.lua" />
+    <None Include="scripts\editingBlock.lua" />
   </ItemGroup>
 </Project>

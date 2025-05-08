@@ -296,6 +296,43 @@ public:
 		return false;
 	}
 };
+class EditSystem : public System
+{
+	lua_State* m_L;
+public:
+	EditSystem(lua_State* L) : m_L(L) {}
+
+	bool OnUpdate(entt::registry& registry, float delta) final
+	{
+
+		Vector2 mousePos = GetMousePosition();
+		auto view = registry.view<Behaviour,Tag>();
+		view.each([&](Behaviour& script, Tag& tag) {
+			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+			{
+				lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
+				lua_getfield(m_L, -1, "createCloud");
+				lua_pushvalue(m_L, -2);
+				lua_pushnumber(m_L, 3);
+				lua_pushnumber(m_L, mousePos.x);
+				lua_pushnumber(m_L, mousePos.y);
+
+				if (lua_pcall(m_L, 4, 0, 0) != LUA_OK)
+				{
+					if (lua_gettop(m_L) && lua_isstring(m_L, -1))
+					{
+						std::cout << "Lua error: " << lua_tostring(m_L, -1) << std::endl;
+						lua_pop(m_L, 1);
+					}
+					lua_pop(m_L, 1);
+				}
+			}
+			});
+
+		return false;
+	}
+};
+
 
 class InfoSystem : public System
 {

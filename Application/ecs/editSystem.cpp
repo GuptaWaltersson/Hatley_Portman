@@ -22,6 +22,15 @@ void EditingSystem::SelectEntity()
         m_selectedEntity.reset();
     }
 
+	if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) {
+		auto view = m_registry.view<Position, BBox>();
+		view.each([&](entt::entity entity, Position& pos, BBox& box) {
+			if (CheckCollisionPointRec(mousePos, { pos.x, pos.y, box.width, box.height }) && pos.y < 836) {
+					m_registry.destroy(entity);
+			}
+		});
+	}
+
 }
 
 void EditingSystem::CreateCloud(float xPos, float yPos, int width)

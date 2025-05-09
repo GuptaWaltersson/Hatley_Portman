@@ -62,15 +62,18 @@ function block.createMushroom(length,posX,posY)
 		
 		if i == 0 then
 			scene.SetComponent(entity,"sprite","../Textures/tile_0014.png")
+			scene.SetComponent(entity,"boundingbox",{width=60,height=30})
 		elseif i == length/2 then
 			scene.SetComponent(entity,"sprite","../Textures/tile_0012.png")
+			scene.SetComponent(entity,"boundingbox",{width=72,height=30})
 		elseif i == length then
 			scene.SetComponent(entity,"sprite","../Textures/tile_0015.png")
+			scene.SetComponent(entity,"boundingbox",{width=60,height=30})
 		else
 			scene.SetComponent(entity,"sprite","../Textures/tile_0013.png")
+			scene.SetComponent(entity,"boundingbox",{width=72,height=30})
 		end
 
-		scene.SetComponent(entity,"boundingbox",{width = 60, height = 30})
 		scene.SetComponent(entity,"position",{x=posX+72*i,y=posY})
 	end
 

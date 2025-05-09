@@ -53,11 +53,12 @@ local function createSmallBlock(posX,posY)
 end
 
 
-
+mushroomCounter = 0
 function block.createMushroom(length,posX,posY)
 	for i = 0, length do
 		local entity = scene.CreateEntity()
-		scene.SetComponent(entity,"tag","block")
+		scene.SetComponent(entity,"tag","mushroom")
+		scene.SetComponent(entity, "id", mushroomCounter)
 		
 		if i == 0 then
 			scene.SetComponent(entity,"sprite","../Textures/tile_0014.png")
@@ -75,17 +76,20 @@ function block.createMushroom(length,posX,posY)
 
 	for i = 0, (836-posY)/72 do
 		local entity = scene.CreateEntity()
-		scene.SetComponent(entity,"tag","block")
+		scene.SetComponent(entity,"tag","mushroom")
+		scene.SetComponent(entity, "id", mushroomCounter)
 		scene.SetComponent(entity,"sprite","../Textures/tile_0032.png")
 		scene.SetComponent(entity,"position",{x = posX +(72*length/2),y=posY+72*i})
 	end
+	mushroomCounter = mushroomCounter + 1
 end
 
 
 function slimTree(Height,posX,posY)
 	for i = 1, Height do
 		local entity = scene.CreateEntity()
-		scene.SetComponent(entity,"tag","block")
+		scene.SetComponent(entity,"tag","tree")
+		scene.SetComponent(entity,"id",treeCounter)
 		if i == 1 then
 			scene.SetComponent(entity,"sprite","../Textures/leafs/tile_0036.png")
 		elseif i == Height then
@@ -101,7 +105,8 @@ end
 function chunkyTree(Width,posX,posY)
 	for i = 1, Width do
 		local entity = scene.CreateEntity()
-		scene.SetComponent(entity,"tag","block")
+		scene.SetComponent(entity,"tag","tree")
+		scene.SetComponent(entity,"id",treeCounter)
 		if i == 1 then
 			scene.SetComponent(entity,"sprite","../Textures/leafs/tile_0077.png")
 		elseif i == Width then
@@ -119,7 +124,8 @@ function Tree (Height,Width,posX,posY) -- Call this when width and height are at
 	for i =1, Height do
 		for j= 1, Width do
 			local entity = scene.CreateEntity()
-			scene.SetComponent(entity,"tag","block")
+			scene.SetComponent(entity,"tag","tree")
+			scene.SetComponent(entity,"id",treeCounter)
 			if j == 1 and i == 1 then
 				scene.SetComponent(entity,"sprite","../Textures/leafs/tile_0017.png")
 			elseif j == Width and i == 1 then
@@ -153,6 +159,8 @@ function createTrunk(Width,Height,posX,posY)
 
 	for i=0, (836-treeBot)/72 do
 		local entity = scene.CreateEntity()
+		scene.SetComponent(entity,"tag","tree")
+		scene.SetComponent(entity,"id",treeCounter)
 		if i == 0 then
 			scene.SetComponent(entity,"sprite","../Textures/tile_0096.png")
 		else
@@ -163,6 +171,7 @@ function createTrunk(Width,Height,posX,posY)
 			
 end
 
+treeCounter = 0
 function block.createTree(Width,Height,posX,posY)
 	if Height == 1 and Width == 1 then
 		local entity = scene.CreateEntity()
@@ -178,6 +187,7 @@ function block.createTree(Width,Height,posX,posY)
 		Tree(Height,Width,posX,posY)
 	end
 	createTrunk(Width,Height,posX,posY)
+	treeCounter = treeCounter + 1
 end
 
 --createMushroom(6,6,1000,400) --Length, Height, X position, Y position

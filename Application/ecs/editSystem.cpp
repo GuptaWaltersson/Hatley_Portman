@@ -69,12 +69,12 @@ void EditingSystem::MoveEntity(Vector2 mousePos)
 
 	if (m_registry.any_of<GroupID>(selected)) {
 		int id = m_registry.get<GroupID>(selected).id;
+		std::string name = m_registry.get<Tag>(selected).name;
 
-		auto view = m_registry.view<Position, BBox, GroupID>();
-		view.each([&](entt::entity entity, Position& pos, BBox& box, GroupID& groupId) {
-			if (groupId.id == id && entity != selected) {
+		auto view = m_registry.view<Position, GroupID, Tag>();
+		view.each([&](entt::entity entity, Position& pos, GroupID& groupId, Tag& tag) {
+			if (groupId.id == id && tag.name == name && entity != selected) {
 				Position& otherPos = m_registry.get<Position>(entity);
-				BBox& otherBox = m_registry.get<BBox>(entity);
 
 				float offsetX = otherPos.x - targetPos.x;
 				float offsetY = otherPos.y - targetPos.y;

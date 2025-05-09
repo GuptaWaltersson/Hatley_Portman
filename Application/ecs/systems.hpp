@@ -297,29 +297,7 @@ public:
 	}
 };
 
-class EditSystem : public System
-{
-	lua_State* m_L;
-public:
-	EditSystem(lua_State* L) : m_L(L) {}
 
-	bool OnUpdate(entt::registry& registry, float delta) final
-	{
-		Vector2 mousePos = GetMousePosition();
-		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-		{
-			auto view = registry.view<Position, BBox>();
-			view.each([&](entt::entity entity, Position& pos, BBox& box) {
-				if (CheckCollisionPointRec(mousePos, { pos.x, pos.y, box.width, box.height }))
-				{
-					registry.destroy(entity);
-				}
-				});
-		}
-
-		return false;
-	}
-};
 
 
 class InfoSystem : public System

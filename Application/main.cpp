@@ -93,7 +93,7 @@ void StartMenu(Scene* scene, lua_State* L)
 void EditingTool(Scene* scene, lua_State* L)
 {
 	Scene::lua_openScene(L, scene);
-
+	//EditingSystem editSystem(L, scene->GetRegistry());
 	LoadEditScene(L, scene);
 
 	Rectangle addButton = { 100.0f, 100.0f, 200, 100 };
@@ -173,7 +173,6 @@ int main()
 	editingScene.CreateSystem<BehaviourSystem>(L);
 	editingScene.CreateSystem<HatSystem>(L);
 	editingScene.CreateSystem<GravitySystem>(0.0);
-	editingScene.CreateSystem<EditSystem>(L);
 	
 	bool running = true;
 	while (running)

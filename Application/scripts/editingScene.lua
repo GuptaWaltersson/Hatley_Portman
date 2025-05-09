@@ -18,7 +18,7 @@ block = require("scripts.editingBlock")
 block.Ground()
 
 coin = require("scripts.coin.editCoinManager")
-coin.CreateCoin(300,600)
+
 
 --block.createCloud(5, 500, 500)
 

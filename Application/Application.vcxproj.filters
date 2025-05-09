@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="ecs\scene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ecs\editSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecs\components.hpp" />

@@ -93,7 +93,7 @@ void StartMenu(Scene* scene, lua_State* L)
 void EditingTool(Scene* scene, lua_State* L)
 {
 	Scene::lua_openScene(L, scene);
-	//EditingSystem editSystem(L, scene->GetRegistry());
+	EditingSystem editSystem(L, scene->m_registry);
 	LoadEditScene(L, scene);
 
 	Rectangle addButton = { 100.0f, 100.0f, 200, 100 };
@@ -106,14 +106,16 @@ void EditingTool(Scene* scene, lua_State* L)
 
 		DrawRectangleRec(addButton, WHITE);
 		DrawText("add", addButton.x + 25, addButton.y + 25, 20, BLACK);
-
+		
 
 		if (IsKeyPressed(KEY_ESCAPE)) {
 			gameState = GameState::StartMenu;
 			running = false;
 		}
+
 		float delta = GetFrameTime();
 		scene->UpdateSystems(delta);
+		editSystem.SelectObject();
 
 		EndDrawing();
 	}

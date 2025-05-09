@@ -98,9 +98,10 @@ void EditingTool(Scene* scene, lua_State* L)
 
 	LoadEditScene(L, scene);
 
-	Rectangle CloudButton = { 300.0f, 850.0f, 140, 70 };
-	Rectangle TreeButton = { 100.0f,850.0f,140,70 };
-	Rectangle CoinButton = { 500.0f,850.0f,140,70 };
+	Rectangle CloudButton = { 280.0f, 850.0f, 120, 70 };
+	Rectangle TreeButton = { 100.0f,850.0f,120,70 };
+	Rectangle CoinButton = { 460.0f,850.0f,120,70 };
+	Rectangle MushroomButton = { 640.0f,850.0f,150,70 };
 
 	bool running = true;
 	while (running)
@@ -112,13 +113,16 @@ void EditingTool(Scene* scene, lua_State* L)
 		scene->UpdateSystems(delta);
 
 		DrawRectangleRec(CloudButton, WHITE);
-		DrawText("Cloud", CloudButton.x + 25, CloudButton.y + 25, 20, BLACK);
+		DrawText("Cloud", CloudButton.x + 5, CloudButton.y + 25, 20, BLACK);
 
 		DrawRectangleRec(TreeButton, WHITE);
-		DrawText("Tree", TreeButton.x + 25, TreeButton.y + 25, 20, BLACK);
+		DrawText("Tree", TreeButton.x + 5, TreeButton.y + 25, 20, BLACK);
 
 		DrawRectangleRec(CoinButton, WHITE);
-		DrawText("Coin", CoinButton.x + 25, CoinButton.y + 25, 20, BLACK);
+		DrawText("Coin", CoinButton.x + 5, CoinButton.y + 25, 20, BLACK);
+
+		DrawRectangleRec(MushroomButton, WHITE);
+		DrawText("Big Mushroom", MushroomButton.x + 5, MushroomButton.y + 25, 20, BLACK);
 		
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
@@ -133,6 +137,10 @@ void EditingTool(Scene* scene, lua_State* L)
 			else if (CheckCollisionPointRec(mousePos, CoinButton))
 			{
 				edit.CreateCoin(700, 700);
+			}
+			else if (CheckCollisionPointRec(mousePos, MushroomButton))
+			{
+				edit.CreateBigMushroom(800, 300, 6);
 			}
 		}
 

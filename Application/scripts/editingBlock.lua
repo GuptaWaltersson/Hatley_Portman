@@ -54,7 +54,7 @@ end
 
 
 
-local function createMushroom(length,height,posX,posY)
+function block.createMushroom(length,posX,posY)
 	for i = 0, length do
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"tag","block")
@@ -73,7 +73,7 @@ local function createMushroom(length,height,posX,posY)
 		scene.SetComponent(entity,"position",{x=posX+72*i,y=posY})
 	end
 
-	for i = 0, height do
+	for i = 0, (836-posY)/72 do
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"tag","block")
 		scene.SetComponent(entity,"sprite","../Textures/tile_0032.png")

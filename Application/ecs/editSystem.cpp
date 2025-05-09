@@ -108,3 +108,18 @@ void EditingSystem::CreateCoin(float xPos, float yPos)
 		lua_pop(m_L, 1);
 	}
 }
+
+void EditingSystem::CreateBigMushroom(float xPos, float yPos, int width)
+{
+	lua_getglobal(m_L, "block");
+	lua_getfield(m_L, -1, "createMushroom");
+
+	lua_pushnumber(m_L, width);
+	lua_pushnumber(m_L, xPos);
+	lua_pushnumber(m_L, yPos);
+
+	if (lua_pcall(m_L, 3, 0, 0) != LUA_OK)
+	{
+		lua_pop(m_L, 1);
+	}
+}

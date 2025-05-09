@@ -296,6 +296,7 @@ public:
 		return false;
 	}
 };
+
 class EditSystem : public System
 {
 	lua_State* m_L;
@@ -304,30 +305,17 @@ public:
 
 	bool OnUpdate(entt::registry& registry, float delta) final
 	{
-
 		Vector2 mousePos = GetMousePosition();
-		auto view = registry.view<Behaviour,Tag>();
-		view.each([&](Behaviour& script, Tag& tag) {
-			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-			{
-				lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
-				lua_getfield(m_L, -1, "createCloud");
-				lua_pushvalue(m_L, -2);
-				lua_pushnumber(m_L, 3);
-				lua_pushnumber(m_L, mousePos.x);
-				lua_pushnumber(m_L, mousePos.y);
-
-				if (lua_pcall(m_L, 4, 0, 0) != LUA_OK)
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+		{
+			auto view = registry.view<Position, BBox>();
+			view.each([&](entt::entity entity, Position& pos, BBox& box) {
+				if (CheckCollisionPointRec(mousePos, { pos.x, pos.y, box.width, box.height }))
 				{
-					if (lua_gettop(m_L) && lua_isstring(m_L, -1))
-					{
-						std::cout << "Lua error: " << lua_tostring(m_L, -1) << std::endl;
-						lua_pop(m_L, 1);
-					}
-					lua_pop(m_L, 1);
+					registry.destroy(entity);
 				}
-			}
-			});
+				});
+		}
 
 		return false;
 	}
@@ -347,6 +335,4 @@ public:
 
 		return false;
 	}
-
-
 };

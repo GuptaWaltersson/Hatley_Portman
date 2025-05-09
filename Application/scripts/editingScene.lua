@@ -17,4 +17,6 @@ scene.SetComponent(blockEntity,"behaviour","scripts/editingBlock.lua")
 local block = require("scripts.editingBlock")
 block.Ground()
 
+block.createCloud(5, 500, 500)
+
 

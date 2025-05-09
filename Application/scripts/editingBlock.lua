@@ -22,7 +22,7 @@ end
 
 
 
-function block.createCloud(self,length,posX,posY)
+function block.createCloud(length,posX,posY)
 	print("call print cloud")
 	for i=0, length do
 		local entity = scene.CreateEntity()

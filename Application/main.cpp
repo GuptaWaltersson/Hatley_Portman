@@ -173,6 +173,7 @@ int main()
 	editingScene.CreateSystem<HatSystem>(L);
 	editingScene.CreateSystem<GravitySystem>(0.0);
 	editingScene.CreateSystem<EditSystem>(L);
+	
 	bool running = true;
 	while (running)
 	{

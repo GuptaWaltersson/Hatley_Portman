@@ -10,7 +10,7 @@ public:
 	virtual bool OnEdit(float xPos, float yPos, int width, int height) = 0;
 };
 
-class CloudSystem : public Editing
+class CloudSystem 
 {
 	lua_State* m_L;
 public:
@@ -18,7 +18,8 @@ public:
 
 	bool OnEdit(float xPos,float yPos, float width, float height)
 	{
-		lua_getglobal(m_L, "createCloud");
+		lua_getglobal(m_L, "block");
+		lua_getfield(m_L, -1, "createCloud");
 
 		Vector2 mousePos = GetMousePosition();
 		

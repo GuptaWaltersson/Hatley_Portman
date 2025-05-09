@@ -2,6 +2,7 @@
 
 #include "lua.hpp"
 #include "systems.hpp"
+#include "editSystem.hpp"
 #include "raylib.h"
 
 class Scene

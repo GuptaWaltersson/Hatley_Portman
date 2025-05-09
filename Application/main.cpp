@@ -93,7 +93,7 @@ void StartMenu(Scene* scene, lua_State* L)
 void EditingTool(Scene* scene, lua_State* L)
 {
 	Scene::lua_openScene(L, scene);
-
+	CloudSystem cloudSys(L);
 	LoadEditScene(L, scene);
 
 	Rectangle addButton = { 100.0f, 100.0f, 200, 100 };
@@ -104,9 +104,18 @@ void EditingTool(Scene* scene, lua_State* L)
 		BeginDrawing();
 		ClearBackground(SKYBLUE);
 
+		Vector2 mousePos = GetMousePosition();
+
 		DrawRectangleRec(addButton, WHITE);
 		DrawText("add", addButton.x + 25, addButton.y + 25, 20, BLACK);
-
+		
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+		{
+			if (CheckCollisionPointRec(mousePos, addButton))
+			{
+				cloudSys.OnEdit(500, 500, 3, 3);
+			}
+		}
 
 		if (IsKeyPressed(KEY_ESCAPE)) {
 			gameState = GameState::StartMenu;
@@ -173,7 +182,10 @@ int main()
 	editingScene.CreateSystem<BehaviourSystem>(L);
 	editingScene.CreateSystem<HatSystem>(L);
 	editingScene.CreateSystem<GravitySystem>(0.0);
-	editingScene.CreateSystem<EditSystem>(L);
+	
+	
+
+
 	bool running = true;
 	while (running)
 	{

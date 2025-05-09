@@ -96,33 +96,42 @@ void EditingTool(Scene* scene, lua_State* L)
 	EditingSystem edit(L, scene->m_registry);
 	LoadEditScene(L, scene);
 
-	Rectangle addButton = { 100.0f, 100.0f, 200, 100 };
+	Rectangle CloudButton = { 300.0f, 850.0f, 140, 70 };
+	Rectangle TreeButton = { 100.0f,850.0f,140,70 };
 
 	bool running = true;
 	while (running)
 	{
 		BeginDrawing();
 		ClearBackground(SKYBLUE);
-
+		float delta = GetFrameTime();
+		scene->UpdateSystems(delta);
 		Vector2 mousePos = GetMousePosition();
 
-		DrawRectangleRec(addButton, WHITE);
-		DrawText("add", addButton.x + 25, addButton.y + 25, 20, BLACK);
+		DrawRectangleRec(CloudButton, WHITE);
+		DrawText("Cloud", CloudButton.x + 25, CloudButton.y + 25, 20, BLACK);
+
+		DrawRectangleRec(TreeButton, WHITE);
+		DrawText("Tree", TreeButton.x + 25, TreeButton.y + 25, 20, BLACK);
 		
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
-			if (CheckCollisionPointRec(mousePos, addButton))
+			if (CheckCollisionPointRec(mousePos, CloudButton))
 			{
-				edit.CreateCloud(700, 200, 2, 0);
+				edit.CreateCloud(ScreenWidth / 2, ScreenHeight / 2, 4);
 			}
+			if (CheckCollisionPointRec(mousePos, TreeButton))
+			{
+				edit.CreateTree(400, 400, 1, 1);
+			}
+			
 		}
 
 		if (IsKeyPressed(KEY_ESCAPE)) {
 			gameState = GameState::StartMenu;
 			running = false;
 		}
-		float delta = GetFrameTime();
-		scene->UpdateSystems(delta);
+		
 
 		EndDrawing();
 	}

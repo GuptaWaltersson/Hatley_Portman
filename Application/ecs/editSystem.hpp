@@ -15,6 +15,7 @@ public:
 
     void SelectObject();
 
-    void CreateCloud(float xPos, float yPos, int width, int height);
+    void CreateCloud(float xPos, float yPos, int width);
+    void CreateTree(float xPos, float yPos, int width, int height);
 
 };

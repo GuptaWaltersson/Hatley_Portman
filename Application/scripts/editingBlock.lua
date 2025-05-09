@@ -146,7 +146,7 @@ function Tree (Height,Width,posX,posY) -- Call this when width and height are at
 end
 
 
-function createTree(Height,Width,posX,posY)
+function block.createTree(Width,Height,posX,posY)
 	if Height == 1 and Width == 1 then
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"tag","block")

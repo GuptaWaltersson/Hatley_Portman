@@ -4,7 +4,7 @@ void EditingSystem::SelectObject()
 {
 }
 
-void EditingSystem::CreateCloud(float xPos, float yPos, int width, int height)
+void EditingSystem::CreateCloud(float xPos, float yPos, int width)
 {
 	lua_getglobal(m_L, "block");
 	lua_getfield(m_L, -1, "createCloud");
@@ -19,4 +19,20 @@ void EditingSystem::CreateCloud(float xPos, float yPos, int width, int height)
 		lua_pop(m_L, 1);
 	}
 	
+}
+
+void EditingSystem::CreateTree(float xPos, float yPos, int width, int height)
+{
+	lua_getglobal(m_L, "block");
+	lua_getfield(m_L, -1, "createTree");
+
+	lua_pushnumber(m_L, width);
+	lua_pushnumber(m_L, height);
+	lua_pushnumber(m_L, xPos);
+	lua_pushnumber(m_L, yPos);
+
+	if (lua_pcall(m_L, 4, 0, 0) != LUA_OK)
+	{
+		lua_pop(m_L, 1);
+	}
 }

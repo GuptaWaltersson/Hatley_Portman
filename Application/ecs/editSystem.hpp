@@ -19,7 +19,9 @@ public:
 
     void CreateCloud(float xPos, float yPos, int width);
     void CreateTree(float xPos, float yPos, int width, int height);
+    void CreateCoin(float xPos, float yPos);
 
 private:
 	void MoveEntity(Vector2 mousePos);
+
 };

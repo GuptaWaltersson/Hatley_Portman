@@ -78,14 +78,13 @@ void EditingSystem::MoveEntity(Vector2 mousePos)
 
 				float offsetX = otherPos.x - targetPos.x;
 				float offsetY = otherPos.y - targetPos.y;
-				
+
 				otherPos.x = newX + offsetX;
 				otherPos.y = newY + offsetY;
 
 			}
-		});
+			});
 	}
-
 
 	Position& pos = m_registry.get<Position>(m_selectedEntity.value());
 	BBox& box = m_registry.get<BBox>(m_selectedEntity.value());
@@ -95,4 +94,17 @@ void EditingSystem::MoveEntity(Vector2 mousePos)
 	if (pos.y < 0) pos.y = 0;
 	if (pos.x > 1610) pos.x = 1610;
 	if (pos.x < 0) pos.x = 0;
+}
+void EditingSystem::CreateCoin(float xPos, float yPos)
+{
+	lua_getglobal(m_L, "coin");
+	lua_getfield(m_L, -1, "CreateCoin");
+
+	lua_pushnumber(m_L, xPos);
+	lua_pushnumber(m_L, yPos);
+
+	if (lua_pcall(m_L, 2, 0, 0) != LUA_OK)
+	{
+		lua_pop(m_L, 1);
+	}
 }

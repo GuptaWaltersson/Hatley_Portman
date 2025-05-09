@@ -98,6 +98,7 @@ void EditingTool(Scene* scene, lua_State* L)
 
 	Rectangle CloudButton = { 300.0f, 850.0f, 140, 70 };
 	Rectangle TreeButton = { 100.0f,850.0f,140,70 };
+	Rectangle CoinButton = { 500.0f,850.0f,140,70 };
 
 	bool running = true;
 	while (running)
@@ -113,6 +114,9 @@ void EditingTool(Scene* scene, lua_State* L)
 
 		DrawRectangleRec(TreeButton, WHITE);
 		DrawText("Tree", TreeButton.x + 25, TreeButton.y + 25, 20, BLACK);
+
+		DrawRectangleRec(CoinButton, WHITE);
+		DrawText("Coin", CoinButton.x + 25, CoinButton.y + 25, 20, BLACK);
 		
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
@@ -120,11 +124,14 @@ void EditingTool(Scene* scene, lua_State* L)
 			{
 				edit.CreateCloud(ScreenWidth / 2, ScreenHeight / 2, 4);
 			}
-			if (CheckCollisionPointRec(mousePos, TreeButton))
+			else if (CheckCollisionPointRec(mousePos, TreeButton))
 			{
-				edit.CreateTree(400, 400, 1, 3);
+				edit.CreateTree(400, 400, 3, 2);
 			}
-			
+			else if (CheckCollisionPointRec(mousePos, CoinButton))
+			{
+				edit.CreateCoin(700, 700);
+			}
 		}
 
 		if (IsKeyPressed(KEY_ESCAPE)) {

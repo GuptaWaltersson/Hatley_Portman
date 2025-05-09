@@ -1,5 +1,5 @@
 local coin = {}
-
+local coinCounter = require("scripts.coin.coinCounter")
 
 -- Behaviours
 function coin.OnCreate(self)
@@ -24,6 +24,7 @@ end
 function coin.OnCollision(self, other)
 	print("Lua Coin collected!")
 	cCounter = cCounter + 1
+	
 	scene.RemoveEntity(self.ID)
 end
 

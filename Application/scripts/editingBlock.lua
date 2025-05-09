@@ -1,23 +1,29 @@
+local block={}
 
+function block.OnCreate(self)
+	scene.SetComponent(self.ID,"tag","block")
+	print("block on create")
+end
+
+function block.OnUpdate()
+	
+end
+
+function block.Ground()
 --Components
-for i = 0, 22 do
-	local entity = scene.CreateEntity()
-	scene.SetComponent(entity, "tag", "block")
-	scene.SetComponent(entity, "sprite", "../Textures/tile_0022.png")
-	scene.SetComponent(entity, "boundingbox", { width = 72, height = 72})
-	scene.SetComponent(entity, "position", { x = 18+(72*i), y =  836})
-end
-
-for i = 0, 22 do
-	local entity = scene.CreateEntity()
-	scene.SetComponent(entity, "tag", "block")
-	scene.SetComponent(entity, "sprite", "../Textures/tile_0122.png")
-	scene.SetComponent(entity, "boundingbox", { width = 72, height = 72})
-	scene.SetComponent(entity, "position", { x = 18+(72*i), y = 908})
+	for i = 0, 22 do
+		local entity = scene.CreateEntity()
+		scene.SetComponent(entity, "tag", "block")
+		scene.SetComponent(entity, "sprite", "../Textures/tile_0022.png")
+		scene.SetComponent(entity, "boundingbox", { width = 72, height = 72})
+		scene.SetComponent(entity, "position", { x = 18+(72*i), y =  836})
+	end
 end
 
 
-local function createCloud(length,posX,posY)
+
+function block.createCloud(self,length,posX,posY)
+	print("call print cloud")
 	for i=0, length do
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"tag","block")
@@ -161,8 +167,10 @@ end
 --createCloud(8,500,170)
 --createSmallBlock(770,750) -- X postion, Y position
 --createSmallBlock(1070,750)
-createTree(3,3,500,500)
-createTree(1,1,18,18)
-createTree(3,1,1000,400)
-createTree(1,5,300,200)
-createTree(7,3,1200,200)
+--createTree(3,3,500,500)
+--createTree(1,1,18,18)
+--createTree(3,1,1000,400)
+--createTree(1,5,300,200)
+--createTree(7,3,1200,200)
+
+return block

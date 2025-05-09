@@ -33,6 +33,16 @@ void LoadScene(lua_State* L, Scene* scene)
 	}
 }
 
+void LoadEditScene(lua_State* L, Scene* scene)
+{
+	scene->Clear();
+
+	if (luaL_dofile(L, "scripts/editingScene.lua") != LUA_OK) {
+		std::cerr << "Editing Lua error: " << lua_tostring(L, -1) << std::endl;
+		lua_pop(L, 1);
+	}
+}
+
 void StartMenu(Scene* scene, lua_State* L)
 {
 	Rectangle playButton = { (float)(ScreenWidth / 2) - 100, (float)(ScreenHeight / 2) - 150, 200, 100 };
@@ -44,7 +54,6 @@ void StartMenu(Scene* scene, lua_State* L)
 	{
 		BeginDrawing();
 		ClearBackground(SKYBLUE);
-
 		DrawText("Hat-Trick", (float)(ScreenWidth / 2 - 220), 100, 100, WHITE);
 
 		DrawRectangleRec(playButton, WHITE);
@@ -64,6 +73,10 @@ void StartMenu(Scene* scene, lua_State* L)
 			{
 				gameState = GameState::Game;
 			}
+			else if (CheckCollisionPointRec(mousePos, editingButton))
+			{
+				gameState = GameState::EditingTool;
+			}
 			else if (CheckCollisionPointRec(mousePos, quitButton))
 			{
 				gameState = GameState::Quit;
@@ -78,7 +91,32 @@ void StartMenu(Scene* scene, lua_State* L)
   
 void EditingTool(Scene* scene, lua_State* L)
 {
+	Scene::lua_openScene(L, scene);
 
+	LoadEditScene(L, scene);
+
+	Rectangle addButton = { 100.0f, 100.0f, 200, 100 };
+
+	bool running = true;
+	while (running)
+	{
+		BeginDrawing();
+		ClearBackground(SKYBLUE);
+
+		DrawRectangleRec(addButton, WHITE);
+		DrawText("add", addButton.x + 25, addButton.y + 25, 20, BLACK);
+
+
+		if (IsKeyPressed(KEY_ESCAPE)) {
+			gameState = GameState::StartMenu;
+			running = false;
+		}
+		float delta = GetFrameTime();
+		scene->UpdateSystems(delta);
+
+		EndDrawing();
+	}
+	scene->Clear();
 }
 
 void GameLoop(Scene* scene, lua_State* L)
@@ -128,6 +166,13 @@ int main()
 	gameScene.CreateSystem<BehaviourSystem>(L);
 	gameScene.CreateSystem<HatSystem>(L);
 
+	editingScene.CreateSystem<SpriteSystem>();
+	editingScene.CreateSystem<MovementSystem>();
+	editingScene.CreateSystem<CollisionSystem>(L);
+	editingScene.CreateSystem<BehaviourSystem>(L);
+	editingScene.CreateSystem<HatSystem>(L);
+	editingScene.CreateSystem<GravitySystem>(0.0);
+	editingScene.CreateSystem<EditSystem>(L);
 	bool running = true;
 	while (running)
 	{

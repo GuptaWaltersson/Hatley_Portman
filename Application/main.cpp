@@ -142,8 +142,6 @@ void EditingTool(Scene* scene, lua_State* L)
 			running = false;
 		}
 
-		float delta = GetFrameTime();
-		scene->UpdateSystems(delta);
 		edit.SelectObject();
 
 		EndDrawing();

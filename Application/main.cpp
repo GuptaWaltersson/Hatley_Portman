@@ -10,6 +10,7 @@
 #include "ecs/scene.hpp"
 #include "ecs/components.hpp"
 #include "ecs/systems.hpp"
+#include "ecs/editSystem.hpp"
 
 #define ScreenWidth 1656
 #define ScreenHeight 936

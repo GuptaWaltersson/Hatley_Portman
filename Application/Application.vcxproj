@@ -161,6 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ecs\editSystem.cpp" />
     <ClCompile Include="ecs\scene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

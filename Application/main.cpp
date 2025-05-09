@@ -93,8 +93,7 @@ void StartMenu(Scene* scene, lua_State* L)
 void EditingTool(Scene* scene, lua_State* L)
 {
 	Scene::lua_openScene(L, scene);
-	//EditingSystem editSystem(L, scene->GetRegistry());
-	CloudSystem cloudSys(L);
+	EditingSystem edit(L, scene->m_registry);
 	LoadEditScene(L, scene);
 
 	Rectangle addButton = { 100.0f, 100.0f, 200, 100 };
@@ -114,7 +113,7 @@ void EditingTool(Scene* scene, lua_State* L)
 		{
 			if (CheckCollisionPointRec(mousePos, addButton))
 			{
-				cloudSys.OnEdit(500, 500, 3, 3);
+				edit.CreateCloud(700, 200, 2, 0);
 			}
 		}
 

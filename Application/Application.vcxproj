@@ -166,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecs\components.hpp" />
+    <ClInclude Include="ecs\editSystem.hpp" />
     <ClInclude Include="ecs\scene.hpp" />
     <ClInclude Include="ecs\systems.hpp" />
   </ItemGroup>

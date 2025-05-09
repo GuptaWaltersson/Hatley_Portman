@@ -2,7 +2,7 @@ local block={}
 
 function block.OnCreate(self)
 	scene.SetComponent(self.ID,"tag","block")
-	print("block on create")
+	
 end
 
 function block.OnUpdate()
@@ -10,7 +10,7 @@ function block.OnUpdate()
 end
 
 function block.Ground()
---Components
+
 	for i = 0, 22 do
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity, "tag", "block")

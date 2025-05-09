@@ -8,6 +8,7 @@
     <ClInclude Include="ecs\components.hpp" />
     <ClInclude Include="ecs\scene.hpp" />
     <ClInclude Include="ecs\systems.hpp" />
+    <ClInclude Include="ecs\editSystem.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="scripts\sceneDemo.lua" />

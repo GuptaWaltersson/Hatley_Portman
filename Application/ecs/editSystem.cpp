@@ -62,3 +62,17 @@ void EditingSystem::CreateTree(float xPos, float yPos, int width, int height)
 		lua_pop(m_L, 1);
 	}
 }
+
+void EditingSystem::CreateCoin(float xPos, float yPos)
+{
+	lua_getglobal(m_L, "coin");
+	lua_getfield(m_L, -1, "CreateCoin");
+
+	lua_pushnumber(m_L, xPos);
+	lua_pushnumber(m_L, yPos);
+
+	if (lua_pcall(m_L, 2, 0, 0) != LUA_OK)
+	{
+		lua_pop(m_L, 1);
+	}
+}

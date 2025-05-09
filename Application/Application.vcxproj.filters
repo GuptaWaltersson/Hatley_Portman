@@ -30,5 +30,6 @@
     <None Include="scripts\coin\coinManager.lua" />
     <None Include="scripts\editingScene.lua" />
     <None Include="scripts\editingBlock.lua" />
+    <None Include="scripts\coin\editCoinManager.lua" />
   </ItemGroup>
 </Project>

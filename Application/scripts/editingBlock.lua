@@ -91,7 +91,7 @@ function slimTree(Height,posX,posY)
 		else
 			scene.SetComponent(entity,"sprite","../Textures/leafs/tile_0056.png")
 		end
-		scene.SetComponent(entity,"position",{x=posX,y=posY+72*i})
+		scene.SetComponent(entity,"position",{x=posX,y=posY+72*i-72})
 		scene.SetComponent(entity,"boundingbox",{width = 60,height = 60})
 	end
 end
@@ -108,7 +108,7 @@ function chunkyTree(Width,posX,posY)
 			scene.SetComponent(entity,"sprite","../Textures/leafs/tile_0078.png")
 		end
 		
-		scene.SetComponent(entity,"position",{x=posX+72*i,y=posY})
+		scene.SetComponent(entity,"position",{x=posX+72*i-72,y=posY})
 		scene.SetComponent(entity,"boundingbox",{width=60,height=60})
 	end
 end
@@ -139,12 +139,27 @@ function Tree (Height,Width,posX,posY) -- Call this when width and height are at
 			else
 				scene.SetComponent(entity,"sprite","../Textures/leafs/tile_0038.png")
 			end
-			scene.SetComponent(entity,"position",{x=posX+72*j,y=posY+72*i})
+			scene.SetComponent(entity,"position",{x=posX+72*j-72,y=posY+72*i-72})
 			scene.SetComponent(entity,"boundingbox",{width=60,height=60})
 		end
 	end		
 end
 
+function createTrunk(Width,Height,posX,posY)
+	treeMid = posX + Width*36-36;
+	treeBot = posY + Height *72-12;
+
+	for i=0, (836-treeBot)/72 do
+		local entity = scene.CreateEntity()
+		if i == 0 then
+			scene.SetComponent(entity,"sprite","../Textures/tile_0096.png")
+		else
+			scene.SetComponent(entity,"sprite","../Textures/tile_0116.png")
+		end
+		scene.SetComponent(entity,"position",{x=treeMid,y=treeBot+i*72})
+	end
+			
+end
 
 function block.createTree(Width,Height,posX,posY)
 	if Height == 1 and Width == 1 then
@@ -160,6 +175,7 @@ function block.createTree(Width,Height,posX,posY)
 	else
 		Tree(Height,Width,posX,posY)
 	end
+	createTrunk(Width,Height,posX,posY)
 end
 
 --createMushroom(6,6,1000,400) --Length, Height, X position, Y position

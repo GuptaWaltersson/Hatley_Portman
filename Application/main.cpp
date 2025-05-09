@@ -122,7 +122,7 @@ void EditingTool(Scene* scene, lua_State* L)
 			}
 			if (CheckCollisionPointRec(mousePos, TreeButton))
 			{
-				edit.CreateTree(400, 400, 1, 1);
+				edit.CreateTree(400, 400, 1, 3);
 			}
 			
 		}

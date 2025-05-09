@@ -172,6 +172,9 @@ int Scene::lua_HasComponent(lua_State* L)
 	else if (type == "tag") {
 		hasComponent = scene->HasComponents<Tag>(entity);
 	}
+	else if (type == "id") {
+		hasComponent = scene->HasComponents<Tag>(entity);
+	}
 	else if (type == "position") {
 		hasComponent = scene->HasComponents<Position>(entity);
 	}
@@ -263,6 +266,11 @@ int Scene::lua_GetComponent(lua_State* L)
 	{
 		Tag& tag = scene->GetComponent<Tag>(entity);
 		lua_pushstring(L, tag.name.c_str());
+	}
+	else if (type == "id")
+	{
+		GroupID id = scene->GetComponent<GroupID>(entity);
+		lua_pushinteger(L, id.id);
 	}
 	return 1;
 }
@@ -379,6 +387,11 @@ int Scene::lua_SetComponent(lua_State* L)
 		std::string tag = lua_tostring(L, 3);
 		scene->SetComponent<Tag>(entity, tag);
 	}
+	else if (type == "id")
+	{
+		int id = lua_tointeger(L, 3);
+		scene->SetComponent<GroupID>(entity, id);
+	}
 
 	return 0;
 }
@@ -420,6 +433,10 @@ int Scene::lua_RemoveComponent(lua_State* L)
 	else if (type == "tag")
 	{
 		scene->RemoveComponent<Tag>(entity);
+	}
+	else if (type == "id")
+	{
+		scene->RemoveComponent<GroupID>(entity);
 	}
 	else if (type == "hattag")
 	{

@@ -106,10 +106,9 @@ void EditingTool(Scene* scene, lua_State* L)
 	{
 		BeginDrawing();
 		ClearBackground(SKYBLUE);
+		Vector2 mousePos = GetMousePosition();
 		float delta = GetFrameTime();
 		scene->UpdateSystems(delta);
-		Vector2 mousePos = GetMousePosition();
-
 
 		DrawRectangleRec(CloudButton, WHITE);
 		DrawText("Cloud", CloudButton.x + 25, CloudButton.y + 25, 20, BLACK);
@@ -135,9 +134,8 @@ void EditingTool(Scene* scene, lua_State* L)
 			running = false;
 		}
 
-		float delta = GetFrameTime();
-		scene->UpdateSystems(delta);
-		edit.SelectObject();
+
+		edit.SelectEntity();
 
 		EndDrawing();
 	}

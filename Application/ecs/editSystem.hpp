@@ -15,9 +15,11 @@ public:
         : m_L(L), m_registry(registry) {
     }
 
-    void SelectObject();
+    void SelectEntity();
 
     void CreateCloud(float xPos, float yPos, int width);
     void CreateTree(float xPos, float yPos, int width, int height);
 
+private:
+	void MoveEntity(Vector2 mousePos);
 };

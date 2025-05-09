@@ -44,6 +44,11 @@ struct Sprite
 	}
 };
 
+struct GroupID
+{
+	int id;
+};
+
 struct Behaviour
 {
 	char ScriptPath[64];

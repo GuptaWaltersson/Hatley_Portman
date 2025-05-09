@@ -20,13 +20,14 @@ function block.Ground()
 	end
 end
 
-
-
+cloudCounter = 0
 function block.createCloud(length,posX,posY)
 	print("call print cloud")
 	for i=0, length do
 		local entity = scene.CreateEntity()
-		scene.SetComponent(entity,"tag","block")
+		scene.SetComponent(entity,"tag","cloud")
+		scene.SetComponent(entity, "id", cloudCounter)
+
 		if i == 0 then
 			scene.SetComponent(entity,"sprite","../Textures/tile_0153.png")
 		elseif i == length then
@@ -38,6 +39,7 @@ function block.createCloud(length,posX,posY)
 		scene.SetComponent(entity,"boundingbox",{width=60, height =30})
 		scene.SetComponent(entity,"position",{x=posX +(72*i),y=posY})
 	end
+	cloudCounter = cloudCounter + 1
 end
 
 

@@ -93,7 +93,9 @@ void StartMenu(Scene* scene, lua_State* L)
 void EditingTool(Scene* scene, lua_State* L)
 {
 	Scene::lua_openScene(L, scene);
+
 	EditingSystem edit(L, scene->m_registry);
+
 	LoadEditScene(L, scene);
 
 	Rectangle CloudButton = { 300.0f, 850.0f, 140, 70 };
@@ -107,6 +109,7 @@ void EditingTool(Scene* scene, lua_State* L)
 		float delta = GetFrameTime();
 		scene->UpdateSystems(delta);
 		Vector2 mousePos = GetMousePosition();
+
 
 		DrawRectangleRec(CloudButton, WHITE);
 		DrawText("Cloud", CloudButton.x + 25, CloudButton.y + 25, 20, BLACK);
@@ -131,7 +134,10 @@ void EditingTool(Scene* scene, lua_State* L)
 			gameState = GameState::StartMenu;
 			running = false;
 		}
-		
+
+		float delta = GetFrameTime();
+		scene->UpdateSystems(delta);
+		edit.SelectObject();
 
 		EndDrawing();
 	}

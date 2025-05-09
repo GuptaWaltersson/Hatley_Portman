@@ -7,9 +7,11 @@
 
 class Scene
 {
+
 public:
 	entt::registry m_registry;
 	std::vector<System*> m_system;
+
 	Scene(lua_State* L);
 	~Scene() = default;
 

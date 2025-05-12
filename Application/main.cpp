@@ -199,12 +199,12 @@ int main()
 	Scene editingScene(L);
 	Scene gameScene(L);
 
-	gameScene.CreateSystem<SpriteSystem>();
-	gameScene.CreateSystem<CollisionSystem>(L);
-	gameScene.CreateSystem<GravitySystem>(9.8);
-	gameScene.CreateSystem<MovementSystem>();
-	gameScene.CreateSystem<BehaviourSystem>(L);
-	gameScene.CreateSystem<HatSystem>(L);
+	//gameScene.CreateSystem<SpriteSystem>();
+	//gameScene.CreateSystem<CollisionSystem>(L);
+	//gameScene.CreateSystem<GravitySystem>(9.8);
+	//gameScene.CreateSystem<MovementSystem>();
+	//gameScene.CreateSystem<BehaviourSystem>(L);
+	//gameScene.CreateSystem<HatSystem>(L);
 
 	editingScene.CreateSystem<SpriteSystem>();
 	editingScene.CreateSystem<BehaviourSystem>(L);

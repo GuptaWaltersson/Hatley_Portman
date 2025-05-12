@@ -99,11 +99,9 @@ void EditingSystem::MoveEntity(Vector2 mousePos)
 	BBox& box = m_registry.get<BBox>(m_selectedEntity.value());
 	pos.x = mousePos.x - box.width / 2;
 	pos.y = mousePos.y - box.height / 2;
-	if (pos.y > 782) pos.y = 782;
-	if (pos.y < 0) pos.y = 0;
-	if (pos.x > 1610) pos.x = 1610;
-	if (pos.x < 0) pos.x = 0;
+
 }
+
 void EditingSystem::CreateCoin(float xPos, float yPos)
 {
 	lua_getglobal(m_L, "coin");

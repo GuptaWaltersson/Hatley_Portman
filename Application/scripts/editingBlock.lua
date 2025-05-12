@@ -1,7 +1,7 @@
 local block={}
 
 function block.OnCreate(self)
-	scene.SetComponent(self.ID,"tag","block")
+
 	
 end
 
@@ -51,6 +51,7 @@ local function createSmallBlock(posX,posY)
 	scene.SetComponent(entity,"boundingbox",{width = 60, height = 30})
 	scene.SetComponent(entity,"position",{x=posX,y=posY})
 end
+
 
 
 mushroomCounter = 0

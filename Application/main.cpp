@@ -145,6 +145,10 @@ void EditingTool(Scene* scene, lua_State* L)
 			{
 				edit.CreateBigMushroom(800, 300, 6);
 			}
+			else if (CheckCollisionPointRec(mousePos, HatButton))
+			{
+
+			}
 		}
 
 		if (IsKeyPressed(KEY_ESCAPE)) {

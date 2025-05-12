@@ -18,7 +18,7 @@ function coin.OnUpdate(self, delta)
     local offsetY = math.sin(self.time * 2) * 7
 
     local x, y = scene.GetComponent(self.ID, "position")
-    scene.SetComponent(self.ID, "position", { x = x, y = self.baseY + offsetY})
+    --scene.SetComponent(self.ID, "position", { x = x, y = self.baseY + offsetY})
 end
 
 function coin.OnCollision(self, other)

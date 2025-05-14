@@ -259,8 +259,12 @@ int Scene::lua_GetComponent(lua_State* L)
 	}
 	else if (type == "hattag")
 	{
+
 		HatTag& htag = scene->GetComponent<HatTag>(entity);
-		lua_pushnumber(L, htag.hatType);
+		lua_pushboolean(L, htag.onHead);
+		lua_pushinteger(L, htag.hatType);
+		return 2;
+
 	}
 	else if (type == "tag") 
 	{
@@ -379,8 +383,20 @@ int Scene::lua_SetComponent(lua_State* L)
 	}
 	else if (type == "hattag")
 	{
-		int htag = lua_tointeger(L, 3);
-		scene->SetComponent<HatTag>(entity, htag);
+		if (!lua_istable(L, 3))
+		{
+			luaL_error(L, "Excpected table for hattag");
+			return 0;
+		}
+		lua_getfield(L, 3, "onHead");
+		bool onHead = lua_isboolean(L, -1) ? lua_toboolean(L, -1) : true;
+		lua_pop(L, 1);
+
+		lua_getfield(L, 3, "hatType");
+		int hatType = luaL_optnumber(L, -1, 0);
+		lua_pop(L, 1);
+
+		scene->SetComponent<HatTag>(entity, {onHead,hatType});
 	}
 	else if (type == "tag")
 	{

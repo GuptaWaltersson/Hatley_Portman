@@ -1,30 +1,28 @@
 local hat = {}
-local instance ={
-	ID = nil
-}
+
 HatType = 
 {
 	ONHEAD =0,
 	DEFAULT = 1,
 	MAGIC = 2,
 	LEGENDARY = 3
-
 }
+
 --Start values
 local position = {x=1000,y=700}
 local movement = {dx=0.0,dy=0.0,ax = 2400, ay=700}
 local hat_tag = 0
+local hat_behaviour = 0
 local currentThrow = nil
 local lastmove =""
 
 -- Behaviours
 function hat.OnCreate(self)
 
-
 	scene.SetComponent(self.ID,"sprite","../Textures/Hat.png")
-	scene.SetComponent(self.ID,"hattag",hat_tag)
+	scene.SetComponent(self.ID,"hattag",{onHead = true, hatType = 1})
 	scene.SetComponent(self.ID,"position",position)
-	--scene.SetComponent(instance.ID, "boundingbox", { width = 64, height = 32})
+	--scene.SetComponent(self.ID, "boundingbox", { width = 64, height = 32})
 	scene.SetComponent(self.ID,"movement",movement)
 	scene.SetComponent(self.ID,"lastmove","left")
 	
@@ -41,7 +39,7 @@ end
 
 function hat.throw(self,delta)
 	--print("hat kast")
-	hat_tag = scene.GetComponent(self.ID,"hattag",hat_tag)
+	onHead,hat_tag = scene.GetComponent(self.ID,"hattag")
 	local mov = {dx = 0,dy = 0, ax=0, ay=0}
 	lastmove = scene.GetComponent(self.ID,"lastmove",lastmove)
     if hat_tag == HatType.DEFAULT then
@@ -71,9 +69,11 @@ function hat.throw(self,delta)
     else
         --print("Unknown hat type:"..hat_tag..", no throw")
     end
+end
 
-	
-
+function hat.newThrow(self,throw)
+	print("New hat throw: "..throw)
+	scene.SetComponent(self.ID,"hattag",{onHead = true, hatType = throw})
 end
 
 function defaultThrow(self,delta,lastmove)

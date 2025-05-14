@@ -220,7 +220,7 @@ public:
 
 		view.each([&](HatTag& htag, Position& pos, Behaviour& script, Movement& mov ) {
 
-			if (htag.hatType == 0) // hat is on head
+			if (htag.onHead) // hat is on head
 			{
 				pos.x = playerPos.x;
 				pos.y = playerPos.y;
@@ -228,14 +228,14 @@ public:
 				mov.dy = 0;
 			}
 			
-			if (IsKeyPressed(KEY_Q) && htag.hatType != 0)
+			if (IsKeyPressed(KEY_Q) && !htag.onHead)
 			{
-				htag.hatType = 0;
+				htag.onHead = true;
 				playerMov.dy = 0;
 			}
 			else if (IsKeyPressed(KEY_Q))
 			{
-				htag.hatType = 2;
+				htag.onHead = false;
 				lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
 				lua_getfield(m_L, -1, "throw");
 				lua_pushvalue(m_L, -2);
@@ -245,19 +245,19 @@ public:
 				{
 					if (lua_gettop(m_L) && lua_isstring(m_L, -1))
 					{
-						std::cout << "Lua error: " << lua_tostring(m_L, -1) << std::endl;
+						std::cout << "Lua error: " << lua_tostring(m_L, -1)<< "in lua hat throw" << std::endl;
 						lua_pop(m_L, 1);
 					}
-					lua_pop(m_L, 1);
+					
 				}
-
+				lua_pop(m_L, 1);
 			}
 
-			if (IsKeyPressed(KEY_E) && htag.hatType != 0)
+			if (IsKeyPressed(KEY_E) && !htag.onHead)
 			{
 				playerPos.x = pos.x;
 				playerPos.y = pos.y;
-				htag.hatType = 0;
+				htag.onHead = true;
 			}
 			
 				// Get the function from lua and call it with delta time as argument
@@ -290,8 +290,9 @@ public:
 					std::cout << "Lua error: " << lua_tostring(m_L, -1) << std::endl;
 					lua_pop(m_L, 1);
 				}
-				lua_pop(m_L, 1);
+				
 			}
+			lua_pop(m_L, 1);
 		});
 		return false;
 	}

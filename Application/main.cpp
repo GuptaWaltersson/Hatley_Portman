@@ -225,7 +225,7 @@ int main()
 	{
 		if (gameState == GameState::StartMenu)
 		{
-			StartMenu(&startScene, L);
+			StartMenu(&startScene, L); 
 		}
 		else if (gameState == GameState::EditingTool)
 		{

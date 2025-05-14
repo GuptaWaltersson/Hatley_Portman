@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include "lua.hpp"
 #include "entt.hpp"
 #include "components.hpp"

@@ -245,12 +245,12 @@ public:
 				{
 					if (lua_gettop(m_L) && lua_isstring(m_L, -1))
 					{
-						std::cout << "Lua error: " << lua_tostring(m_L, -1) << std::endl;
+						std::cout << "Lua error: " << lua_tostring(m_L, -1)<< "in lua hat throw" << std::endl;
 						lua_pop(m_L, 1);
 					}
-					lua_pop(m_L, 1);
+					
 				}
-
+				lua_pop(m_L, 1);
 			}
 
 			if (IsKeyPressed(KEY_E) && htag.hatType != 0)
@@ -290,8 +290,9 @@ public:
 					std::cout << "Lua error: " << lua_tostring(m_L, -1) << std::endl;
 					lua_pop(m_L, 1);
 				}
-				lua_pop(m_L, 1);
+				
 			}
+			lua_pop(m_L, 1);
 		});
 		return false;
 	}

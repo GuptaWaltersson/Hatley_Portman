@@ -24,6 +24,16 @@ void SceneManager::Save()
 			sceneJson.push_back(e);
 		});
 
+	auto viewHat = m_registry.view<Tag, Sprite, HatTag>();
+	viewHat.each([&](Tag& tag, Sprite& sprite, HatTag& htag)
+		{
+			json e;
+			e["tag"] = tag.name;
+			e["sprite"] = sprite.texturePath;
+			e["hattag"] = { {"onHead",true},{"hatType",htag.hatType} };
+
+			sceneJson.push_back(e);
+		});
 
 	auto viewBlock = m_registry.view<Tag, Sprite, Position, BBox, GroupID>();
 	viewBlock.each([&](Tag& tag, Sprite& sprite, Position& pos, BBox& box, GroupID& group)

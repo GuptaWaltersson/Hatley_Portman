@@ -6,56 +6,47 @@
 void SceneManager::Save()
 {
 	using json = nlohmann::json;
+
 	json sceneJson = json::array();
 
-	auto viewPlayer = m_registry.view<Tag, Sprite, Position, BBox, Movement, Gravity, PlayerTag, LastMove>();
-	viewPlayer.each([&](Tag& tag, Sprite& sprite, Position& pos, BBox& box, Movement& movement, Gravity& gravity, PlayerTag& playertag, LastMove& lastmove)
-		{
-			json e;
-			e["tag"] = tag.name;
-			e["sprite"] = sprite.texturePath;
-			e["position"] = { {"x", pos.x}, {"y", pos.y} };
-			e["bbox"] = { {"width", box.width}, {"height", box.height} };
-			e["movement"] = { {"dx", movement.dx}, {"dy", movement.dy}, {"ax", movement.ax}, {"ay", movement.ay}, {"canJump", movement.canJump} };
-			e["gravity"] = { {"acceleration", gravity.acceleration} };
-			e["playertag"] = playertag.isPlayer;
-			e["lastmove"] = lastmove.lastKey;
+	auto view = m_registry.view<Tag>();
+	for (auto entity : view)
+	{
+		json entityJson;
 
-			sceneJson.push_back(e);
-		});
+			if (m_registry.all_of<Tag>(entity))
+				entityJson["tag"] = m_registry.get<Tag>(entity).name;
 
+			if (m_registry.all_of<Sprite>(entity))
+				entityJson["sprite"] = m_registry.get<Sprite>(entity).texturePath;
 
-	auto viewBlock = m_registry.view<Tag, Sprite, Position, BBox, GroupID>();
-	viewBlock.each([&](Tag& tag, Sprite& sprite, Position& pos, BBox& box, GroupID& group)
-		{
-			json e;
-			e["tag"] = tag.name;
-			e["sprite"] = sprite.texturePath;
-			e["position"] = { {"x", pos.x}, {"y", pos.y} };
-			e["bbox"] = { {"width", box.width}, {"height", box.height} };
-			e["group"] = group.id;
+			if (m_registry.all_of<Position>(entity))
+				entityJson["position"] = { {"x", m_registry.get<Position>(entity).x}, {"y", m_registry.get<Position>(entity).y} };
 
-			sceneJson.push_back(e);
-		});
+			if (m_registry.all_of<BBox>(entity))
+				entityJson["bbox"] = { {"width", m_registry.get<BBox>(entity).width}, {"height", m_registry.get<BBox>(entity).height} };
 
-	auto viewCoin = m_registry.view<Tag, Sprite, Position, BBox>();
-	viewCoin.each([&](Tag& tag, Sprite& sprite, Position& pos, BBox& box)
-		{
-			if (tag.name == "coin")
-			{
-				json e;
-				e["tag"] = tag.name;
-				e["sprite"] = sprite.texturePath;
-				e["position"] = { {"x", pos.x}, {"y", pos.y} };
-				e["bbox"] = { {"width", box.width}, {"height", box.height} };
+			if (m_registry.all_of<Movement>(entity))
+				entityJson["movement"] = { {"dx", m_registry.get<Movement>(entity).dx}, {"dy", m_registry.get<Movement>(entity).dy}, {"ax", m_registry.get<Movement>(entity).ax}, {"ay", m_registry.get<Movement>(entity).ay}, {"canJump", m_registry.get<Movement>(entity).canJump} };
 
-				sceneJson.push_back(e);
-			}
-		});
+			if (m_registry.all_of<Gravity>(entity))
+				entityJson["gravity"] = { {"acceleration", m_registry.get<Gravity>(entity).acceleration} };
 
-	std::ofstream out("scene.json");
-	out << sceneJson.dump(4);
-	std::cout << "Scene saved to scene.json" << std::endl;
+			if (m_registry.all_of<PlayerTag>(entity))
+				entityJson["playertag"] = m_registry.get<PlayerTag>(entity).isPlayer;
+
+			if (m_registry.all_of<HatTag>(entity))
+				entityJson["hattag"] = { {"onHead", m_registry.get<HatTag>(entity).onHead}, { "hatType", m_registry.get<HatTag>(entity).hatType} };
+				 
+			if (m_registry.all_of<LastMove>(entity))
+				entityJson["lastmove"] = m_registry.get<LastMove>(entity).lastKey;
+
+			if (m_registry.all_of<GroupID>(entity))
+				entityJson["group"] = m_registry.get<GroupID>(entity).id;
+
+			sceneJson.push_back(entityJson);
+			std::cout << "Scene saved to scene.json" << std::endl;
+	}
 }
 
 void SceneManager::Load()

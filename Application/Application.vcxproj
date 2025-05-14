@@ -163,12 +163,14 @@
   <ItemGroup>
     <ClCompile Include="ecs\editSystem.cpp" />
     <ClCompile Include="ecs\scene.cpp" />
+    <ClCompile Include="ecs\sceneManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecs\components.hpp" />
     <ClInclude Include="ecs\editSystem.hpp" />
     <ClInclude Include="ecs\scene.hpp" />
+    <ClInclude Include="ecs\sceneManager.hpp" />
     <ClInclude Include="ecs\systems.hpp" />
   </ItemGroup>
   <ItemGroup>

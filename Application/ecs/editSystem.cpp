@@ -222,3 +222,4 @@ void EditingSystem::ChangeHatThrow(int HatThrow)
 	}
 	lua_pop(m_L, 1);
 }
+

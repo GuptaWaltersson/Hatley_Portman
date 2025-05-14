@@ -22,5 +22,96 @@
         },
         "sprite": "../Textures/Portman.png",
         "tag": "player"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1232.0,
+            "y": 300.0
+        },
+        "sprite": "../Textures/tile_0015.png",
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1160.0,
+            "y": 300.0
+        },
+        "sprite": "../Textures/tile_0013.png",
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1088.0,
+            "y": 300.0
+        },
+        "sprite": "../Textures/tile_0013.png",
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1016.0,
+            "y": 300.0
+        },
+        "sprite": "../Textures/tile_0012.png",
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "group": 0,
+        "position": {
+            "x": 944.0,
+            "y": 300.0
+        },
+        "sprite": "../Textures/tile_0013.png",
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "group": 0,
+        "position": {
+            "x": 872.0,
+            "y": 300.0
+        },
+        "sprite": "../Textures/tile_0013.png",
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 800.0,
+            "y": 300.0
+        },
+        "sprite": "../Textures/tile_0014.png",
+        "tag": "mushroom"
     }
 ]

@@ -11,6 +11,7 @@
 #include "ecs/components.hpp"
 #include "ecs/systems.hpp"
 #include "ecs/editSystem.hpp"
+#include "ecs/sceneManager.hpp"
 
 #define ScreenWidth 1656
 #define ScreenHeight 936
@@ -95,6 +96,7 @@ void EditingTool(Scene* scene, lua_State* L)
 	Scene::lua_openScene(L, scene);
 
 	EditingSystem edit(L, scene->m_registry);
+	SceneManager sceneManager(scene->m_registry);
 
 	LoadEditScene(L, scene);
 
@@ -133,7 +135,6 @@ void EditingTool(Scene* scene, lua_State* L)
 		DrawText("Save", SaveButton.x + 5, SaveButton.y + 25, 20, BLACK);
 
 
-		
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
 			if (CheckCollisionPointRec(mousePos, CloudButton))
@@ -154,7 +155,7 @@ void EditingTool(Scene* scene, lua_State* L)
 			}
 			else if (CheckCollisionPointRec(mousePos, SaveButton))
 			{
-				edit.SaveScene();
+				sceneManager.Save();
 			}
 		}
 

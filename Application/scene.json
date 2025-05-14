@@ -30,11 +30,76 @@
         },
         "group": 0,
         "position": {
-            "x": 1116.0,
-            "y": 468.0
+            "x": 1232.0,
+            "y": 300.0
         },
-        "sprite": "../Textures/tile_0155.png",
-        "tag": "cloud"
+        "sprite": "../Textures/tile_0015.png",
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1160.0,
+            "y": 300.0
+        },
+        "sprite": "../Textures/tile_0013.png",
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1088.0,
+            "y": 300.0
+        },
+        "sprite": "../Textures/tile_0013.png",
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1016.0,
+            "y": 300.0
+        },
+        "sprite": "../Textures/tile_0012.png",
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "group": 0,
+        "position": {
+            "x": 944.0,
+            "y": 300.0
+        },
+        "sprite": "../Textures/tile_0013.png",
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "group": 0,
+        "position": {
+            "x": 872.0,
+            "y": 300.0
+        },
+        "sprite": "../Textures/tile_0013.png",
+        "tag": "mushroom"
     },
     {
         "bbox": {
@@ -43,97 +108,10 @@
         },
         "group": 0,
         "position": {
-            "x": 1044.0,
-            "y": 468.0
+            "x": 800.0,
+            "y": 300.0
         },
-        "sprite": "../Textures/tile_0154.png",
-        "tag": "cloud"
-    },
-    {
-        "bbox": {
-            "height": 30.0,
-            "width": 60.0
-        },
-        "group": 0,
-        "position": {
-            "x": 972.0,
-            "y": 468.0
-        },
-        "sprite": "../Textures/tile_0154.png",
-        "tag": "cloud"
-    },
-    {
-        "bbox": {
-            "height": 30.0,
-            "width": 60.0
-        },
-        "group": 0,
-        "position": {
-            "x": 900.0,
-            "y": 468.0
-        },
-        "sprite": "../Textures/tile_0154.png",
-        "tag": "cloud"
-    },
-    {
-        "bbox": {
-            "height": 30.0,
-            "width": 60.0
-        },
-        "group": 0,
-        "position": {
-            "x": 828.0,
-            "y": 468.0
-        },
-        "sprite": "../Textures/tile_0153.png",
-        "tag": "cloud"
-    },
-    {
-        "bbox": {
-            "height": 50.0,
-            "width": 50.0
-        },
-        "position": {
-            "x": 611.0,
-            "y": 604.0
-        },
-        "sprite": "../Textures/tile_0067.png",
-        "tag": "coin"
-    },
-    {
-        "bbox": {
-            "height": 50.0,
-            "width": 50.0
-        },
-        "position": {
-            "x": 1034.0,
-            "y": 637.0
-        },
-        "sprite": "../Textures/tile_0067.png",
-        "tag": "coin"
-    },
-    {
-        "bbox": {
-            "height": 50.0,
-            "width": 50.0
-        },
-        "position": {
-            "x": 1189.0,
-            "y": 266.0
-        },
-        "sprite": "../Textures/tile_0067.png",
-        "tag": "coin"
-    },
-    {
-        "bbox": {
-            "height": 50.0,
-            "width": 50.0
-        },
-        "position": {
-            "x": 497.0,
-            "y": 349.0
-        },
-        "sprite": "../Textures/tile_0067.png",
-        "tag": "coin"
+        "sprite": "../Textures/tile_0014.png",
+        "tag": "mushroom"
     }
 ]

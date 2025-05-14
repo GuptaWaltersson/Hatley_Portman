@@ -30,7 +30,7 @@ void LoadScene(lua_State* L, Scene* scene)
 
 	if (luaL_dofile(L, "scripts/scene.lua") != LUA_OK) {
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
-		lua_pop(L, 1);
+		lua_pop(L, 1); 
 	}
 }
 
@@ -199,12 +199,12 @@ int main()
 	Scene editingScene(L);
 	Scene gameScene(L);
 
-	//gameScene.CreateSystem<SpriteSystem>();
-	//gameScene.CreateSystem<CollisionSystem>(L);
-	//gameScene.CreateSystem<GravitySystem>(9.8);
-	//gameScene.CreateSystem<MovementSystem>();
-	//gameScene.CreateSystem<BehaviourSystem>(L);
-	//gameScene.CreateSystem<HatSystem>(L);
+	gameScene.CreateSystem<SpriteSystem>();
+	gameScene.CreateSystem<CollisionSystem>(L);
+	gameScene.CreateSystem<GravitySystem>(9.8);
+	gameScene.CreateSystem<MovementSystem>();
+	gameScene.CreateSystem<BehaviourSystem>(L);
+	gameScene.CreateSystem<HatSystem>(L);
 
 	editingScene.CreateSystem<SpriteSystem>();
 	editingScene.CreateSystem<BehaviourSystem>(L);
@@ -212,10 +212,6 @@ int main()
 	//editingScene.CreateSystem<HatSystem>(L);
 	//editingScene.CreateSystem<CollisionSystem>(L);
 	//editingScene.CreateSystem<GravitySystem>(0.0);
-
-
-	
-	
 
 
 	bool running = true;

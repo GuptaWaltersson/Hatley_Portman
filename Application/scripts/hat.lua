@@ -21,11 +21,11 @@ local lastmove =""
 function hat.OnCreate(self)
 
 
-	scene.SetComponent(instance.ID,"sprite","../Textures/Hat.png")
-	scene.SetComponent(instance.ID,"hattag",hat_tag)
-	scene.SetComponent(instance.ID,"position",position)
+	scene.SetComponent(self.ID,"sprite","../Textures/Hat.png")
+	scene.SetComponent(self.ID,"hattag",hat_tag)
+	scene.SetComponent(self.ID,"position",position)
 	--scene.SetComponent(instance.ID, "boundingbox", { width = 64, height = 32})
-	scene.SetComponent(instance.ID,"movement",movement)
+	scene.SetComponent(self.ID,"movement",movement)
 	scene.SetComponent(self.ID,"lastmove","left")
 	
 end

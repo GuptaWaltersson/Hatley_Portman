@@ -20,14 +20,6 @@ local lastmove =""
 -- Behaviours
 function hat.OnCreate(self)
 
-	instance.ID= self and self.ID
-	
-
-	if self.ID == nil then
-		print("nil at start")
-	end
-
-	
 
 	scene.SetComponent(instance.ID,"sprite","../Textures/Hat.png")
 	scene.SetComponent(instance.ID,"hattag",hat_tag)

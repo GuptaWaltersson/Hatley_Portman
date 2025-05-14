@@ -23,9 +23,10 @@ void EditingSystem::SelectEntity()
     }
 
 	if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) {
-		auto view = m_registry.view<Position, BBox>();
-		view.each([&](entt::entity entity, Position& pos, BBox& box) {
+		auto view = m_registry.view<Position, BBox, Tag>();
+		view.each([&](entt::entity entity, Position& pos, BBox& box, Tag& tag) {
 			if (CheckCollisionPointRec(mousePos, { pos.x, pos.y, box.width, box.height }) && pos.y < 836) {
+				if (tag.name != "player")
 					m_registry.destroy(entity);
 			}
 		});

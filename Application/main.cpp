@@ -103,6 +103,8 @@ void EditingTool(Scene* scene, lua_State* L)
 	Rectangle CoinButton = { 460.0f,850.0f,120,70 };
 	Rectangle MushroomButton = { 640.0f,850.0f,150,70 };
 	Rectangle HatButton = { 850.0f,850.0f,180,70 };
+	Rectangle SaveButton = { 1400.0f,850.0f,120,70};
+
 	bool running = true;
 	while (running)
 	{
@@ -126,6 +128,11 @@ void EditingTool(Scene* scene, lua_State* L)
 
 		DrawRectangleRec(HatButton, WHITE);
 		DrawText("Hat: trajectory", HatButton.x + 5, HatButton.y + 25, 20, BLACK);
+
+		DrawRectangleRec(SaveButton, WHITE);
+		DrawText("Save", SaveButton.x + 5, SaveButton.y + 25, 20, BLACK);
+
+
 		
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{

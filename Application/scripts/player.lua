@@ -12,6 +12,7 @@ function player.OnCreate(self)
 	scene.SetComponent(self.ID, "movement",movement)
 	scene.SetComponent(self.ID, "gravity", 1800)
 	scene.SetComponent(self.ID, "playertag",true)
+	scene.SetComponent(self.ID, "tag", "player")
 	scene.SetComponent(self.ID, "lastmove","left")
 end
 

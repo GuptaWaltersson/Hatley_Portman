@@ -220,7 +220,7 @@ public:
 
 		view.each([&](HatTag& htag, Position& pos, Behaviour& script, Movement& mov ) {
 
-			if (htag.hatType == 0) // hat is on head
+			if (htag.onHead) // hat is on head
 			{
 				pos.x = playerPos.x;
 				pos.y = playerPos.y;
@@ -228,14 +228,14 @@ public:
 				mov.dy = 0;
 			}
 			
-			if (IsKeyPressed(KEY_Q) && htag.hatType != 0)
+			if (IsKeyPressed(KEY_Q) && !htag.onHead)
 			{
-				htag.hatType = 0;
+				htag.onHead = true;
 				playerMov.dy = 0;
 			}
 			else if (IsKeyPressed(KEY_Q))
 			{
-				htag.hatType = 2;
+				htag.onHead = false;
 				lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
 				lua_getfield(m_L, -1, "throw");
 				lua_pushvalue(m_L, -2);
@@ -257,7 +257,7 @@ public:
 			{
 				playerPos.x = pos.x;
 				playerPos.y = pos.y;
-				htag.hatType = 0;
+				htag.onHead = true;
 			}
 			
 				// Get the function from lua and call it with delta time as argument

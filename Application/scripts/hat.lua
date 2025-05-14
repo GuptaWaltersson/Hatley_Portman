@@ -11,7 +11,7 @@ HatType =
 --Start values
 local position = {x=1000,y=700}
 local movement = {dx=0.0,dy=0.0,ax = 2400, ay=700}
-local hat_tag = 1
+local hat_tag = 0
 local hat_behaviour = 0
 local currentThrow = nil
 local lastmove =""
@@ -69,9 +69,11 @@ function hat.throw(self,delta)
     else
         --print("Unknown hat type:"..hat_tag..", no throw")
     end
+end
 
-	
-
+function hat.newThrow(self,throw)
+	print("New hat throw: "..throw)
+	scene.SetComponent(self.ID,"hattag",{onHead = true, hatType = throw})
 end
 
 function defaultThrow(self,delta,lastmove)

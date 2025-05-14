@@ -253,7 +253,7 @@ public:
 				lua_pop(m_L, 1);
 			}
 
-			if (IsKeyPressed(KEY_E) && htag.hatType != 0)
+			if (IsKeyPressed(KEY_E) && !htag.onHead)
 			{
 				playerPos.x = pos.x;
 				playerPos.y = pos.y;

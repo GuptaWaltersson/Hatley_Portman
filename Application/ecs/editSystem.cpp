@@ -136,5 +136,23 @@ void EditingSystem::CreateBigMushroom(float xPos, float yPos, int width)
 		std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in create mushroom" << std::endl;
 		lua_pop(m_L, 1);
 	}
+	lua_pop(m_L, 1);
+}
 
+void EditingSystem::ChangeHatThrow(int HatThrow)
+{
+	auto hat = m_registry.view<HatTag,Behaviour>().front();
+	HatTag& htag = m_registry.get<HatTag>(hat);
+	Behaviour& script = m_registry.get<Behaviour>(hat);
+	lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
+	lua_getfield(m_L,-1,"newThrow");
+	lua_pushvalue(m_L, -2);
+	lua_pushnumber(m_L, HatThrow);
+
+	if (lua_pcall(m_L, 2, 0, 0) != LUA_OK)
+	{
+		std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in ChangeHatThrow" << std::endl;
+		lua_pop(m_L, 1);
+	}
+	lua_pop(m_L, 1);
 }

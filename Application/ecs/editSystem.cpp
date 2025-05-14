@@ -197,8 +197,9 @@ void EditingSystem::SaveScene()
 void EditingSystem::ChangeHatThrow(int HatThrow)
 {
 	auto hat = m_registry.view<HatTag,Behaviour>().front();
-	HatTag& htag = m_registry.get<HatTag>(hat);
 	Behaviour& script = m_registry.get<Behaviour>(hat);
+	HatTag& htag = m_registry.get<HatTag>(hat);
+
 	lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
 	lua_getfield(m_L,-1,"newThrow");
 	lua_pushvalue(m_L, -2);

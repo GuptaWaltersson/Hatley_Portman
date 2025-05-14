@@ -13,7 +13,7 @@ function block.Ground()
 
 	for i = 0, 22 do
 		local entity = scene.CreateEntity()
-		scene.SetComponent(entity, "tag", "block")
+		scene.SetComponent(entity, "tag", "ground1")
 		scene.SetComponent(entity, "sprite", "../Textures/tile_0022.png")
 		scene.SetComponent(entity, "boundingbox", { width = 72, height = 72})
 		scene.SetComponent(entity, "position", { x = 18+(72*i), y =  836})
@@ -21,7 +21,7 @@ function block.Ground()
 
 	for i = 0, 22 do
 		local entity = scene.CreateEntity()
-		scene.SetComponent(entity, "tag", "block")
+		scene.SetComponent(entity, "tag", "ground2")
 		scene.SetComponent(entity, "sprite", "../Textures/tile_0122.png")
 		scene.SetComponent(entity, "boundingbox", { width = 72, height = 72})
 		scene.SetComponent(entity, "position", { x = 18+(72*i), y = 908})
@@ -54,7 +54,7 @@ end
 
 local function createSmallBlock(posX,posY)
 	local entity = scene.CreateEntity()
-	scene.SetComponent(entity,"tag","block")
+	scene.SetComponent(entity,"tag","smallblock")
 	scene.SetComponent(entity,"sprite","../Textures/tile_0146.png")
 	scene.SetComponent(entity,"boundingbox",{width = 60, height = 30})
 	scene.SetComponent(entity,"position",{x=posX,y=posY})

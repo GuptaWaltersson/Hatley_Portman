@@ -1,0 +1,139 @@
+[
+    {
+        "bbox": {
+            "height": 64.0,
+            "width": 64.0
+        },
+        "gravity": {
+            "acceleration": 1800.0
+        },
+        "lastmove": "left",
+        "movement": {
+            "ax": 2400.0,
+            "ay": 700.0,
+            "canJump": false,
+            "dx": 0.0,
+            "dy": -300.0
+        },
+        "playertag": true,
+        "position": {
+            "x": 200.0,
+            "y": 700.0
+        },
+        "sprite": "../Textures/Portman.png",
+        "tag": "player"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1116.0,
+            "y": 468.0
+        },
+        "sprite": "../Textures/tile_0155.png",
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1044.0,
+            "y": 468.0
+        },
+        "sprite": "../Textures/tile_0154.png",
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 972.0,
+            "y": 468.0
+        },
+        "sprite": "../Textures/tile_0154.png",
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 900.0,
+            "y": 468.0
+        },
+        "sprite": "../Textures/tile_0154.png",
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 828.0,
+            "y": 468.0
+        },
+        "sprite": "../Textures/tile_0153.png",
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "position": {
+            "x": 611.0,
+            "y": 604.0
+        },
+        "sprite": "../Textures/tile_0067.png",
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "position": {
+            "x": 1034.0,
+            "y": 637.0
+        },
+        "sprite": "../Textures/tile_0067.png",
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "position": {
+            "x": 1189.0,
+            "y": 266.0
+        },
+        "sprite": "../Textures/tile_0067.png",
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "position": {
+            "x": 497.0,
+            "y": 349.0
+        },
+        "sprite": "../Textures/tile_0067.png",
+        "tag": "coin"
+    }
+]

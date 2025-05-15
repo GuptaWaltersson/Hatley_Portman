@@ -52,6 +52,10 @@ void SceneManager::Save()
 
 		sceneJson.push_back(entityJson);
 	}
+	std::ofstream file("scene.json");
+	file << sceneJson.dump(4);
+	file.close();
+
 	std::cout << "Scene saved to scene.json" << std::endl;
 }
 
@@ -122,4 +126,5 @@ void SceneManager::Load()
 			m_registry.emplace<GroupID>(entity, entityJson["group"].get<int>());
 	}
 	std::cout << "Scene loaded from scene.json" << std::endl;
+
 }

@@ -28,6 +28,7 @@ GameState gameState = GameState::StartMenu;
 void LoadScene(lua_State* L, Scene* scene)
 {
 	scene->Clear();
+
 	SceneManager sceneManager(scene->m_registry);
 
 	sceneManager.Load();
@@ -35,13 +36,6 @@ void LoadScene(lua_State* L, Scene* scene)
 	if (luaL_dofile(L, "scripts/scene.lua") != LUA_OK) {
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
 		lua_pop(L, 1); 
-	}
-
-	auto view = scene->m_registry.view<Tag>();
-	for (auto entity : view) {
-		const auto& tag = view.get<Tag>(entity);
-		std::cout << "Entity ID: " << static_cast<uint32_t>(entity)
-			<< " | Tag: " << tag.name << "\n";
 	}
 
 }

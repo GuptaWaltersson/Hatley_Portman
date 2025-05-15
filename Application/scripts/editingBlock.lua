@@ -86,7 +86,7 @@ function block.createMushroom(length,posX,posY)
 		scene.SetComponent(entity,"position",{x=posX+72*i,y=posY})
 	end
 
-	for i = 0, (836-posY)/72 do
+	for i = 1, (836-posY)/72 do
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"tag","mushroom")
 		scene.SetComponent(entity, "id", mushroomCounter)

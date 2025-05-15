@@ -79,8 +79,26 @@ void SceneManager::Load()
 	{
 		auto entity = m_registry.create();
 
-		if (entityJson.contains("tag"))
-			m_registry.emplace<Tag>(entity, entityJson["tag"].get<std::string>());
+		if (entityJson.contains("tag")) {
+			std::string tagName = entityJson["tag"].get<std::string>();
+
+			if (tagName == "player") {
+					auto view = m_registry.view<Tag, PlayerTag, Position>();
+					view.each([&](Tag& t, PlayerTag& playerTag, Position& pos)
+					{
+						std::cout << t.name << std::endl;
+						pos.x = entityJson["position"]["x"];
+						pos.y = entityJson["position"]["y"];
+					});
+				continue;
+			}
+			else {
+				m_registry.emplace<Tag>(entity, tagName);
+			}
+		}
+
+
+
 
 		if (entityJson.contains("sprite") && entityJson["sprite"].is_object())
 		{

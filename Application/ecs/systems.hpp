@@ -16,6 +16,11 @@ public:
 	bool OnUpdate(entt::registry& registry, float delta) final {
 		auto view = registry.view<Sprite,Position>();
 
+		std::vector<entt::entity> entities(view.begin(), view.end());
+
+		// Reverse the order
+		std::reverse(entities.begin(), entities.end());
+
 		view.each([](const Sprite& sprite, const Position& pos) {
 
 			Rectangle source = { 0.0,0.0, sprite.texture.width, sprite.texture.height};

@@ -70,6 +70,7 @@ struct HatTag {
 	// Default = 1
 	// Magic = 2
 	//Legendary = 3
+	bool onHead;
 	int hatType;
 };
 

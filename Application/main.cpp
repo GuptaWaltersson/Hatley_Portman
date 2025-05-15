@@ -100,6 +100,8 @@ void EditingTool(Scene* scene, lua_State* L)
 
 	LoadEditScene(L, scene);
 
+	int HatThrow = 1;
+	int MaxAmountofThrows = 2;
 	Rectangle CloudButton = { 280.0f, 850.0f, 120, 70 };
 	Rectangle TreeButton = { 100.0f,850.0f,120,70 };
 	Rectangle CoinButton = { 460.0f,850.0f,120,70 };
@@ -129,11 +131,17 @@ void EditingTool(Scene* scene, lua_State* L)
 		DrawText("Big Mushroom", MushroomButton.x + 5, MushroomButton.y + 25, 20, BLACK);
 
 		DrawRectangleRec(HatButton, WHITE);
-		DrawText("Hat: trajectory", HatButton.x + 5, HatButton.y + 25, 20, BLACK);
-
+		if (HatThrow == 2)
+		{
+			DrawText("Hat: Trajectory", HatButton.x + 5, HatButton.y + 25, 20, BLACK);
+		}
+		else if (HatThrow == 1)
+		{
+			DrawText("Hat: Linear", HatButton.x + 5, HatButton.y + 25, 20, BLACK);
+		}
+		
 		DrawRectangleRec(SaveButton, WHITE);
 		DrawText("Save", SaveButton.x + 5, SaveButton.y + 25, 20, BLACK);
-
 
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
@@ -156,6 +164,18 @@ void EditingTool(Scene* scene, lua_State* L)
 			else if (CheckCollisionPointRec(mousePos, SaveButton))
 			{
 				sceneManager.Save();
+			}
+			else if (CheckCollisionPointRec(mousePos, HatButton))
+			{
+				if (HatThrow % MaxAmountofThrows != 0)
+				{
+					HatThrow++;
+				}
+				else
+				{
+					HatThrow = 1;
+				}
+				edit.ChangeHatThrow(HatThrow);
 			}
 		}
 
@@ -231,7 +251,7 @@ int main()
 	{
 		if (gameState == GameState::StartMenu)
 		{
-			StartMenu(&startScene, L);
+			StartMenu(&startScene, L); 
 		}
 		else if (gameState == GameState::EditingTool)
 		{
@@ -247,8 +267,6 @@ int main()
 		}
 	}
 
-
-	
 
 	CloseWindow();
 	lua_close(L);

@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include "lua.hpp"
 #include "entt.hpp"
 #include "components.hpp"
@@ -22,7 +22,7 @@ public:
     void CreateCoin(float xPos, float yPos);
 	void CreateBigMushroom(float xPos, float yPos, int width);
 
-	void SaveScene();
+    void ChangeHatThrow(int HatThrow);
 private:
 	void MoveEntity(Vector2 mousePos);
 

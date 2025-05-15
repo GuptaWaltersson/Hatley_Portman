@@ -14,6 +14,18 @@ void SceneManager::Save()
 	{
 		json entityJson;
 
+		if (m_registry.all_of<Tag>(entity))
+			entityJson["tag"] = m_registry.get<Tag>(entity).name;
+
+		if (m_registry.all_of<Sprite>(entity))
+		{
+			const auto& sprite = m_registry.get<Sprite>(entity);
+			entityJson["sprite"] = {
+				{"texturePath", sprite.texturePath},
+				{"scale", sprite.scale}
+			};
+		}
+
 		if (m_registry.all_of<Position>(entity))
 			entityJson["position"] = { {"x", m_registry.get<Position>(entity).x}, {"y", m_registry.get<Position>(entity).y} };
 
@@ -39,8 +51,8 @@ void SceneManager::Save()
 			entityJson["group"] = m_registry.get<GroupID>(entity).id;
 
 		sceneJson.push_back(entityJson);
-		std::cout << "Scene saved to scene.json" << std::endl;
 	}
+	std::cout << "Scene saved to scene.json" << std::endl;
 }
 
 void SceneManager::Load()

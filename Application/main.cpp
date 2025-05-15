@@ -28,6 +28,8 @@ GameState gameState = GameState::StartMenu;
 void LoadScene(lua_State* L, Scene* scene)
 {
 	scene->Clear();
+	SceneManager sceneManager(scene->m_registry);
+	sceneManager.Load();
 
 	if (luaL_dofile(L, "scripts/scene.lua") != LUA_OK) {
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;

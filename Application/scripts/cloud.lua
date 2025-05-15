@@ -52,7 +52,7 @@ end
 
 
 
-function cloud.NewCloud(length,posX,posY,speed,duration)
+function cloud.NewCloud(self,length,posX,posY,speed,duration)
 	local id = cloudCounter	
 
 	clouds[id] = {}
@@ -78,10 +78,13 @@ function cloud.NewCloud(length,posX,posY,speed,duration)
 	cloud.cor[id] = coroutine.create(function(delta)
 		while true do 
 			
+			delta = coroutine.yield()
 			moveCloud(id, speed, duration, delta)
+
+			delta = coroutine.yield()
 			wait(1, delta)
 
-			
+			delta = coroutine.yield()
 			moveCloud(id, -speed, duration, delta)
 
 			delta = coroutine.yield()

@@ -8,6 +8,9 @@ scene.SetComponent(playerEntity, "behaviour", "scripts/player.lua")
 
 local cloudEntity = scene.CreateEntity()
 scene.SetComponent(cloudEntity,"behaviour","scripts/cloud.lua")
+scene.SetComponent(cloudEntity,"tag","cloudManager")
+
+
 
 --dofile("scripts/coin/coinManager.lua")
 -- dofile("scripts/hat.lua")

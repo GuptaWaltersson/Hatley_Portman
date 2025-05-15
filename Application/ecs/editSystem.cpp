@@ -136,6 +136,34 @@ void EditingSystem::CreateBigMushroom(float xPos, float yPos, int width)
 		std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in create mushroom" << std::endl;
 		lua_pop(m_L, 1);
 	}
+	lua_pop(m_L, 1);
+}
+
+void EditingSystem::CreateMovingCloud(float xPos, float yPos, int width,int speed, float duration)
+{
+	lua_getglobal(m_L, "require");
+	lua_pushstring(m_L, "scripts/cloud");
+	if (lua_pcall(m_L, 1, 1, 0) != LUA_OK)
+	{
+		std::cerr << "Error trying to require cloud module: " << lua_tostring(m_L, -1) << std::endl;
+		lua_pop(m_L, 1);
+		return;
+	}
+
+	lua_getfield(m_L, -1, "NewCloud");
+
+	lua_pushnumber(m_L, width);
+	lua_pushnumber(m_L, xPos);
+	lua_pushnumber(m_L, yPos);
+	lua_pushnumber(m_L, speed);
+	lua_pushnumber(m_L, duration);
+	if (lua_pcall(m_L, 5, 0, 0) != LUA_OK)
+	{
+		std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in create moving cloud" << std::endl;
+		lua_pop(m_L, 1);
+	}
+	lua_pop(m_L, 1);
+
 }
 
 

@@ -147,7 +147,7 @@ void EditingTool(Scene* scene, lua_State* L)
 		{
 			if (CheckCollisionPointRec(mousePos, CloudButton))
 			{
-				edit.CreateCloud(ScreenWidth / 2, ScreenHeight / 2, 4);
+				edit.CreateMovingCloud(ScreenWidth / 2, ScreenHeight / 2, 3,100,0.5);
 			}
 			else if (CheckCollisionPointRec(mousePos, TreeButton))
 			{

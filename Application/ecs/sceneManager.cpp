@@ -21,25 +21,8 @@ void SceneManager::Save()
 			e["playertag"] = playertag.isPlayer;
 			e["lastmove"] = lastmove.lastKey;
 
-<<<<<<< Updated upstream
 			sceneJson.push_back(e);
 		});
-=======
-		if (m_registry.all_of<Tag>(entity))
-			entityJson["tag"] = m_registry.get<Tag>(entity).name;
-
-		if (m_registry.all_of<Sprite>(entity))
-		{
-			const auto& sprite = m_registry.get<Sprite>(entity);
-			entityJson["sprite"] = {
-				{"texturePath", sprite.texturePath},
-				{"scale", sprite.scale}
-			};
-		}
-
-		if (m_registry.all_of<Position>(entity))
-			entityJson["position"] = { {"x", m_registry.get<Position>(entity).x}, {"y", m_registry.get<Position>(entity).y} };
->>>>>>> Stashed changes
 
 
 	auto viewBlock = m_registry.view<Tag, Sprite, Position, BBox, GroupID>();
@@ -70,84 +53,12 @@ void SceneManager::Save()
 			}
 		});
 
-<<<<<<< Updated upstream
 	std::ofstream out("scene.json");
 	out << sceneJson.dump(4);
-=======
-		if (m_registry.all_of<GroupID>(entity))
-			entityJson["group"] = m_registry.get<GroupID>(entity).id;
-
-		sceneJson.push_back(entityJson);
-	}
->>>>>>> Stashed changes
 	std::cout << "Scene saved to scene.json" << std::endl;
 }
 
 void SceneManager::Load()
 {
-	using json = nlohmann::json;
 
-	std::ifstream file("scene.json");
-	if (!file.is_open())
-	{
-		std::cerr << "Failed to open scene.json" << std::endl;
-		return;
-	}
-	
-	json sceneJson;
-	file >> sceneJson;
-
-	m_registry.clear();
-
-	for (auto& entityJson : sceneJson)
-	{
-		auto entity = m_registry.create();
-
-		if(entityJson.contains("tag"))
-			m_registry.emplace<Tag>(entity, entityJson["tag"].get<std::string>());
-
-		if (entityJson.contains("sprite") && entityJson["sprite"].is_object())
-		{
-			auto& spriteData = entityJson["sprite"];
-			std::string texturePath = spriteData.at("texturePath").get<std::string>();
-			int scale = spriteData.at("scale").get<int>();
-
-			auto& sprite = m_registry.emplace<Sprite>(entity, texturePath);
-			sprite.scale = scale;
-		}
-
-		if (entityJson.contains("position"))
-		{
-			auto& posData = entityJson["position"];
-			m_registry.emplace<Position>(entity, posData["x"].get<float>(), posData["y"].get<float>());
-		}
-
-		if (entityJson.contains("bbox"))
-		{
-			auto& bboxData = entityJson["bbox"];
-			m_registry.emplace<BBox>(entity, bboxData["width"].get<float>(), bboxData["height"].get<float>());
-		}
-
-		if (entityJson.contains("movement"))
-		{
-			auto& moveData = entityJson["movement"];
-			m_registry.emplace<Movement>(entity, moveData["dx"].get<float>(), moveData["dy"].get<float>(), moveData["ax"].get<float>(), moveData["ay"].get<float>(), moveData["canJump"].get<bool>());
-		}
-
-		if (entityJson.contains("gravity"))
-			m_registry.emplace<Gravity>(entity, entityJson["gravity"]["acceleration"].get<float>());
-
-		if (entityJson.contains("playertag"))
-			m_registry.emplace<PlayerTag>(entity, entityJson["playertag"].get<bool>());
-
-		if (entityJson.contains("hattag"))
-			m_registry.emplace<HatTag>(entity, entityJson["hattag"]["onHead"].get<bool>(), entityJson["hattag"]["hatType"].get<int>());
-
-		if (entityJson.contains("lastmove"))
-			m_registry.emplace<LastMove>(entity, entityJson["lastmove"].get<std::string>());
-
-		if (entityJson.contains("group"))
-			m_registry.emplace<GroupID>(entity, entityJson["group"].get<int>());
-	}
-	std::cout << "Scene loaded from scene.json" << std::endl;
 }

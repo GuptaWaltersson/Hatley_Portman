@@ -3,6 +3,8 @@
 #include "json.hpp"
 #include <fstream>
 #include <iostream>
+#include <set>
+#include <optional>
 
 void SceneManager::Save()
 {
@@ -81,11 +83,24 @@ void SceneManager::Load()
 	json sceneJson;
 	file >> sceneJson;
 
+	std::set<std::pair<std::string, std::optional<int>>> seen;
+
 	for (auto& entityJson : sceneJson)
 	{
 		if (entityJson.contains("tag"))
 		{
 			std::string tag = entityJson["tag"].get<std::string>();
+
+			std::optional<int> groupId = std::nullopt;
+			if (entityJson.contains("group")) {
+				groupId = entityJson["group"].get<int>();
+			}
+
+			auto key = std::make_pair(tag, groupId);
+			if (seen.find(key) != seen.end())
+				continue;
+
+			seen.insert(key);
 
 			if (tag == "cloud")
 			{

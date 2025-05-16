@@ -11,4 +11,4 @@ scene.SetComponent(playerEntity, "behaviour", "scripts/player.lua")
 -- dofile("scripts/hat.lua")
 -- dofile("scripts/editingBlock.lua")
 block = require("scripts.editingBlock")
-
+block.Ground()

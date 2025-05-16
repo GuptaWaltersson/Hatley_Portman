@@ -1,4 +1,5 @@
 #include "sceneManager.hpp"
+#include "editSystem.hpp"
 #include "json.hpp"
 #include <fstream>
 #include <iostream>
@@ -15,7 +16,8 @@ void SceneManager::Save()
 		json entityJson;
 
 		if (m_registry.all_of<Tag>(entity))
-			entityJson["tag"] = m_registry.get<Tag>(entity).name;
+			if(m_registry.get<Tag>(entity).name != "player")
+				entityJson["tag"] = m_registry.get<Tag>(entity).name;
 
 		if (m_registry.all_of<Sprite>(entity))
 		{
@@ -50,6 +52,12 @@ void SceneManager::Save()
 		if (m_registry.all_of<GroupID>(entity))
 			entityJson["group"] = m_registry.get<GroupID>(entity).id;
 
+		if (m_registry.all_of<Behaviour>(entity))
+		{
+			const auto& behaviour = m_registry.get<Behaviour>(entity);
+			entityJson["behaviour"] = behaviour.ScriptPath;
+		}
+
 		sceneJson.push_back(entityJson);
 	}
 	std::ofstream file("scene.json");
@@ -60,6 +68,62 @@ void SceneManager::Save()
 }
 
 void SceneManager::Load()
+{
+	using json = nlohmann::json;
+	EditingSystem edit(m_L, m_registry);
+
+	std::ifstream file("scene.json");
+	if (!file.is_open())
+	{
+		std::cerr << "Failed to open scene.json" << std::endl;
+		return;
+	}
+
+	json sceneJson;
+	file >> sceneJson;
+
+	m_registry.clear();
+
+	for (auto& entityJson : sceneJson)
+	{
+		if (entityJson.contains("tag"))
+		{
+			std::string tag = entityJson["tag"].get<std::string>();
+
+			if (tag == "cloud")
+			{
+				float x = entityJson["position"]["x"].get<float>();
+				float y = entityJson["position"]["y"].get<float>();
+				//int width = entityJson["bbox"]["width"].get<float>();
+				edit.CreateCloud(x, y, 4);
+			}
+			else if (tag == "tree")
+			{
+				float x = entityJson["position"]["x"].get<float>();
+				float y = entityJson["position"]["y"].get<float>();
+				//int width = entityJson["bbox"]["width"].get<float>();
+				//int height = entityJson["bbox"]["height"].get<float>();
+				edit.CreateTree(x, y, 2, 2);
+			}
+			else if (tag == "coin")
+			{
+				float x = entityJson["position"]["x"].get<float>();
+				float y = entityJson["position"]["y"].get<float>();
+				edit.CreateCoin(x, y);
+			}
+			else if (tag == "mushroom")
+			{
+				float x = entityJson["position"]["x"].get<float>();
+				float y = entityJson["position"]["y"].get<float>();
+				//int width = entityJson["bbox"]["width"].get<float>();
+				edit.CreateBigMushroom(x, y, 5);
+			}
+		}
+	}
+	std::cout << "Scene loaded from scene.json" << std::endl;
+}
+
+void SceneManager::Load2()
 {
 	using json = nlohmann::json;
 
@@ -96,9 +160,6 @@ void SceneManager::Load()
 				m_registry.emplace<Tag>(entity, tagName);
 			}
 		}
-
-
-
 
 		if (entityJson.contains("sprite") && entityJson["sprite"].is_object())
 		{
@@ -142,7 +203,37 @@ void SceneManager::Load()
 
 		if (entityJson.contains("group"))
 			m_registry.emplace<GroupID>(entity, entityJson["group"].get<int>());
+
+		if (entityJson.contains("behaviour"))
+		{
+			std::string scriptPath = entityJson["behaviour"].get<std::string>();
+			m_registry.emplace<Behaviour>(entity, scriptPath.c_str(), 0);
+		}
 	}
 	std::cout << "Scene loaded from scene.json" << std::endl;
 
+}
+
+void SceneManager::RebindLuaBehaviours()
+{
+	//auto view = m_registry.view<Behaviour>();
+	//for (auto entity : view)
+	//{
+	//	auto& behaviour = view.get<Behaviour>(entity);
+
+	//	if (luaL_dofile(m_L, behaviour.ScriptPath) == LUA_OK) 
+	//	{
+	//		if (lua_istable(m_L, -1))
+	//		{
+	//			int ref = luaL_ref(m_L, LUA_REGISTRYINDEX);
+	//			behaviour.LuaTableRef = ref;
+
+	//			lua_rawgeti(m_L, LUA_REGISTRYINDEX, ref);
+	//			lua_pushinteger(m_L, <>);
+
+	//		}
+
+	//	}
+
+	//}
 }

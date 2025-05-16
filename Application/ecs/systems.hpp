@@ -43,9 +43,12 @@ public:
 	{
 		auto view = registry.view<Position, BBox, Tag>();
 		view.each([&](entt::entity entity, Position& pos, BBox& box, Tag& tag) {
-			auto plaView = registry.view<Position, BBox, PlayerTag>();
+
+			auto playerView = registry.view<Position, BBox, PlayerTag>();
+			if (playerView.front() == entt::null)
+				std::cout << "Player not found" << std::endl;
 			
-			auto playerEntity = plaView.front();
+			auto playerEntity = *playerView.begin(); // safe
 			Position& playerPos = registry.get<Position>(playerEntity);
 			Movement& playerVel = registry.get<Movement>(playerEntity);
 			BBox& playerBox = registry.get<BBox>(playerEntity);
@@ -302,9 +305,6 @@ public:
 		return false;
 	}
 };
-
-
-
 
 class InfoSystem : public System
 {

@@ -9,4 +9,6 @@ scene.SetComponent(playerEntity, "behaviour", "scripts/player.lua")
 
 dofile("scripts/coin/coinManager.lua")
 dofile("scripts/hat.lua")
--- dofile("scripts/block.lua")
+dofile("scripts/editingBlock.lua")
+block = require("scripts.editingBlock")
+

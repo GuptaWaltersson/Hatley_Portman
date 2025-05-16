@@ -202,4 +202,17 @@ function block.createTree(Width,Height,posX,posY)
 	treeCounter = treeCounter + 1
 end
 
+function block.createPlayer(posX, posY)
+	local entity = scene.CreateEntity()
+	scene.SetComponent(entity, "sprite", "../Textures/Portman.png")
+	scene.SetComponent(entity, "position", position)
+	scene.SetComponent(entity, "boundingbox", { width = 64, height = 64})
+	scene.SetComponent(entity, "movement",movement)
+	scene.SetComponent(entity, "gravity", 1800)
+	scene.SetComponent(entity, "playertag",true)
+	scene.SetComponent(entity, "tag", "player")
+	scene.SetComponent(entity, "lastmove","left")
+	print("player created")
+end
+
 return block

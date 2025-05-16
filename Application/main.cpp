@@ -33,17 +33,10 @@ void LoadScene(lua_State* L, Scene* scene)
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
 		lua_pop(L, 1); 
 	}	
-	
+
 	SceneManager sceneManager(L, scene->m_registry);
 	sceneManager.Load();
-
-	auto view = scene->m_registry.view<Tag>();
-	for (auto entity : view)
-	{
-		const Tag& tag = view.get<Tag>(entity);
-		std::cout << "Entity " << static_cast<uint32_t>(entity) << " has tag: " << tag.name << std::endl;
-	}
-
+	
 }
 
 void LoadEditScene(lua_State* L, Scene* scene)

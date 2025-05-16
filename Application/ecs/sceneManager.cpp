@@ -16,8 +16,7 @@ void SceneManager::Save()
 		json entityJson;
 
 		if (m_registry.all_of<Tag>(entity))
-			if(m_registry.get<Tag>(entity).name != "player")
-				entityJson["tag"] = m_registry.get<Tag>(entity).name;
+			entityJson["tag"] = m_registry.get<Tag>(entity).name;
 
 		if (m_registry.all_of<Sprite>(entity))
 		{
@@ -81,8 +80,6 @@ void SceneManager::Load()
 
 	json sceneJson;
 	file >> sceneJson;
-
-	m_registry.clear();
 
 	for (auto& entityJson : sceneJson)
 	{

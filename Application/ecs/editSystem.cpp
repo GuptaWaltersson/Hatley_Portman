@@ -136,6 +136,47 @@ void EditingSystem::CreateBigMushroom(float xPos, float yPos, int width)
 		std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in create mushroom" << std::endl;
 		lua_pop(m_L, 1);
 	}
+	lua_pop(m_L, 1);
+}
+
+void EditingSystem::CreateMovingCloud(float xPos, float yPos, int width,int speed, float duration)
+{
+	auto view = m_registry.view<Tag,Behaviour>();
+	
+	entt::entity cloudManagerEntity = entt::null;
+	for (auto entity : view) {
+		Tag& tag = m_registry.get<Tag>(entity);
+		if (tag.name == "cloudManager") {
+			cloudManagerEntity = entity;
+			
+		}
+	}
+
+	if (cloudManagerEntity != entt::null) {
+
+		Behaviour& behaviour = m_registry.get<Behaviour>(cloudManagerEntity);
+
+		lua_rawgeti(m_L, LUA_REGISTRYINDEX, behaviour.LuaTableRef); // Push the table
+		lua_getfield(m_L, -1, "NewCloud"); // Get the NewCloud function
+		lua_pushvalue(m_L, -2); // Push the table again as `self`
+
+		lua_pushnumber(m_L, width);
+		lua_pushnumber(m_L, xPos);
+		lua_pushnumber(m_L, yPos);
+		lua_pushnumber(m_L, speed);
+		lua_pushnumber(m_L, duration);
+		if (lua_pcall(m_L, 6, 0, 0) != LUA_OK)
+		{
+			std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in create moving cloud" << std::endl;
+			lua_pop(m_L, 1);
+		}
+		lua_pop(m_L, 1);
+	}
+	else {
+		std::cout << "couldn't find cloudmanager" << std::endl;
+	}
+
+
 }
 
 

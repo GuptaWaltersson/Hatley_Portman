@@ -33,5 +33,6 @@
     <None Include="scripts\editingScene.lua" />
     <None Include="scripts\editingBlock.lua" />
     <None Include="scripts\coin\editCoinManager.lua" />
+    <None Include="scripts\cloud.lua" />
   </ItemGroup>
 </Project>

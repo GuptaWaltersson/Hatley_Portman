@@ -159,8 +159,7 @@ void EditingTool(Scene* scene, lua_State* L)
 			}
 			else if (CheckCollisionPointRec(mousePos, CoinButton))
 			{
-				//edit.CreateCoin(700, 700);
-				//edit.ChangePlayerPosition(500, 500);
+				edit.CreateCoin(700, 700);
 			}
 			else if (CheckCollisionPointRec(mousePos, MushroomButton))
 			{

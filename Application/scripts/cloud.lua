@@ -4,33 +4,7 @@ clouds = {} -- Global table for all clouds
 local cloudCounter = 0
 local cloudID = 0
 local frameDelta = 0
-function moveCloud (cloudID,dx,duration,delta)
-	cloudGroup = clouds[cloudID]
-	if not cloudGroup then return end
 
-	local elapsed =0
-	while elapsed < duration do
-		for _,entity in ipairs(cloudGroup) do
-			local posX,posY = scene.GetComponent(entity,"position")
-			posX = posX + dx* delta
-			scene.SetComponent(entity,"position",{x=posX,y=posY})
-		end
-		coroutine.yield(0)
-		elapsed = elapsed + delta
-	end
-end
-
-function wait(time,delta)
-	local timer = 0
-	while timer < time do
-		coroutine.yield()
-		timer = timer + delta
-	end
-end
-
-function lerp(a,b,t)
-	return a+ (b-a) *t
-end
 
 
 function cloud.OnCreate(self,delta)
@@ -54,16 +28,18 @@ end
 
 
 
-function cloud.NewCloud(self,length,posX,posY,speed,duration)
+function cloud.NewCloud(self,length,posX,posY,speed,duration,waitTime)
 	local id = cloudCounter	
 
 	clouds[id] = {}
-
+	local cloudStat = {length,1,speed,duration}
 	for i=0, length do
+
 		local entity = scene.CreateEntity()
 		table.insert(clouds[id],entity)
 		scene.SetComponent(entity,"tag","cloud")
 		scene.SetComponent(entity, "id", cloudCounter)
+		scene.SetComponent(entity,"block",cloudStat)
 
 		if i == 0 then
 			scene.SetComponent(entity,"sprite","../Textures/tile_0153.png")
@@ -93,9 +69,9 @@ function cloud.NewCloud(self,length,posX,posY,speed,duration)
 			end
 
 			--wait
-			local waittime = 0
-			while waittime < 1 do
-				waittime = waittime + frameDelta
+			local time = 0
+			while time < waitTime do
+				time = time + frameDelta
 				coroutine.yield()
 			end
 			direction = -direction

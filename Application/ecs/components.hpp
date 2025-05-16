@@ -28,6 +28,15 @@ struct Movement
 	bool canJump;
 };
 
+struct Block
+{
+	int width;
+	int height;
+	int speed;
+	float duration;
+	float waitTime;
+};
+
 struct Gravity
 {
 	float acceleration = 9.8;

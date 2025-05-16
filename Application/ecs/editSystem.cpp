@@ -139,7 +139,7 @@ void EditingSystem::CreateBigMushroom(float xPos, float yPos, int width)
 	lua_pop(m_L, 1);
 }
 
-void EditingSystem::CreateMovingCloud(float xPos, float yPos, int width,int speed, float duration)
+void EditingSystem::CreateMovingCloud(float xPos, float yPos, int width,int speed, float duration,float waitTime)
 {
 	auto view = m_registry.view<Tag,Behaviour>();
 	
@@ -165,7 +165,8 @@ void EditingSystem::CreateMovingCloud(float xPos, float yPos, int width,int spee
 		lua_pushnumber(m_L, yPos);
 		lua_pushnumber(m_L, speed);
 		lua_pushnumber(m_L, duration);
-		if (lua_pcall(m_L, 6, 0, 0) != LUA_OK)
+		lua_pushnumber(m_L, waitTime);
+		if (lua_pcall(m_L, 7, 0, 0) != LUA_OK)
 		{
 			std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in create moving cloud" << std::endl;
 			lua_pop(m_L, 1);

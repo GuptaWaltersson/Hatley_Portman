@@ -152,7 +152,7 @@ void EditingTool(Scene* scene, lua_State* L)
 		{
 			if (CheckCollisionPointRec(mousePos, CloudButton))
 			{
-				edit.CreateMovingCloud(ScreenWidth / 2, ScreenHeight / 2, 3,100,3);
+				edit.CreateMovingCloud(ScreenWidth / 2, ScreenHeight / 2, 3,100,3,0.1);
 			}
 			else if (CheckCollisionPointRec(mousePos, TreeButton))
 			{
@@ -160,7 +160,7 @@ void EditingTool(Scene* scene, lua_State* L)
 			}
 			else if (CheckCollisionPointRec(mousePos, CoinButton))
 			{
-				edit.CreateCoin(700, 700);
+				//edit.CreateCoin(700, 700);
 			}
 			else if (CheckCollisionPointRec(mousePos, MushroomButton))
 			{

@@ -190,6 +190,9 @@ int Scene::lua_HasComponent(lua_State* L)
 	else if (type == "lastmove") {
 		hasComponent = scene->HasComponents<LastMove>(entity);
 	}
+	else if (type == "block") {
+		hasComponent = scene->HasComponents<Block>(entity);
+	}
 	lua_pushboolean(L, hasComponent);
 	return 1;
 }
@@ -251,6 +254,28 @@ int Scene::lua_GetComponent(lua_State* L)
 
 		lua_pushboolean(L, mov.canJump);
 		lua_setfield(L, -2, "canJump");
+	}
+	else if (type == "block")
+	{
+		Block& blo = scene->GetComponent<Block>(entity);
+
+		lua_newtable(L);
+
+		lua_pushnumber(L, blo.width);
+		lua_setfield(L, -2, "width");
+
+		lua_pushnumber(L, blo.height);
+		lua_setfield(L, -2, "height");
+
+		lua_pushnumber(L, blo.speed);
+		lua_setfield(L, -2, "speed");
+
+		lua_pushnumber(L, blo.duration);
+		lua_setfield(L, -2, "duration");
+
+		lua_pushnumber(L, blo.waitTime);
+		lua_setfield(L, -2, "waitTime");
+
 	}
 	else if (type == "playertag")
 	{
@@ -364,6 +389,35 @@ int Scene::lua_SetComponent(lua_State* L)
 
 		scene->SetComponent<Movement>(entity, { dx, dy,ax,ay });
 	}
+	else if (type == "block")
+	{
+		if (!lua_istable(L, 3)) {
+			luaL_error(L, "Excpected table for block");
+			return 0;
+		}
+
+		lua_getfield(L, 3, "width");
+		int width = luaL_optnumber(L, -1, 0.0f);
+		lua_pop(L, 1);
+
+		lua_getfield(L, 3, "height");
+		int height = luaL_optnumber(L, -1, 0.0f);
+		lua_pop(L, 1);
+
+		lua_getfield(L, 3, "speed");
+		int speed = luaL_optnumber(L, -1, 0.0f);
+		lua_pop(L, 1);
+
+		lua_getfield(L, 3, "duration");
+		float duration = luaL_optnumber(L, -1, 0.0f);
+		lua_pop(L, 1);
+
+		lua_getfield(L, 3, "waitTime");
+		float waitTime = luaL_optnumber(L, -1, 0.0f);
+		lua_pop(L, 1);
+
+		scene->SetComponent<Block>(entity, { width,height,speed,duration,waitTime });
+	}
 	else if (type == "behaviour")
 	{
 		if (scene->HasComponents<Behaviour>(entity))
@@ -461,6 +515,10 @@ int Scene::lua_RemoveComponent(lua_State* L)
 	else if (type == "lastmove")
 	{
 		scene->RemoveComponent<LastMove>(entity);
+	}
+	else if (type == "block")
+	{
+		scene->RemoveComponent<Block>(entity);
 	}
 	else
 	{

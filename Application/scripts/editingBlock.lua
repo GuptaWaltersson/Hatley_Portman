@@ -64,11 +64,12 @@ end
 
 mushroomCounter = 0
 function block.createMushroom(length,posX,posY)
+	local mushroomBlock = {width = length, height = 1, speed = 0, duration = 0, waitTime = 0}
 	for i = 0, length do
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"tag","mushroom")
 		scene.SetComponent(entity, "id", mushroomCounter)
-		
+		scene.SetComponent(entity,"block",mushroomBlock)
 		if i == 0 then
 			scene.SetComponent(entity,"sprite","../Textures/tile_0014.png")
 			scene.SetComponent(entity,"boundingbox",{width=60,height=30})
@@ -90,6 +91,7 @@ function block.createMushroom(length,posX,posY)
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"tag","mushroom")
 		scene.SetComponent(entity, "id", mushroomCounter)
+		scene.SetComponent(entity,"block",mushroomBlock)
 		scene.SetComponent(entity,"sprite","../Textures/tile_0032.png")
 		scene.SetComponent(entity,"position",{x = posX +(72*length/2),y=posY+72*i})
 	end
@@ -97,11 +99,12 @@ function block.createMushroom(length,posX,posY)
 end
 
 
-function slimTree(Height,posX,posY)
+function slimTree(Height,posX,posY,treeBlock)
 	for i = 1, Height do
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"tag","tree")
 		scene.SetComponent(entity,"id",treeCounter)
+		scene.SetComponent(entity,"block",treeBlock)
 		if i == 1 then
 			scene.SetComponent(entity,"sprite","../Textures/leafs/tile_0036.png")
 		elseif i == Height then
@@ -114,11 +117,13 @@ function slimTree(Height,posX,posY)
 	end
 end
 
-function chunkyTree(Width,posX,posY)
+function chunkyTree(Width,posX,posY,treeBlock)
 	for i = 1, Width do
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"tag","tree")
 		scene.SetComponent(entity,"id",treeCounter)
+		scene.SetComponent(entity,"block",treeBlock)
+
 		if i == 1 then
 			scene.SetComponent(entity,"sprite","../Textures/leafs/tile_0077.png")
 		elseif i == Width then
@@ -132,12 +137,14 @@ function chunkyTree(Width,posX,posY)
 	end
 end
 
-function Tree (Height,Width,posX,posY) -- Call this when width and height are at least 2 each
+function Tree (Height,Width,posX,posY,treeBlock) -- Call this when width and height are at least 2 each
 	for i =1, Height do
 		for j= 1, Width do
 			local entity = scene.CreateEntity()
 			scene.SetComponent(entity,"tag","tree")
 			scene.SetComponent(entity,"id",treeCounter)
+			scene.SetComponent(entity,"block",treeBlock)
+
 			if j == 1 and i == 1 then
 				scene.SetComponent(entity,"sprite","../Textures/leafs/tile_0017.png")
 			elseif j == Width and i == 1 then
@@ -165,7 +172,7 @@ function Tree (Height,Width,posX,posY) -- Call this when width and height are at
 	end		
 end
 
-function createTrunk(Width,Height,posX,posY)
+function createTrunk(Width,Height,posX,posY,treeBlock)
 	treeMid = posX + Width*36-36;
 	treeBot = posY + Height *72-12;
 
@@ -173,6 +180,8 @@ function createTrunk(Width,Height,posX,posY)
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"tag","tree")
 		scene.SetComponent(entity,"id",treeCounter)
+		scene.SetComponent(entity,"block",treeBlock)
+
 		if i == 0 then
 			scene.SetComponent(entity,"sprite","../Textures/tile_0096.png")
 		else
@@ -185,20 +194,22 @@ end
 
 treeCounter = 0
 function block.createTree(Width,Height,posX,posY)
+	local treeBlock = {width = Width, height = Height, speed = 0, duration=0, waitTime = 0}
 	if Height == 1 and Width == 1 then
 		local entity = scene.CreateEntity()
+		scene.SetComponent(entity,"block",treeBlock)
 		scene.SetComponent(entity,"tag","block")
 		scene.SetComponent(entity,"sprite","../Textures/leafs/tile_0016.png")
 		scene.SetComponent(entity,"position",{x=posX,y=posY})
 		scene.SetComponent(entity,"boundingbox",{width=60,height=60})
 	elseif Width == 1 then
-		slimTree(Height,posX,posY)
+		slimTree(Height,posX,posY,treeBlock)
 	elseif Height == 1 then
-		chunkyTree(Width,posX,posY)
+		chunkyTree(Width,posX,posY,treeBlock)
 	else
 		Tree(Height,Width,posX,posY)
 	end
-	createTrunk(Width,Height,posX,posY)
+	createTrunk(Width,Height,posX,posY,treeBlock)
 	treeCounter = treeCounter + 1
 end
 

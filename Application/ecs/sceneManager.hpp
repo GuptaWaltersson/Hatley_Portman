@@ -11,8 +11,6 @@ public:
 	
 	void Save();
 	void Load();
-	void Load2();
-	void RebindLuaBehaviours();
 private:
 	entt::registry& m_registry;
 	lua_State* m_L;

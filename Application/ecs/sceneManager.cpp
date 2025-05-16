@@ -17,6 +17,9 @@ void SceneManager::Save()
 	{
 		json entityJson;
 
+		if (m_registry.get<Tag>(entity).name == "ground1" || m_registry.get<Tag>(entity).name == "ground2")
+			continue;
+
 		if (m_registry.all_of<Tag>(entity))
 			entityJson["tag"] = m_registry.get<Tag>(entity).name;
 
@@ -83,24 +86,45 @@ void SceneManager::Load()
 	json sceneJson;
 	file >> sceneJson;
 
-	std::set<std::pair<std::string, std::optional<int>>> seen;
+	std::map<std::pair<std::string, std::optional<int>>, json> bestEntities;
 
 	for (auto& entityJson : sceneJson)
 	{
+		if (!entityJson.contains("tag") || !entityJson.contains("position"))
+			continue;
+
+		std::string tag = entityJson["tag"].get<std::string>();
+		auto pos = entityJson["position"];
+		float x = pos["x"].get<float>();
+		float y = pos["y"].get<float>();
+
+		std::optional<int> groupId = std::nullopt;
+		if (entityJson.contains("group"))
+			groupId = entityJson["group"].get<int>();
+
+		auto key = std::make_pair(tag, groupId);
+
+		// Compare and keep entity closest to top-left (smallest y, then smallest x)
+		if (!bestEntities.count(key)) {
+			bestEntities[key] = entityJson;
+		}
+		else {
+			auto& current = bestEntities[key];
+			float cx = current["position"]["x"].get<float>();
+			float cy = current["position"]["y"].get<float>();
+
+			if (y < cy || (y == cy && x < cx)) {
+				bestEntities[key] = entityJson;
+			}
+		}
+	}
+
+	for (const auto& [key, entityJson] : bestEntities)
+	{
 		if (entityJson.contains("tag"))
 		{
-			std::string tag = entityJson["tag"].get<std::string>();
+			const std::string& tag = key.first;
 
-			std::optional<int> groupId = std::nullopt;
-			if (entityJson.contains("group")) {
-				groupId = entityJson["group"].get<int>();
-			}
-
-			auto key = std::make_pair(tag, groupId);
-			if (seen.find(key) != seen.end())
-				continue;
-
-			seen.insert(key);
 
 			if (tag == "cloud")
 			{
@@ -133,119 +157,4 @@ void SceneManager::Load()
 		}
 	}
 	std::cout << "Scene loaded from scene.json" << std::endl;
-}
-
-void SceneManager::Load2()
-{
-	using json = nlohmann::json;
-
-	std::ifstream file("scene.json");
-	if (!file.is_open())
-	{
-		std::cerr << "Failed to open scene.json" << std::endl;
-		return;
-	}
-
-	json sceneJson;
-	file >> sceneJson;
-
-	m_registry.clear();
-
-	for (auto& entityJson : sceneJson)
-	{
-		auto entity = m_registry.create();
-
-		if (entityJson.contains("tag")) {
-			std::string tagName = entityJson["tag"].get<std::string>();
-
-			if (tagName == "player") {
-					auto view = m_registry.view<Tag, PlayerTag, Position>();
-					view.each([&](Tag& t, PlayerTag& playerTag, Position& pos)
-					{
-						std::cout << t.name << std::endl;
-						pos.x = entityJson["position"]["x"];
-						pos.y = entityJson["position"]["y"];
-					});
-				continue;
-			}
-			else {
-				m_registry.emplace<Tag>(entity, tagName);
-			}
-		}
-
-		if (entityJson.contains("sprite") && entityJson["sprite"].is_object())
-		{
-			auto& spriteData = entityJson["sprite"];
-			std::string texturePath = spriteData.at("texturePath").get<std::string>();
-			int scale = spriteData.at("scale").get<int>();
-
-			auto& sprite = m_registry.emplace<Sprite>(entity, texturePath);
-			sprite.scale = scale;
-		}
-
-		if (entityJson.contains("position"))
-		{
-			auto& posData = entityJson["position"];
-			m_registry.emplace<Position>(entity, posData["x"].get<float>(), posData["y"].get<float>());
-		}
-
-		if (entityJson.contains("bbox"))
-		{
-			auto& bboxData = entityJson["bbox"];
-			m_registry.emplace<BBox>(entity, bboxData["width"].get<float>(), bboxData["height"].get<float>());
-		}
-
-		if (entityJson.contains("movement"))
-		{
-			auto& moveData = entityJson["movement"];
-			m_registry.emplace<Movement>(entity, moveData["dx"].get<float>(), moveData["dy"].get<float>(), moveData["ax"].get<float>(), moveData["ay"].get<float>(), moveData["canJump"].get<bool>());
-		}
-
-		if (entityJson.contains("gravity"))
-			m_registry.emplace<Gravity>(entity, entityJson["gravity"]["acceleration"].get<float>());
-
-		if (entityJson.contains("playertag"))
-			m_registry.emplace<PlayerTag>(entity, entityJson["playertag"].get<bool>());
-
-		if (entityJson.contains("hattag"))
-			m_registry.emplace<HatTag>(entity, entityJson["hattag"]["onHead"].get<bool>(), entityJson["hattag"]["hatType"].get<int>());
-
-		if (entityJson.contains("lastmove"))
-			m_registry.emplace<LastMove>(entity, entityJson["lastmove"].get<std::string>());
-
-		if (entityJson.contains("group"))
-			m_registry.emplace<GroupID>(entity, entityJson["group"].get<int>());
-
-		if (entityJson.contains("behaviour"))
-		{
-			std::string scriptPath = entityJson["behaviour"].get<std::string>();
-			m_registry.emplace<Behaviour>(entity, scriptPath.c_str(), 0);
-		}
-	}
-	std::cout << "Scene loaded from scene.json" << std::endl;
-
-}
-
-void SceneManager::RebindLuaBehaviours()
-{
-	//auto view = m_registry.view<Behaviour>();
-	//for (auto entity : view)
-	//{
-	//	auto& behaviour = view.get<Behaviour>(entity);
-
-	//	if (luaL_dofile(m_L, behaviour.ScriptPath) == LUA_OK) 
-	//	{
-	//		if (lua_istable(m_L, -1))
-	//		{
-	//			int ref = luaL_ref(m_L, LUA_REGISTRYINDEX);
-	//			behaviour.LuaTableRef = ref;
-
-	//			lua_rawgeti(m_L, LUA_REGISTRYINDEX, ref);
-	//			lua_pushinteger(m_L, <>);
-
-	//		}
-
-	//	}
-
-	//}
 }

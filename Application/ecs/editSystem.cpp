@@ -153,7 +153,6 @@ void EditingSystem::CreateBigMushroom(float xPos, float yPos, int width)
 	}
 }
 
-
 void EditingSystem::ChangeHatThrow(int HatThrow)
 {
 	auto hat = m_registry.view<HatTag,Behaviour>().front();

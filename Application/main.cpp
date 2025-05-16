@@ -107,10 +107,13 @@ void EditingTool(Scene* scene, lua_State* L)
 
 	int HatThrow = 1;
 	int MaxAmountofThrows = 2;
+	Rectangle TreeButton = { 100.0f,850.0f,100,70 };
+	Rectangle TreeOption = { 210.0f,850.0f,30,70 };
 	Rectangle CloudButton = { 280.0f, 850.0f, 120, 70 };
-	Rectangle TreeButton = { 100.0f,850.0f,120,70 };
-	Rectangle CoinButton = { 460.0f,850.0f,120,70 };
+	Rectangle CloudOption = { 410.0f,850.0f,30,70 };
+	Rectangle CoinButton = { 475.0f,850.0f,100,70 };
 	Rectangle MushroomButton = { 640.0f,850.0f,150,70 };
+	Rectangle MushroomOption = { 800.0f,850.0f,30,70 };
 	Rectangle HatButton = { 850.0f,850.0f,180,70 };
 	Rectangle SaveButton = { 1400.0f,850.0f,120,70};
 
@@ -125,15 +128,20 @@ void EditingTool(Scene* scene, lua_State* L)
 
 		DrawRectangleRec(CloudButton, WHITE);
 		DrawText("Cloud", CloudButton.x + 5, CloudButton.y + 25, 20, BLACK);
+		DrawRectangleRec(CloudOption, WHITE);
 
 		DrawRectangleRec(TreeButton, WHITE);
 		DrawText("Tree", TreeButton.x + 5, TreeButton.y + 25, 20, BLACK);
+		DrawRectangleRec(TreeOption, WHITE);
+		DrawText("|",TreeOption.x+10,TreeOption.y+25,20,BLACK);
+		DrawText("^", TreeOption.x + 5, TreeOption.y + 20, 40, BLACK);
 
 		DrawRectangleRec(CoinButton, WHITE);
 		DrawText("Coin", CoinButton.x + 5, CoinButton.y + 25, 20, BLACK);
 
 		DrawRectangleRec(MushroomButton, WHITE);
 		DrawText("Big Mushroom", MushroomButton.x + 5, MushroomButton.y + 25, 20, BLACK);
+		DrawRectangleRec(MushroomOption, WHITE);
 
 		DrawRectangleRec(HatButton, WHITE);
 		if (HatThrow == 2)
@@ -183,6 +191,10 @@ void EditingTool(Scene* scene, lua_State* L)
 				}
 				edit.ChangeHatThrow(HatThrow);
 			}
+			else if (CheckCollisionPointRec(mousePos, TreeOption))
+			{
+
+			}
 		}
 
 		if (IsKeyPressed(KEY_ESCAPE)) {
@@ -195,7 +207,10 @@ void EditingTool(Scene* scene, lua_State* L)
 		EndDrawing();
 	}
 	scene->Clear();
+
 }
+
+
 
 void GameLoop(Scene* scene, lua_State* L)
 {

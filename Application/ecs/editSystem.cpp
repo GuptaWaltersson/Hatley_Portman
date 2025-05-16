@@ -36,6 +36,8 @@ void EditingSystem::SelectEntity()
 
 }
 
+
+
 void EditingSystem::CreateCloud(float xPos, float yPos, int width)
 {
 

@@ -12,7 +12,7 @@ scene.SetComponent(cloudEntity,"tag","cloudManager")
 
 
 
---dofile("scripts/coin/coinManager.lua")
+--dofile("scripts/coin/editCoinManager.lua")
 -- dofile("scripts/hat.lua")
 --dofile("scripts/editingBlock.lua")
 

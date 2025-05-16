@@ -213,15 +213,17 @@ function block.createTree(Width,Height,posX,posY)
 	treeCounter = treeCounter + 1
 end
 
---createMushroom(6,6,1000,400) --Length, Height, X position, Y position
---createCloud(5,300,550) --Length of cloud, X position, Y position
---createCloud(8,500,170)
---createSmallBlock(770,750) -- X postion, Y position
---createSmallBlock(1070,750)
---createTree(3,3,500,500)
---createTree(1,1,18,18)
---createTree(3,1,1000,400)
---createTree(1,5,300,200)
---createTree(7,3,1200,200)
+function block.createPlayer(posX, posY)
+	local entity = scene.CreateEntity()
+	scene.SetComponent(entity, "sprite", "../Textures/Portman.png")
+	scene.SetComponent(entity, "position", position)
+	scene.SetComponent(entity, "boundingbox", { width = 64, height = 64})
+	scene.SetComponent(entity, "movement",movement)
+	scene.SetComponent(entity, "gravity", 1800)
+	scene.SetComponent(entity, "playertag",true)
+	scene.SetComponent(entity, "tag", "player")
+	scene.SetComponent(entity, "lastmove","left")
+	print("player created")
+end
 
 return block

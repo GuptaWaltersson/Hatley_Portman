@@ -14,6 +14,7 @@ function player.OnCreate(self)
 	scene.SetComponent(self.ID, "playertag",true)
 	scene.SetComponent(self.ID, "tag", "player")
 	scene.SetComponent(self.ID, "lastmove","left")
+	print("player created")
 end
 
 function player.changePosition(self,posX,posY)

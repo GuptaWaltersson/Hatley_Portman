@@ -1,7 +1,10 @@
 #include "sceneManager.hpp"
+#include "editSystem.hpp"
 #include "json.hpp"
 #include <fstream>
 #include <iostream>
+#include <set>
+#include <optional>
 
 void SceneManager::Save()
 {
@@ -13,6 +16,9 @@ void SceneManager::Save()
 	for (auto entity : view)
 	{
 		json entityJson;
+
+		if (m_registry.get<Tag>(entity).name == "ground1" || m_registry.get<Tag>(entity).name == "ground2")
+			continue;
 
 		if (m_registry.all_of<Tag>(entity))
 			entityJson["tag"] = m_registry.get<Tag>(entity).name;
@@ -50,6 +56,12 @@ void SceneManager::Save()
 		if (m_registry.all_of<GroupID>(entity))
 			entityJson["group"] = m_registry.get<GroupID>(entity).id;
 
+		if (m_registry.all_of<Behaviour>(entity))
+		{
+			const auto& behaviour = m_registry.get<Behaviour>(entity);
+			entityJson["behaviour"] = behaviour.ScriptPath;
+		}
+
 		sceneJson.push_back(entityJson);
 	}
 	std::ofstream file("scene.json");
@@ -62,6 +74,7 @@ void SceneManager::Save()
 void SceneManager::Load()
 {
 	using json = nlohmann::json;
+	EditingSystem edit(m_L, m_registry);
 
 	std::ifstream file("scene.json");
 	if (!file.is_open())
@@ -73,76 +86,75 @@ void SceneManager::Load()
 	json sceneJson;
 	file >> sceneJson;
 
-	m_registry.clear();
+	std::map<std::pair<std::string, std::optional<int>>, json> bestEntities;
 
 	for (auto& entityJson : sceneJson)
 	{
-		auto entity = m_registry.create();
+		if (!entityJson.contains("tag") || !entityJson.contains("position"))
+			continue;
 
-		if (entityJson.contains("tag")) {
-			std::string tagName = entityJson["tag"].get<std::string>();
+		std::string tag = entityJson["tag"].get<std::string>();
+		auto pos = entityJson["position"];
+		float x = pos["x"].get<float>();
+		float y = pos["y"].get<float>();
 
-			if (tagName == "player") {
-					auto view = m_registry.view<Tag, PlayerTag, Position>();
-					view.each([&](Tag& t, PlayerTag& playerTag, Position& pos)
-					{
-						std::cout << t.name << std::endl;
-						pos.x = entityJson["position"]["x"];
-						pos.y = entityJson["position"]["y"];
-					});
-				continue;
-			}
-			else {
-				m_registry.emplace<Tag>(entity, tagName);
-			}
-		}
-
-
-
-
-		if (entityJson.contains("sprite") && entityJson["sprite"].is_object())
-		{
-			auto& spriteData = entityJson["sprite"];
-			std::string texturePath = spriteData.at("texturePath").get<std::string>();
-			int scale = spriteData.at("scale").get<int>();
-
-			auto& sprite = m_registry.emplace<Sprite>(entity, texturePath);
-			sprite.scale = scale;
-		}
-
-		if (entityJson.contains("position"))
-		{
-			auto& posData = entityJson["position"];
-			m_registry.emplace<Position>(entity, posData["x"].get<float>(), posData["y"].get<float>());
-		}
-
-		if (entityJson.contains("bbox"))
-		{
-			auto& bboxData = entityJson["bbox"];
-			m_registry.emplace<BBox>(entity, bboxData["width"].get<float>(), bboxData["height"].get<float>());
-		}
-
-		if (entityJson.contains("movement"))
-		{
-			auto& moveData = entityJson["movement"];
-			m_registry.emplace<Movement>(entity, moveData["dx"].get<float>(), moveData["dy"].get<float>(), moveData["ax"].get<float>(), moveData["ay"].get<float>(), moveData["canJump"].get<bool>());
-		}
-
-		if (entityJson.contains("gravity"))
-			m_registry.emplace<Gravity>(entity, entityJson["gravity"]["acceleration"].get<float>());
-
-		if (entityJson.contains("playertag"))
-			m_registry.emplace<PlayerTag>(entity, entityJson["playertag"].get<bool>());
-
-		if (entityJson.contains("hattag"))
-			m_registry.emplace<HatTag>(entity, entityJson["hattag"]["onHead"].get<bool>(), entityJson["hattag"]["hatType"].get<int>());
-
-		if (entityJson.contains("lastmove"))
-			m_registry.emplace<LastMove>(entity, entityJson["lastmove"].get<std::string>());
-
+		std::optional<int> groupId = std::nullopt;
 		if (entityJson.contains("group"))
-			m_registry.emplace<GroupID>(entity, entityJson["group"].get<int>());
+			groupId = entityJson["group"].get<int>();
+
+		auto key = std::make_pair(tag, groupId);
+
+		// Compare and keep entity closest to top-left (smallest y, then smallest x)
+		if (!bestEntities.count(key)) {
+			bestEntities[key] = entityJson;
+		}
+		else {
+			auto& current = bestEntities[key];
+			float cx = current["position"]["x"].get<float>();
+			float cy = current["position"]["y"].get<float>();
+
+			if (y < cy || (y == cy && x < cx)) {
+				bestEntities[key] = entityJson;
+			}
+		}
+	}
+
+	for (const auto& [key, entityJson] : bestEntities)
+	{
+		if (entityJson.contains("tag"))
+		{
+			const std::string& tag = key.first;
+
+
+			if (tag == "cloud")
+			{
+				float x = entityJson["position"]["x"].get<float>();
+				float y = entityJson["position"]["y"].get<float>();
+				//int width = entityJson["bbox"]["width"].get<float>();
+				edit.CreateCloud(x, y, 4);
+			}
+			else if (tag == "tree")
+			{
+				float x = entityJson["position"]["x"].get<float>();
+				float y = entityJson["position"]["y"].get<float>();
+				//int width = entityJson["bbox"]["width"].get<float>();
+				//int height = entityJson["bbox"]["height"].get<float>();
+				edit.CreateTree(x, y, 2, 2);
+			}
+			else if (tag == "coin")
+			{
+				float x = entityJson["position"]["x"].get<float>();
+				float y = entityJson["position"]["y"].get<float>();
+				edit.CreateCoin(x, y);
+			}
+			else if (tag == "mushroom")
+			{
+				float x = entityJson["position"]["x"].get<float>();
+				float y = entityJson["position"]["y"].get<float>();
+				//int width = entityJson["bbox"]["width"].get<float>();
+				edit.CreateBigMushroom(x, y, 5);
+			}
+		}
 	}
 	std::cout << "Scene loaded from scene.json" << std::endl;
-
 }

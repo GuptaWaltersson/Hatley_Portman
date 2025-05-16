@@ -29,15 +29,14 @@ void LoadScene(lua_State* L, Scene* scene)
 {
 	scene->Clear();
 
-	SceneManager sceneManager(scene->m_registry);
-
-	sceneManager.Load();
-
 	if (luaL_dofile(L, "scripts/scene.lua") != LUA_OK) {
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
 		lua_pop(L, 1); 
-	}
+	}	
 
+	SceneManager sceneManager(L, scene->m_registry);
+	sceneManager.Load();
+	
 }
 
 void LoadEditScene(lua_State* L, Scene* scene)
@@ -101,7 +100,7 @@ void EditingTool(Scene* scene, lua_State* L)
 	Scene::lua_openScene(L, scene);
 
 	EditingSystem edit(L, scene->m_registry);
-	SceneManager sceneManager(scene->m_registry);
+	SceneManager sceneManager(L, scene->m_registry);
 
 	LoadEditScene(L, scene);
 

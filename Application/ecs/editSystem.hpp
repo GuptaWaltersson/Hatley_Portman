@@ -17,6 +17,7 @@ public:
 
     void SelectEntity();
 
+    void CreatePlayer(float xPos, float yPos);
     void CreateCloud(float xPos, float yPos, int width);
     void CreateTree(float xPos, float yPos, int width, int height);
     void CreateCoin(float xPos, float yPos);

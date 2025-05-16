@@ -207,7 +207,7 @@ function block.createTree(Width,Height,posX,posY)
 	elseif Height == 1 then
 		chunkyTree(Width,posX,posY,treeBlock)
 	else
-		Tree(Height,Width,posX,posY)
+		Tree(Height,Width,posX,posY,treeBlock)
 	end
 	createTrunk(Width,Height,posX,posY,treeBlock)
 	treeCounter = treeCounter + 1

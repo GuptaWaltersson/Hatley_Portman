@@ -16,6 +16,13 @@ function player.OnCreate(self)
 	scene.SetComponent(self.ID, "lastmove","left")
 end
 
+function player.changePosition(self,posX,posY)
+	print("changeplayerpos"..posX..posY)
+	position = {x = posX,y = posY}
+	scene.SetComponent(self.ID,"position",position)
+
+end
+
 function player.OnUpdate(delta)
 	
 	--print("Player Update!")

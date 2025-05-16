@@ -200,3 +200,23 @@ void EditingSystem::ChangeHatThrow(int HatThrow)
 	lua_pop(m_L, 1);
 }
 
+void EditingSystem::ChangePlayerPosition(float xPos, float yPos)
+{
+	auto player = m_registry.view<PlayerTag, Behaviour>().front();
+	Behaviour& script = m_registry.get<Behaviour>(player);
+
+
+	lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
+	lua_getfield(m_L, -1, "changePosition");
+	lua_pushvalue(m_L, -2);
+	lua_pushnumber(m_L, xPos);
+	lua_pushnumber(m_L, yPos);
+
+	if (lua_pcall(m_L, 3, 0, 0) != LUA_OK)
+	{
+		std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in changePlayerPosition" << std::endl;
+		lua_pop(m_L, 1);
+	}
+	lua_pop(m_L, 1);
+}
+

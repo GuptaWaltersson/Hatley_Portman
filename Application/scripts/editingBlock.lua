@@ -194,7 +194,7 @@ end
 
 treeCounter = 0
 function block.createTree(Width,Height,posX,posY)
-	local treeBlock = {width = Width, height = Height, speed = 0, duration=0, waitTime = 0}
+	treeBlock = {width = Width, height = Height, speed = 0, duration=0, waitTime = 0}
 	if Height == 1 and Width == 1 then
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"block",treeBlock)
@@ -207,7 +207,7 @@ function block.createTree(Width,Height,posX,posY)
 	elseif Height == 1 then
 		chunkyTree(Width,posX,posY,treeBlock)
 	else
-		Tree(Height,Width,posX,posY)
+		Tree(Height,Width,posX,posY,treeBlock)
 	end
 	createTrunk(Width,Height,posX,posY,treeBlock)
 	treeCounter = treeCounter + 1

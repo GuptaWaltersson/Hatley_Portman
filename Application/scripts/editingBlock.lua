@@ -93,7 +93,7 @@ function block.createMushroom(length,posX,posY)
 		scene.SetComponent(entity, "id", mushroomCounter)
 		scene.SetComponent(entity,"block",mushroomBlock)
 		scene.SetComponent(entity,"sprite","../Textures/tile_0032.png")
-		scene.SetComponent(entity,"position",{x = posX +(72*length/2),y=posY+72*i})
+		scene.SetComponent(entity,"position",{x = posX +(72*length/2),y=posY+68*i})
 	end
 	mushroomCounter = mushroomCounter + 1
 end
@@ -198,7 +198,8 @@ function block.createTree(Width,Height,posX,posY)
 	if Height == 1 and Width == 1 then
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"block",treeBlock)
-		scene.SetComponent(entity,"tag","block")
+		scene.SetComponent(entity,"tag","tree")
+		scene.SetComponent(entity,"id",treeCounter)
 		scene.SetComponent(entity,"sprite","../Textures/leafs/tile_0016.png")
 		scene.SetComponent(entity,"position",{x=posX,y=posY})
 		scene.SetComponent(entity,"boundingbox",{width=60,height=60})

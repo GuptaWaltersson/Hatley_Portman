@@ -51,6 +51,7 @@ void EditingSystem::CreatePlayer(float xPos, float yPos)
 	lua_pop(m_L, 1);
 }
 
+
 void EditingSystem::CreateCloud(float xPos, float yPos, int width)
 {
 

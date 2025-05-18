@@ -1,0 +1,109 @@
+[
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "behaviour": "scripts/coin/coin.lua",
+        "group": 1048628,
+        "position": {
+            "x": 682.0,
+            "y": 707.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "behaviour": "scripts/coin/coin.lua",
+        "group": 1048627,
+        "position": {
+            "x": 782.0,
+            "y": 760.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "behaviour": "scripts/coin/coin.lua",
+        "group": 1048626,
+        "position": {
+            "x": 594.0,
+            "y": 657.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "behaviour": "scripts/cloud.lua",
+        "tag": "cloudManager"
+    },
+    {
+        "bbox": {
+            "height": 64.0,
+            "width": 64.0
+        },
+        "behaviour": "scripts/player.lua",
+        "gravity": {
+            "acceleration": 1800.0
+        },
+        "lastmove": "left",
+        "movement": {
+            "ax": 2400.0,
+            "ay": 700.0,
+            "canJump": false,
+            "dx": 0.0,
+            "dy": -300.0
+        },
+        "playertag": true,
+        "position": {
+            "x": 200.0,
+            "y": 700.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/Portman.png"
+        },
+        "tag": "player"
+    },
+    {
+        "behaviour": "scripts/hat.lua",
+        "hattag": {
+            "hatType": 1,
+            "onHead": true
+        },
+        "lastmove": "left",
+        "movement": {
+            "ax": 2400.0,
+            "ay": 700.0,
+            "canJump": false,
+            "dx": 0.0,
+            "dy": 0.0
+        },
+        "position": {
+            "x": 1000.0,
+            "y": 700.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/Hat.png"
+        },
+        "tag": "hat"
+    }
+]

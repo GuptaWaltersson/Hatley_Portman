@@ -2,10 +2,13 @@ local coin = {}
 local coinCounter = require("scripts.coin.coinCounter")
 
 -- Behaviours
+dCounter = 0
 function coin.OnCreate(self)
 	scene.SetComponent(self.ID, "tag", "coin")
 	scene.SetComponent(self.ID, "sprite", "../Textures/tile_0067.png")
 	scene.SetComponent(self.ID, "boundingbox", { width = 50, height = 50})
+	scene.SetComponent(self.ID, "id", self.ID)
+	dCounter = dCounter + 1
 
 	local x, y = scene.GetComponent(self.ID, "position")
     self.baseY = y

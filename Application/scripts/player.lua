@@ -17,6 +17,13 @@ function player.OnCreate(self)
 	print("player created")
 end
 
+function player.changePosition(self,posX,posY)
+	print("changeplayerpos"..posX..posY)
+	position = {x = posX,y = posY}
+	scene.SetComponent(self.ID,"position",position)
+
+end
+
 function player.OnUpdate(delta)
 	
 	--print("Player Update!")

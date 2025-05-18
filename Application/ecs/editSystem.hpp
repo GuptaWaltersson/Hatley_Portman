@@ -22,8 +22,9 @@ public:
     void CreateTree(float xPos, float yPos, int width, int height);
     void CreateCoin(float xPos, float yPos);
 	void CreateBigMushroom(float xPos, float yPos, int width);
-
+    void CreateMovingCloud(float xPos, float yPos, int width,int speed,float duration, float waitTime);
     void ChangeHatThrow(int HatThrow);
+    void ChangePlayerPosition(float xPos, float yPos);
 private:
 	void MoveEntity(Vector2 mousePos);
 

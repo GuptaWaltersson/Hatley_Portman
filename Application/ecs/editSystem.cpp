@@ -51,6 +51,7 @@ void EditingSystem::CreatePlayer(float xPos, float yPos)
 	lua_pop(m_L, 1);
 }
 
+
 void EditingSystem::CreateCloud(float xPos, float yPos, int width)
 {
 
@@ -151,6 +152,48 @@ void EditingSystem::CreateBigMushroom(float xPos, float yPos, int width)
 		std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in create mushroom" << std::endl;
 		lua_pop(m_L, 1);
 	}
+	lua_pop(m_L, 1);
+}
+
+void EditingSystem::CreateMovingCloud(float xPos, float yPos, int width,int speed, float duration,float waitTime)
+{
+	auto view = m_registry.view<Tag,Behaviour>();
+	
+	entt::entity cloudManagerEntity = entt::null;
+	for (auto entity : view) {
+		Tag& tag = m_registry.get<Tag>(entity);
+		if (tag.name == "cloudManager") {
+			cloudManagerEntity = entity;
+			
+		}
+	}
+
+	if (cloudManagerEntity != entt::null) {
+
+		Behaviour& behaviour = m_registry.get<Behaviour>(cloudManagerEntity);
+
+		lua_rawgeti(m_L, LUA_REGISTRYINDEX, behaviour.LuaTableRef); // Push the table
+		lua_getfield(m_L, -1, "NewCloud"); // Get the NewCloud function
+		lua_pushvalue(m_L, -2); // Push the table again as `self`
+
+		lua_pushnumber(m_L, width);
+		lua_pushnumber(m_L, xPos);
+		lua_pushnumber(m_L, yPos);
+		lua_pushnumber(m_L, speed);
+		lua_pushnumber(m_L, duration);
+		lua_pushnumber(m_L, waitTime);
+		if (lua_pcall(m_L, 7, 0, 0) != LUA_OK)
+		{
+			std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in create moving cloud" << std::endl;
+			lua_pop(m_L, 1);
+		}
+		lua_pop(m_L, 1);
+	}
+	else {
+		std::cout << "couldn't find cloudmanager" << std::endl;
+	}
+
+
 }
 
 void EditingSystem::ChangeHatThrow(int HatThrow)
@@ -167,6 +210,26 @@ void EditingSystem::ChangeHatThrow(int HatThrow)
 	if (lua_pcall(m_L, 2, 0, 0) != LUA_OK)
 	{
 		std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in ChangeHatThrow" << std::endl;
+		lua_pop(m_L, 1);
+	}
+	lua_pop(m_L, 1);
+}
+
+void EditingSystem::ChangePlayerPosition(float xPos, float yPos)
+{
+	auto player = m_registry.view<PlayerTag, Behaviour>().front();
+	Behaviour& script = m_registry.get<Behaviour>(player);
+
+
+	lua_rawgeti(m_L, LUA_REGISTRYINDEX, script.LuaTableRef);
+	lua_getfield(m_L, -1, "changePosition");
+	lua_pushvalue(m_L, -2);
+	lua_pushnumber(m_L, xPos);
+	lua_pushnumber(m_L, yPos);
+
+	if (lua_pcall(m_L, 3, 0, 0) != LUA_OK)
+	{
+		std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in changePlayerPosition" << std::endl;
 		lua_pop(m_L, 1);
 	}
 	lua_pop(m_L, 1);

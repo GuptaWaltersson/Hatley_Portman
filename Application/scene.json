@@ -16,6 +16,45 @@
         "tag": "coin"
     },
     {
+<<<<<<< Updated upstream
+=======
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "behaviour": "scripts/coin/coin.lua",
+        "position": {
+            "x": 994.0,
+            "y": 751.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "behaviour": "scripts/coin/coin.lua",
+        "position": {
+            "x": 479.0,
+            "y": 683.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "behaviour": "scripts/cloud.lua",
+        "tag": "cloudManager"
+    },
+    {
+>>>>>>> Stashed changes
         "bbox": {
             "height": 64.0,
             "width": 64.0
@@ -42,5 +81,32 @@
             "texturePath": "../Textures/Portman.png"
         },
         "tag": "player"
+<<<<<<< Updated upstream
+=======
+    },
+    {
+        "behaviour": "scripts/hat.lua",
+        "hattag": {
+            "hatType": 1,
+            "onHead": true
+        },
+        "lastmove": "left",
+        "movement": {
+            "ax": 2400.0,
+            "ay": 700.0,
+            "canJump": false,
+            "dx": 0.0,
+            "dy": 0.0
+        },
+        "position": {
+            "x": 1000.0,
+            "y": 700.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/Hat.png"
+        },
+        "tag": "hat"
+>>>>>>> Stashed changes
     }
 ]

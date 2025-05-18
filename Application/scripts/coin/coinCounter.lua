@@ -7,12 +7,7 @@ function coinCounter.OnCreate(self)
 	scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/0.png")
 end
 
-function coinCounter.OnUpdate(self,delta)
-
-
-end
-
-function coinCounter.newUpdate(self,cCounter)
+function coinCounter.UpdateCoinCounter(self,cCounter)
 	if cCounter == 1 then
 		scene.SetComponent(self.ID, "sprite", "../Textures/Numbers/1.png")
 	elseif cCounter == 2 then

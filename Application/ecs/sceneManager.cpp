@@ -56,6 +56,9 @@ void SceneManager::Save()
 		if (m_registry.all_of<GroupID>(entity))
 			entityJson["group"] = m_registry.get<GroupID>(entity).id;
 
+		if (m_registry.all_of<Block>(entity))
+			entityJson["block"] = { {"width",m_registry.get<Block>(entity).width},{"height",m_registry.get<Block>(entity).height},{"speed",m_registry.get<Block>(entity).speed},{"duration",m_registry.get<Block>(entity).duration},{"waitTime",m_registry.get<Block>(entity).waitTime} };
+
 		if (m_registry.all_of<Behaviour>(entity))
 		{
 			const auto& behaviour = m_registry.get<Behaviour>(entity);
@@ -125,20 +128,21 @@ void SceneManager::Load()
 		{
 			const std::string& tag = key.first;
 
-
 			if (tag == "cloud")
 			{
 				float x = entityJson["position"]["x"].get<float>();
 				float y = entityJson["position"]["y"].get<float>();
-				edit.CreateCloud(x, y, 4);
+				int width = entityJson["block"]["width"].get<float>();
+				edit.CreateMovingCloud(x, y, width, 100, 2, 0.5);
+
 			}
 			else if (tag == "tree")
 			{
 				float x = entityJson["position"]["x"].get<float>();
 				float y = entityJson["position"]["y"].get<float>();
-				//int width = entityJson["bbox"]["width"].get<float>();
-				//int height = entityJson["bbox"]["height"].get<float>();
-				edit.CreateTree(x, y, 2, 2);
+				int width = entityJson["block"]["width"].get<float>();
+				int height = entityJson["block"]["height"].get<float>();
+				edit.CreateTree(x, y, width, height);
 			}
 			else if (tag == "coin")
 			{

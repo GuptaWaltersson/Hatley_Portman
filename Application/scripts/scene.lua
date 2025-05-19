@@ -9,5 +9,9 @@ scene.SetComponent(playerEntity, "behaviour", "scripts/player.lua")
 coinManager = require("scripts.coin.coinManager")
 coinManager.CreateSceneManager()
 
+local cloudEntity = scene.CreateEntity()
+scene.SetComponent(cloudEntity,"behaviour","scripts/cloud.lua")
+scene.SetComponent(cloudEntity,"tag","cloudManager")
+
 block = require("scripts.editingBlock")
 block.Ground()

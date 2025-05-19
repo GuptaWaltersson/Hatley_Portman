@@ -7,7 +7,7 @@ local playerEntity = scene.CreateEntity()
 scene.SetComponent(playerEntity, "behaviour", "scripts/player.lua")
 
 
--- dofile("scripts/coin/coinManager.lua")
+dofile("scripts/coin/coinManager.lua")
 -- dofile("scripts/hat.lua")
 -- dofile("scripts/editingBlock.lua")
 coin = require("scripts.coin.editCoinManager")

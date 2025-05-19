@@ -123,7 +123,7 @@ void EditingTool(Scene* scene, lua_State* L)
 	TreeSettings.height = 3;
 
 	int HatThrow = 1;
-	int MaxAmountofThrows = 2;
+	int MaxAmountofThrows = 3;
 	//Permanent Buttons
 	Rectangle TreeButton = { 100.0f,850.0f,100,70 };
 	Rectangle TreeOption = { 210.0f,850.0f,30,70 };
@@ -208,6 +208,10 @@ void EditingTool(Scene* scene, lua_State* L)
 		else if (HatThrow == 1)
 		{
 			DrawText("Hat: Linear", HatButton.x + 5, HatButton.y + 25, 30, BLACK);
+		}
+		else if (HatThrow == 3)
+		{
+			DrawText("Hat: High", HatButton.x + 5, HatButton.y + 25, 30, BLACK);
 		}
 		
 		DrawRectangleRec(SaveButton, WHITE);

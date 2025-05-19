@@ -87,6 +87,8 @@ void EditingSystem::CreateTree(float xPos, float yPos, int width, int height)
 	lua_pop(m_L, 1);
 }
 
+
+
 void EditingSystem::MoveEntity(Vector2 mousePos)
 {
 	auto selected = m_selectedEntity.value();
@@ -120,6 +122,22 @@ void EditingSystem::MoveEntity(Vector2 mousePos)
 	pos.x = mousePos.x - box.width / 2;
 	pos.y = mousePos.y - box.height / 2;
 
+}
+
+void EditingSystem::LoadCoin(float xPos, float yPos)
+{
+	lua_getglobal(m_L, "coinManager");
+	lua_getfield(m_L, -1, "LoadCoin");
+
+	lua_pushnumber(m_L, xPos);
+	lua_pushnumber(m_L, yPos);
+
+	if (lua_pcall(m_L, 2, 0, 0) != LUA_OK)
+	{
+		std::cout << "Lua error: " << lua_tostring(m_L, -1) << " in create coin" << std::endl;
+		lua_pop(m_L, 1);
+	}
+	lua_pop(m_L, 1);
 }
 
 void EditingSystem::CreateCoin(float xPos, float yPos)

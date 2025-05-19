@@ -150,7 +150,7 @@ void SceneManager::Load()
 			{
 				float x = entityJson["position"]["x"].get<float>();
 				float y = entityJson["position"]["y"].get<float>();
-				edit.CreateCoin(x, y);
+				edit.LoadCoin(x, y);
 			}
 			else if (tag == "mushroom")
 			{

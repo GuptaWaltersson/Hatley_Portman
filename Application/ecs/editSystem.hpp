@@ -20,6 +20,7 @@ public:
     void CreatePlayer(float xPos, float yPos);
     void CreateCloud(float xPos, float yPos, int width);
     void CreateTree(float xPos, float yPos, int width, int height);
+    void LoadCoin(float xPos, float yPos);
     void CreateCoin(float xPos, float yPos);
 	void CreateBigMushroom(float xPos, float yPos, int width);
     void CreateMovingCloud(float xPos, float yPos, int width,int speed,float duration, float waitTime);

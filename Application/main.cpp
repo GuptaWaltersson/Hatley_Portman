@@ -509,8 +509,6 @@ void EditingTool(Scene* scene, lua_State* L)
 
 }
 
-
-
 void GameLoop(Scene* scene, lua_State* L)
 {
 	Scene::lua_openScene(L, scene);
@@ -560,10 +558,6 @@ int main()
 
 	editingScene.CreateSystem<SpriteSystem>();
 	editingScene.CreateSystem<BehaviourSystem>(L);
-	//editingScene.CreateSystem<MovementSystem>();
-	//editingScene.CreateSystem<HatSystem>(L);
-	//editingScene.CreateSystem<CollisionSystem>(L);
-	//editingScene.CreateSystem<GravitySystem>(0.0);
 
 
 	bool running = true;

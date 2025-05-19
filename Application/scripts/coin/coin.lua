@@ -36,7 +36,8 @@ end
 
 function coin.OnCollision(self, other)
 	print("Lua Coin collected!")
-	
+	coinCounter = coinCounter + 1
+	coinNumber.SetNumber(text1, coinCounter)
 	scene.RemoveEntity(self.ID)
 end
 

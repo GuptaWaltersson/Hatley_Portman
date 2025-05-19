@@ -185,7 +185,6 @@
     <None Include="scripts\coinCounter.lua" />
     <None Include="scripts\coinNumber.lua" />
     <None Include="scripts\coin\coin.lua" />
-    <None Include="scripts\coin\coinCounter.lua" />
     <None Include="scripts\coin\coinNumber.lua" />
     <None Include="scripts\monster.lua" />
     <None Include="scripts\player.lua" />

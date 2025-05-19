@@ -3,7 +3,7 @@ coinManager = {}
 coinID = 0
 coinCounter = 0
 coinStarter = 0
-
+start = true
 coinNumber = require("scripts.coin.coinNumber")
 
 local coin = require("scripts.coin.coin")
@@ -23,15 +23,17 @@ function coinManager.CreateSceneManager()
 	scene.SetComponent(text2, "position", {x=1550, y=30})
 	scene.SetComponent(text2, "sprite", "../Textures/Numbers/tile_0170.png")
 	
-	local text3 = scene.CreateEntity()
+	text3 = scene.CreateEntity()
 	scene.SetComponent(text3, "tag", "text")
 	scene.SetComponent(text3, "position", {x=1610, y=30})
+	local coins = scene.Get
 	coinNumber.SetNumber(text3, coinStarter)
 
 end
 
 function coinManager.CreateEditManager()
 	coinStarter = 0
+	start = true
 	local entity = scene.CreateEntity()
 	scene.SetComponent(entity, "tag", "coinManager")
 end
@@ -56,10 +58,12 @@ function coinManager.LoadCoin(posX, posY)
 	scene.SetComponent(entity, "boundingbox", { width = 50, height = 50})
 	scene.SetComponent(entity, "id", coinID)
 	coinID = coinID + 1
-	scene.SetComponent(entity, "id", coinCounter)
-	scene.SetComponent(entity,"behaviour","scripts/coin/coin.lua")
-	--coin.NewCoin(posX,posY,coinCounter)
-	coinCounter = coinCounter + 1
+
+	if coinStarter == 0 or start == false then
+		coinStarter = coinStarter + 1
+		coinNumber.SetNumber(text3, coinStarter)
+		start = false
+	end
 end
 
 return coinManager

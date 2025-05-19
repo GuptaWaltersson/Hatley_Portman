@@ -9,7 +9,7 @@ HatType =
 }
 
 --Start values
-local position = {x=-10,y=-10}
+local position = {x=-50,y=-50}
 local movement = {dx=0.0,dy=0.0,ax = 2400, ay=700}
 local hat_tag = 0
 local hat_behaviour = 0
@@ -24,7 +24,6 @@ function hat.OnCreate(self)
 	scene.SetComponent(self.ID,"position",position)
 	scene.SetComponent(self.ID,"movement",movement)
 	scene.SetComponent(self.ID,"lastmove","left")
-	
 end
 
 function hat.OnUpdate(self,delta)

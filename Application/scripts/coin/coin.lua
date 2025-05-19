@@ -12,7 +12,7 @@ function coin.OnCreate(self)
 
 		while true do
 			time = time + coroutine.yield()
-			local offset = math.sin(time) * 0.01
+			local offset = math.sin(time*2) * 0.05 
 			local x,y = scene.GetComponent(entity,"position")
 			scene.SetComponent(entity,"position",{x = x,y= y + offset})
 			--print("set position:"..posX..posY+offset.." babooom")

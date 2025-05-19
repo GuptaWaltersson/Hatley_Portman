@@ -4,10 +4,11 @@
             "height": 50.0,
             "width": 50.0
         },
-        "group": 0,
+        "behaviour": "scripts/coin/coin.lua",
+        "group": 1,
         "position": {
-            "x": 500.0,
-            "y": 512.3074951171875
+            "x": 859.0,
+            "y": 574.4195556640625
         },
         "sprite": {
             "scale": 4,
@@ -20,10 +21,11 @@
             "height": 50.0,
             "width": 50.0
         },
+        "behaviour": "scripts/coin/coin.lua",
         "group": 0,
         "position": {
-            "x": 744.0,
-            "y": 409.6795959472656
+            "x": 632.0,
+            "y": 524.8582763671875
         },
         "sprite": {
             "scale": 4,

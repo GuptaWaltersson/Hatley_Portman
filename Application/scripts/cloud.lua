@@ -32,11 +32,11 @@ function cloud.NewCloud(self,length,posX,posY,speed,duration,waitTime)
 	local id = cloudCounter	
 
 	clouds[id] = {}
-	local cloudStat = {length,1,speed,duration}
+	local cloudStat = {width = length, height = 1,speed = speed,duration = duration ,waitTime = waitTime}
 	for i=0, length do
 
 		local entity = scene.CreateEntity()
-		table.insert(clouds[id],entity)
+		
 		scene.SetComponent(entity,"tag","cloud")
 		scene.SetComponent(entity, "id", cloudCounter)
 		scene.SetComponent(entity,"block",cloudStat)
@@ -51,6 +51,7 @@ function cloud.NewCloud(self,length,posX,posY,speed,duration,waitTime)
 
 		scene.SetComponent(entity,"boundingbox",{width=60, height =30})
 		scene.SetComponent(entity,"position",{x=posX +(72*i),y=posY})
+		table.insert(clouds[id],entity)
 	end
 	print("new cloud called")
 	cloud.cor[id] = coroutine.create(function()

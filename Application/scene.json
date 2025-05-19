@@ -4,10 +4,42 @@
             "height": 50.0,
             "width": 50.0
         },
-        "group": 0,
+        "group": 12,
         "position": {
-            "x": 700.0,
-            "y": 700.0
+            "x": 601.0,
+            "y": 653.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "group": 11,
+        "position": {
+            "x": 687.0,
+            "y": 719.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "group": 10,
+        "position": {
+            "x": 519.0,
+            "y": 734.0
         },
         "sprite": {
             "scale": 4,

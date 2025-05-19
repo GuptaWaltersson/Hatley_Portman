@@ -9,7 +9,7 @@ coinNumber = require("scripts.coin.coinNumber")
 local coin = require("scripts.coin.coin")
 function coinManager.CreateSceneManager()
 	coinCounter = 0
-
+	start = true
 	local entity = scene.CreateEntity()
 	scene.SetComponent(entity, "tag", "coinManager")
 

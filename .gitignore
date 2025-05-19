@@ -366,3 +366,4 @@ FodyWeavers.xsd
 bin/
 int/
 lib/
+Application/scene.json

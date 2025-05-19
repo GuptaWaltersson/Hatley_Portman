@@ -24,6 +24,8 @@ function hat.OnCreate(self)
 	scene.SetComponent(self.ID,"position",position)
 	scene.SetComponent(self.ID,"movement",movement)
 	scene.SetComponent(self.ID,"lastmove","left")
+	scene.SetComponent(self.ID,"boundingbox",{width = 60,height = 30})
+	
 end
 
 function hat.OnUpdate(self,delta)

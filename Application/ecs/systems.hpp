@@ -45,6 +45,7 @@ public:
 		view.each([&](entt::entity entity, Position& pos, BBox& box, Tag& tag) {
 
 			auto playerView = registry.view<Position, BBox, PlayerTag>();
+			auto hatEntity = registry.view<HatTag>().front();
 			if (playerView.front() == entt::null)
 				std::cout << "Player not found" << std::endl;
 			
@@ -53,6 +54,12 @@ public:
 			Movement& playerVel = registry.get<Movement>(playerEntity);
 			BBox& playerBox = registry.get<BBox>(playerEntity);
 
+			HatTag& htag = registry.get<HatTag>(hatEntity);
+			Movement& hatVel = registry.get<Movement>(hatEntity);
+			Position& hatPos = registry.get<Position>(hatEntity);
+			BBox& hatBox = registry.get<BBox>(hatEntity);
+			
+			Rectangle hatRect = { hatPos.x,hatPos.y,hatBox.width,hatBox.height };
 			Rectangle playerRect = { playerPos.x, playerPos.y, playerBox.width, playerBox.height };
 
 			if (playerPos.x != pos.x && playerPos.y != pos.y)
@@ -86,6 +93,15 @@ public:
 							}
 						}
 
+					}
+					else if (tag.name == "hat")
+					{
+
+						if (hatVel.dx == 0 && hatVel.dy == 0)
+						{
+							htag.onHead = true;
+						}
+						
 					}
 					else {
 
@@ -128,6 +144,66 @@ public:
 								//std::cout << "BOTTOM" << std::endl;
 							}
 						}
+					}
+				}
+			}
+
+			if (hatPos.x != pos.x && hatPos.y != pos.y)
+			{
+				Rectangle otherRect = { pos.x, pos.y, box.width, box.height };
+				if (CheckCollisionRecs(hatRect, otherRect))
+				{
+					if (tag.name == "coin")
+					{
+
+					}
+					else if (tag.name == "player")
+					{
+
+					}
+					else
+					{
+						Rectangle collision = GetCollisionRec(otherRect, hatRect);
+
+						float HatCenterX = hatPos.x + hatBox.width/ 2.0f;
+						float HatCenterY = hatPos.y + hatBox.height / 2.0f;
+						float boxCenterX = pos.x + box.width / 2.0f;
+						float boxCenterY = pos.y + box.height / 2.0f;
+
+						if (collision.width <= collision.height)
+						{
+							if (HatCenterX < boxCenterX)
+							{
+								hatPos.x -= collision.width;
+								//std::cout << "LEFT" << std::endl;
+								hatVel.dx = 0;
+							}
+							else
+							{
+								hatPos.x += collision.width;
+								//std::cout << "RIGHT" << std::endl;
+								hatVel.dx = 0;
+							}
+
+						}
+						else
+						{
+							if (HatCenterY < boxCenterY)
+							{
+								hatPos.y -= collision.height;
+								//std::cout << "TOP" << std::endl;
+								hatVel.dy = 0;
+								//playerVel.canJump = true;
+							}
+							else
+							{
+								hatPos.y += collision.height;
+								hatVel.dx = 0;
+								hatVel.dy = 0;
+								//std::cout << "BOTTOM" << std::endl;
+							}
+						}
+
 					}
 				}
 			}

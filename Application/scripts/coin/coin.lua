@@ -1,11 +1,37 @@
 local coin = {}
-
+coin.cor = {}
+coinCounter = 0
+framedelta = 0
 function coin.OnCreate(self)
 	print("Lua Coin created!")
+	local entity = self.ID
+	--local x, y = scene.GetComponent(entity,"position")
+
+	coin.cor[entity] = coroutine.create(function()
+		local time = 0
+
+		while true do
+			time = time + coroutine.yield()
+			local offset = math.sin(time) * 0.01
+			local x,y = scene.GetComponent(entity,"position")
+			scene.SetComponent(entity,"position",{x = x,y= y + offset})
+			--print("set position:"..posX..posY+offset.." babooom")
+		end
+
+
+	end)
 end
 
 function coin.OnUpdate(self, delta)
-	-- Update logic for the coin can be added here if needed
+	local id = self.ID
+	local co = coin.cor[id]
+	if co and coroutine.status(co) ~="dead" then
+		local ok, err = coroutine.resume(co,delta)
+		if not ok then
+			print("error in coin coroutine: coin "..id)
+		end
+	end
+
 end
 
 function coin.OnCollision(self, other)
@@ -13,5 +39,7 @@ function coin.OnCollision(self, other)
 	
 	scene.RemoveEntity(self.ID)
 end
+
+
 
 return coin

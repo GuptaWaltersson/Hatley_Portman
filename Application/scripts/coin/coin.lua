@@ -22,6 +22,10 @@ function coin.OnUpdate(self, delta)
     --scene.SetComponent(self.ID, "position", { x = x, y = self.baseY + offsetY})
 end
 
+function coinManager.CreateCoin(posX, posY)
+
+end
+
 function coin.OnCollision(self, other)
 	print("Lua Coin collected!")
 	cCounter = cCounter + 1

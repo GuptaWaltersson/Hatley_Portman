@@ -1,5 +1,6 @@
 [
     {
+<<<<<<< Updated upstream
         "bbox": {
             "height": 50.0,
             "width": 50.0
@@ -49,6 +50,278 @@
             "texturePath": "../Textures/tile_0067.png"
         },
         "tag": "coin"
+=======
+        "group": 0,
+        "position": {
+            "x": 472.0,
+            "y": 820.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "group": 0,
+        "position": {
+            "x": 472.0,
+            "y": 748.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "group": 0,
+        "position": {
+            "x": 472.0,
+            "y": 676.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "group": 0,
+        "position": {
+            "x": 472.0,
+            "y": 604.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0096.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 544.0,
+            "y": 544.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0059.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 472.0,
+            "y": 544.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0097.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 400.0,
+            "y": 544.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0057.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 544.0,
+            "y": 472.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0039.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 472.0,
+            "y": 472.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0038.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 400.0,
+            "y": 472.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0037.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 544.0,
+            "y": 400.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0019.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 472.0,
+            "y": 400.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0018.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 400.0,
+            "y": 400.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0017.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1298.4210205078125,
+            "y": 468.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0155.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1226.4210205078125,
+            "y": 468.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1154.4208984375,
+            "y": 468.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1082.416015625,
+            "y": 468.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1010.4158935546875,
+            "y": 468.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0153.png"
+        },
+        "tag": "cloud"
+>>>>>>> Stashed changes
     },
     {
         "behaviour": "scripts/cloud.lua",

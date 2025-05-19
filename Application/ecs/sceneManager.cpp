@@ -125,13 +125,12 @@ void SceneManager::Load()
 		{
 			const std::string& tag = key.first;
 
-
 			if (tag == "cloud")
 			{
 				float x = entityJson["position"]["x"].get<float>();
 				float y = entityJson["position"]["y"].get<float>();
-				//int width = entityJson["bbox"]["width"].get<float>();
-				edit.CreateCloud(x, y, 4);
+				int width = entityJson["block"]["width"].get<float>();
+				edit.CreateCloud(x, y, width);
 			}
 			else if (tag == "tree")
 			{

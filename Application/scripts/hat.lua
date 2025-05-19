@@ -14,7 +14,7 @@ local movement = {dx=0.0,dy=0.0,ax = 2400, ay=700}
 local hat_tag = 0
 local hat_behaviour = 0
 local currentThrow = nil
-local lastmove =""
+local lastmove = ""
 
 -- Behaviours
 function hat.OnCreate(self)

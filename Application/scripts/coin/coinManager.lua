@@ -1,14 +1,28 @@
+coinManager = {}
+local coinCounter = 0
 
-nrOfCoins = 5
-cCounter = 0
+function coinManager.CreateSceneManager()
+	local entity = scene.CreateEntity()
+	scene.SetComponent(self.ID, "tag", "coinManager")
+end
 
-local coinCounterEntity = scene.CreateEntity()
-scene.SetComponent(coinCounterEntity, "behaviour", "scripts/coin/coinCounter.lua")
+function coinManager.CreateEditManager()
+	local entity = scene.CreateEntity()
+	scene.SetComponent(entity, "tag", "coinManager")
+end
 
-local TextEntity = scene.CreateEntity()
-scene.SetComponent(TextEntity, "sprite", "../Textures/Numbers/tile_0170.png")
-scene.SetComponent(TextEntity, "position", {x=1460, y=30})
+function coinManager.CreateCoin(posX, posY)
+	local entity = scene.CreateEntity()
+	scene.SetComponent(entity, "tag", "coin")
+	scene.SetComponent(entity, "sprite", "../Textures/tile_0067.png")
+	scene.SetComponent(entity, "behaviour", "scripts/coin/coin.lua")
+	scene.SetComponent(entity, "position", { x = posX, y = posY})
+	scene.SetComponent(entity, "boundingbox", { width = 50, height = 50})
+	scene.SetComponent(entity, "id", coinCounter)
+	coinCounter = coinCounter + 1
+end
 
-local coinNumberEntity = scene.CreateEntity()
-scene.SetComponent(coinNumberEntity, "behaviour", "scripts/coin/coinNumber.lua")
+return coinManager
+
+
 

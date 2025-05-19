@@ -130,11 +130,6 @@ void SceneManager::Load()
 			{
 				float x = entityJson["position"]["x"].get<float>();
 				float y = entityJson["position"]["y"].get<float>();
-<<<<<<< Updated upstream
-				//int width = entityJson["bbox"]["width"].get<float>();
-=======
-				//int width = entityJson["block"]["width"].get<float>();
->>>>>>> Stashed changes
 				edit.CreateCloud(x, y, 4);
 			}
 			else if (tag == "tree")

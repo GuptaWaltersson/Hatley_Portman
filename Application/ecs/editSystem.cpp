@@ -124,7 +124,7 @@ void EditingSystem::MoveEntity(Vector2 mousePos)
 
 void EditingSystem::CreateCoin(float xPos, float yPos)
 {
-	lua_getglobal(m_L, "coin");
+	lua_getglobal(m_L, "coinManager");
 	lua_getfield(m_L, -1, "CreateCoin");
 
 	lua_pushnumber(m_L, xPos);

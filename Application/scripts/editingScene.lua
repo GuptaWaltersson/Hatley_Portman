@@ -10,11 +10,8 @@ local cloudEntity = scene.CreateEntity()
 scene.SetComponent(cloudEntity,"behaviour","scripts/cloud.lua")
 scene.SetComponent(cloudEntity,"tag","cloudManager")
 
-
-
---dofile("scripts/coin/editCoinManager.lua")
---dofile("scripts/hat.lua")
---dofile("scripts/editingBlock.lua")
+coinManager = require("scripts.coin.coinManager")
+coinManager.CreateEditManager()
 
 local blockEntity = scene.CreateEntity()
 scene.SetComponent(blockEntity,"behaviour","scripts/editingBlock.lua")
@@ -22,7 +19,6 @@ scene.SetComponent(blockEntity,"behaviour","scripts/editingBlock.lua")
 block = require("scripts.editingBlock")
 block.Ground()
 
-coin = require("scripts.coin.editCoinManager")
 
 
 

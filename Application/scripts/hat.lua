@@ -9,7 +9,7 @@ HatType =
 }
 
 --Start values
-local position = {x=1000,y=700}
+local position = {x=-10,y=-10}
 local movement = {dx=0.0,dy=0.0,ax = 2400, ay=700}
 local hat_tag = 0
 local hat_behaviour = 0
@@ -18,7 +18,6 @@ local lastmove =""
 
 -- Behaviours
 function hat.OnCreate(self)
-
 	scene.SetComponent(self.ID,"sprite","../Textures/Hat.png")
 	scene.SetComponent(self.ID,"hattag",{onHead = true, hatType = 1})
 	scene.SetComponent(self.ID, "tag", "hat")

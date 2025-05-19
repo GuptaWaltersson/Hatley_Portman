@@ -23,7 +23,6 @@ function hat.OnCreate(self)
 	scene.SetComponent(self.ID,"hattag",{onHead = true, hatType = 1})
 	scene.SetComponent(self.ID, "tag", "hat")
 	scene.SetComponent(self.ID,"position",position)
-	--scene.SetComponent(self.ID, "boundingbox", { width = 64, height = 32})
 	scene.SetComponent(self.ID,"movement",movement)
 	scene.SetComponent(self.ID,"lastmove","left")
 	
@@ -39,12 +38,11 @@ function hat.OnUpdate(self,delta)
 end
 
 function hat.throw(self,delta)
-	--print("hat kast")
+
 	onHead,hat_tag = scene.GetComponent(self.ID,"hattag")
 	local mov = {dx = 0,dy = 0, ax=0, ay=0}
 	lastmove = scene.GetComponent(self.ID,"lastmove",lastmove)
     if hat_tag == HatType.DEFAULT then
-        --print("Default Hat Behavior")
 
 		if lastmove == "left" then
 			mov.dx = -1000
@@ -55,7 +53,7 @@ function hat.throw(self,delta)
 		currentThrow = defaultThrow
 		currentThrow(self,delta,lastmove)
     elseif hat_tag == HatType.MAGIC then
-        print("Magic Hat Behavior")
+
 		
 		if lastmove == "left" then
 			mov.dx = -600
@@ -66,7 +64,14 @@ function hat.throw(self,delta)
 		scene.SetComponent(self.ID,"movement",mov)
 		currentThrow = magicThrow
     elseif hat_tag == HatType.LEGENDARY then
-        print("Legendary Hat Behavior")
+		if lastmove == "left" then
+			mov.dx = -100
+		else
+			mov.dx = 100
+		end
+		mov.dy = -900
+		scene.SetComponent(self.ID,"movement",mov)
+		currentThrow = magicThrow
     else
         --print("Unknown hat type:"..hat_tag..", no throw")
     end

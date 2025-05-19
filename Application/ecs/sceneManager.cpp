@@ -133,9 +133,10 @@ void SceneManager::Load()
 				float x = entityJson["position"]["x"].get<float>();
 				float y = entityJson["position"]["y"].get<float>();
 				int width = entityJson["block"]["width"].get<float>();
-
-
-				edit.CreateMovingCloud(x, y, width, 100, 2, 0.5);
+				int speed = entityJson["block"]["speed"].get<float>();
+				float duration = entityJson["block"]["duration"].get<float>();
+				float waitTime = entityJson["block"]["waitTime"].get<float>();
+				edit.CreateMovingCloud(x, y, width, speed, duration, waitTime);
 			}
 			else if (tag == "tree")
 			{
@@ -155,8 +156,19 @@ void SceneManager::Load()
 			{
 				float x = entityJson["position"]["x"].get<float>();
 				float y = entityJson["position"]["y"].get<float>();
-				//int width = entityJson["bbox"]["width"].get<float>();
-				edit.CreateBigMushroom(x, y, 5);
+				int width = entityJson["block"]["width"].get<float>();
+				edit.CreateBigMushroom(x, y, width);
+			}
+			else if (tag == "hat")
+			{
+				int hatThrow = entityJson["hattag"]["hatType"].get<float>();
+				edit.ChangeHatThrow(hatThrow);
+			}
+			else if (tag == "player")
+			{
+				float x = entityJson["position"]["x"].get<float>();
+				float y = entityJson["position"]["y"].get<float>();
+				edit.ChangePlayerPosition(x, y);
 			}
 		}
 	}

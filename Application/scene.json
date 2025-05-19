@@ -5,6 +5,236 @@
             "width": 60.0
         },
         "block": {
+            "duration": 0.19999969005584717,
+            "height": 1,
+            "speed": 0,
+            "waitTime": -1.4901161415892261e-09,
+            "width": 4
+        },
+        "group": 2,
+        "position": {
+            "x": 812.0,
+            "y": 541.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0155.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.19999969005584717,
+            "height": 1,
+            "speed": 0,
+            "waitTime": -1.4901161415892261e-09,
+            "width": 4
+        },
+        "group": 2,
+        "position": {
+            "x": 740.0,
+            "y": 541.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.19999969005584717,
+            "height": 1,
+            "speed": 0,
+            "waitTime": -1.4901161415892261e-09,
+            "width": 4
+        },
+        "group": 2,
+        "position": {
+            "x": 668.0,
+            "y": 541.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.19999969005584717,
+            "height": 1,
+            "speed": 0,
+            "waitTime": -1.4901161415892261e-09,
+            "width": 4
+        },
+        "group": 2,
+        "position": {
+            "x": 596.0,
+            "y": 541.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.19999969005584717,
+            "height": 1,
+            "speed": 0,
+            "waitTime": -1.4901161415892261e-09,
+            "width": 4
+        },
+        "group": 2,
+        "position": {
+            "x": 524.0,
+            "y": 541.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0153.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.09999968856573105,
+            "height": 1,
+            "speed": 100,
+            "waitTime": -0.10000000149011612,
+            "width": 4
+        },
+        "group": 1,
+        "position": {
+            "x": 906.85302734375,
+            "y": 713.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0155.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.09999968856573105,
+            "height": 1,
+            "speed": 100,
+            "waitTime": -0.10000000149011612,
+            "width": 4
+        },
+        "group": 1,
+        "position": {
+            "x": 834.8501586914063,
+            "y": 713.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.09999968856573105,
+            "height": 1,
+            "speed": 100,
+            "waitTime": -0.10000000149011612,
+            "width": 4
+        },
+        "group": 1,
+        "position": {
+            "x": 762.8451538085938,
+            "y": 713.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.09999968856573105,
+            "height": 1,
+            "speed": 100,
+            "waitTime": -0.10000000149011612,
+            "width": 4
+        },
+        "group": 1,
+        "position": {
+            "x": 690.8451538085938,
+            "y": 713.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.09999968856573105,
+            "height": 1,
+            "speed": 100,
+            "waitTime": -0.10000000149011612,
+            "width": 4
+        },
+        "group": 1,
+        "position": {
+            "x": 618.8451538085938,
+            "y": 713.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0153.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
             "duration": 2.0,
             "height": 1,
             "speed": 100,
@@ -13,7 +243,7 @@
         },
         "group": 0,
         "position": {
-            "x": 1166.7906494140625,
+            "x": 1273.326904296875,
             "y": 468.0
         },
         "sprite": {
@@ -36,7 +266,7 @@
         },
         "group": 0,
         "position": {
-            "x": 1094.7906494140625,
+            "x": 1201.326904296875,
             "y": 468.0
         },
         "sprite": {
@@ -59,7 +289,7 @@
         },
         "group": 0,
         "position": {
-            "x": 1022.7909545898438,
+            "x": 1129.322265625,
             "y": 468.0
         },
         "sprite": {
@@ -82,7 +312,7 @@
         },
         "group": 0,
         "position": {
-            "x": 950.7886962890625,
+            "x": 1057.3251953125,
             "y": 468.0
         },
         "sprite": {
@@ -105,7 +335,7 @@
         },
         "group": 0,
         "position": {
-            "x": 878.7889404296875,
+            "x": 985.3251342773438,
             "y": 468.0
         },
         "sprite": {
@@ -137,8 +367,8 @@
         },
         "playertag": true,
         "position": {
-            "x": 200.0,
-            "y": 700.0
+            "x": 1146.0,
+            "y": 660.0
         },
         "sprite": {
             "scale": 4,
@@ -149,7 +379,7 @@
     {
         "behaviour": "scripts/hat.lua",
         "hattag": {
-            "hatType": 1,
+            "hatType": 2,
             "onHead": true
         },
         "lastmove": "left",

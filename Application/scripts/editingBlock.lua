@@ -87,7 +87,7 @@ function block.createMushroom(length,posX,posY)
 		scene.SetComponent(entity,"position",{x=posX+72*i,y=posY})
 	end
 
-	for i = 1, (836-posY)/72 do
+	for i = 1, 13 do
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"tag","mushroom")
 		scene.SetComponent(entity, "id", mushroomCounter)
@@ -176,7 +176,7 @@ function createTrunk(Width,Height,posX,posY,treeBlock)
 	treeMid = posX + Width*36-36;
 	treeBot = posY + Height *72-12;
 
-	for i=0, (836-treeBot)/72 do
+	for i=0, 13 do
 		local entity = scene.CreateEntity()
 		scene.SetComponent(entity,"tag","tree")
 		scene.SetComponent(entity,"id",treeCounter)

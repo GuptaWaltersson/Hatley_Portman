@@ -1,7 +1,6 @@
 #include <raylib.h>
 
 #include <iostream>
-
 #include <thread>
 #include <string>
 
@@ -36,6 +35,7 @@ GameState gameState = GameState::StartMenu;
 void LoadScene(lua_State* L, Scene* scene)
 {
 	scene->Clear();
+	scene->wintext = false;
 
 	if (luaL_dofile(L, "scripts/scene.lua") != LUA_OK) {
 		std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;

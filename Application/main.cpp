@@ -69,7 +69,7 @@ void StartMenu(Scene* scene, lua_State* L)
 	{
 		BeginDrawing();
 		ClearBackground(SKYBLUE);
-		DrawOutlinedText("HAT-TRICK", (float)(ScreenWidth / 2 - 550), 100, 200, RED, 7, DARKGRAY);
+		DrawOutlinedText("HAT-TRICK", (float)(ScreenWidth / 2 - 570), 100, 200, RED, 7, DARKGRAY);
 
 		DrawRectangleRec(playButton, WHITE);
 		DrawText("Play", playButton.x + 25, playButton.y + 25, 60, BLACK);
@@ -546,8 +546,8 @@ void GameLoop(Scene* scene, lua_State* L)
 		scene->UpdateSystems(delta);
 
 		if (scene->wintext) {
-			DrawOutlinedText("HAT-TRICK", (float)(ScreenWidth / 2 - 550), 100, 200, RED, 7, DARKGRAY);
-			DrawOutlinedText("Y O U   W I N !",(float)(ScreenWidth / 2 - 500), 300, 150, GREEN, 7, DARKGREEN);
+			DrawOutlinedText("HAT-TRICK", (float)(ScreenWidth / 2 - 570), 100, 200, RED, 7, DARKGRAY);
+			DrawOutlinedText("Y O U   W I N !",(float)(ScreenWidth / 2 - 520), 300, 150, GREEN, 7, DARKGREEN);
 		}
 			
 

@@ -4,16 +4,2310 @@
             "height": 50.0,
             "width": 50.0
         },
-        "group": 4,
+        "group": 8,
         "position": {
-            "x": 700.0,
-            "y": 700.0
+            "x": 981.0,
+            "y": 217.0
         },
         "sprite": {
             "scale": 4,
             "texturePath": "../Textures/tile_0067.png"
         },
         "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "group": 7,
+        "position": {
+            "x": 27.0,
+            "y": 30.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "group": 6,
+        "position": {
+            "x": 1601.0,
+            "y": 767.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "group": 5,
+        "position": {
+            "x": 255.0,
+            "y": 556.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "group": 4,
+        "position": {
+            "x": 103.0,
+            "y": 366.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "group": 3,
+        "position": {
+            "x": 614.0,
+            "y": 14.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "group": 2,
+        "position": {
+            "x": 845.0,
+            "y": 577.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "group": 1,
+        "position": {
+            "x": 1463.0,
+            "y": 239.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 50.0,
+            "width": 50.0
+        },
+        "group": 0,
+        "position": {
+            "x": 1598.0,
+            "y": 30.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0067.png"
+        },
+        "tag": "coin"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 150,
+            "waitTime": 0.30000001192092896,
+            "width": 5
+        },
+        "group": 2,
+        "position": {
+            "x": 584.719970703125,
+            "y": 190.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0155.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 150,
+            "waitTime": 0.30000001192092896,
+            "width": 5
+        },
+        "group": 2,
+        "position": {
+            "x": 512.7235107421875,
+            "y": 190.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 150,
+            "waitTime": 0.30000001192092896,
+            "width": 5
+        },
+        "group": 2,
+        "position": {
+            "x": 440.7227478027344,
+            "y": 190.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 150,
+            "waitTime": 0.30000001192092896,
+            "width": 5
+        },
+        "group": 2,
+        "position": {
+            "x": 368.72265625,
+            "y": 190.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 150,
+            "waitTime": 0.30000001192092896,
+            "width": 5
+        },
+        "group": 2,
+        "position": {
+            "x": 296.7268981933594,
+            "y": 190.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 150,
+            "waitTime": 0.30000001192092896,
+            "width": 5
+        },
+        "group": 2,
+        "position": {
+            "x": 224.73045349121094,
+            "y": 190.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0153.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 100,
+            "waitTime": 0.5,
+            "width": 8
+        },
+        "group": 1,
+        "position": {
+            "x": 606.57861328125,
+            "y": 637.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0155.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 100,
+            "waitTime": 0.5,
+            "width": 8
+        },
+        "group": 1,
+        "position": {
+            "x": 534.5757446289063,
+            "y": 637.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 100,
+            "waitTime": 0.5,
+            "width": 8
+        },
+        "group": 1,
+        "position": {
+            "x": 462.58123779296875,
+            "y": 637.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 100,
+            "waitTime": 0.5,
+            "width": 8
+        },
+        "group": 1,
+        "position": {
+            "x": 390.5803527832031,
+            "y": 637.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 100,
+            "waitTime": 0.5,
+            "width": 8
+        },
+        "group": 1,
+        "position": {
+            "x": 318.5844421386719,
+            "y": 637.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 100,
+            "waitTime": 0.5,
+            "width": 8
+        },
+        "group": 1,
+        "position": {
+            "x": 246.5824737548828,
+            "y": 637.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 100,
+            "waitTime": 0.5,
+            "width": 8
+        },
+        "group": 1,
+        "position": {
+            "x": 174.580322265625,
+            "y": 637.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 100,
+            "waitTime": 0.5,
+            "width": 8
+        },
+        "group": 1,
+        "position": {
+            "x": 102.57940673828125,
+            "y": 637.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 100,
+            "waitTime": 0.5,
+            "width": 8
+        },
+        "group": 1,
+        "position": {
+            "x": 30.577260971069336,
+            "y": 637.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0153.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 300,
+            "waitTime": 1.4901161415892261e-09,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 966.7824096679688,
+            "y": 317.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0155.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 300,
+            "waitTime": 1.4901161415892261e-09,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 894.7928466796875,
+            "y": 317.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0154.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 1.9999998807907104,
+            "height": 1,
+            "speed": 300,
+            "waitTime": 1.4901161415892261e-09,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 822.79248046875,
+            "y": 317.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0153.png"
+        },
+        "tag": "cloud"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 1341.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 1269.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 1197.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 1125.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 1053.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 981.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 909.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 837.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 765.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 693.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 621.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 549.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 477.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 405.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0096.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 345.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0076.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 273.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0056.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 3,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 1
+        },
+        "group": 2,
+        "position": {
+            "x": 1253.0,
+            "y": 201.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0036.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 1090.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 1018.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 946.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 874.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 802.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 730.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 658.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 586.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 514.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 442.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 370.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 298.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 226.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 154.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0096.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 695.0,
+            "y": 94.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0079.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 623.0,
+            "y": 94.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0078.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 3
+        },
+        "group": 1,
+        "position": {
+            "x": 551.0,
+            "y": 94.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0077.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 1708.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 1636.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 1564.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 1492.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 1420.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 1348.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 1276.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 1204.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 1132.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 1060.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 988.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 916.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 844.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0116.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 880.0,
+            "y": 772.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0096.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 916.0,
+            "y": 712.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0059.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 844.0,
+            "y": 712.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0057.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 916.0,
+            "y": 640.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0019.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "bbox": {
+            "height": 60.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 2,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 0,
+        "position": {
+            "x": 844.0,
+            "y": 640.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/leafs/tile_0017.png"
+        },
+        "tag": "tree"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 995.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 927.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 859.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 791.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 723.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 655.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 587.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 519.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 451.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 383.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 315.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 247.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 179.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1604.0,
+            "y": 111.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0015.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1532.0,
+            "y": 111.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0012.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 2
+        },
+        "group": 1,
+        "position": {
+            "x": 1460.0,
+            "y": 111.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0014.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 1329.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 1261.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 1193.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 1125.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 1057.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 989.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 921.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 853.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 785.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 717.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 649.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 581.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 513.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0032.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 534.0,
+            "y": 445.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0015.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 462.0,
+            "y": 445.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0013.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 390.0,
+            "y": 445.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0013.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 318.0,
+            "y": 445.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0012.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 246.0,
+            "y": 445.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0013.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 72.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 174.0,
+            "y": 445.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0013.png"
+        },
+        "tag": "mushroom"
+    },
+    {
+        "bbox": {
+            "height": 30.0,
+            "width": 60.0
+        },
+        "block": {
+            "duration": 0.0,
+            "height": 1,
+            "speed": 0,
+            "waitTime": 0.0,
+            "width": 6
+        },
+        "group": 0,
+        "position": {
+            "x": 102.0,
+            "y": 445.0
+        },
+        "sprite": {
+            "scale": 4,
+            "texturePath": "../Textures/tile_0014.png"
+        },
+        "tag": "mushroom"
     },
     {
         "tag": "coinManager"
@@ -41,8 +2335,8 @@
         },
         "playertag": true,
         "position": {
-            "x": 200.0,
-            "y": 700.0
+            "x": 1102.0,
+            "y": 722.0
         },
         "sprite": {
             "scale": 4,
@@ -57,7 +2351,7 @@
         },
         "behaviour": "scripts/hat.lua",
         "hattag": {
-            "hatType": 1,
+            "hatType": 2,
             "onHead": true
         },
         "lastmove": "left",

@@ -60,16 +60,16 @@ void StartMenu(Scene* scene, lua_State* L)
 	{
 		BeginDrawing();
 		ClearBackground(SKYBLUE);
-		DrawText("Hat-Trick", (float)(ScreenWidth / 2 - 220), 100, 100, WHITE);
+		DrawText("Hat-Trick", (float)(ScreenWidth / 2 - 440), 50, 200, WHITE);
 
 		DrawRectangleRec(playButton, WHITE);
-		DrawText("Play", playButton.x + 25, playButton.y + 25, 20, BLACK);
+		DrawText("Play", playButton.x + 25, playButton.y + 25, 60, BLACK);
 
 		DrawRectangleRec(editingButton, WHITE);
-		DrawText("Edit", editingButton.x + 25, editingButton.y + 25, 20, BLACK);
+		DrawText("Edit", editingButton.x + 25, editingButton.y + 25, 60, BLACK);
 
 		DrawRectangleRec(quitButton, WHITE);
-		DrawText("Quit", quitButton.x + 25, quitButton.y + 25, 20, BLACK);
+		DrawText("Quit", quitButton.x + 25, quitButton.y + 25, 60, BLACK);
 
 		Vector2 mousePos = GetMousePosition();
 
@@ -130,9 +130,9 @@ void EditingTool(Scene* scene, lua_State* L)
 	Rectangle CloudButton = { 280.0f, 850.0f, 120, 70 };
 	Rectangle CloudOption = { 410.0f,850.0f,30,70 };
 	Rectangle CoinButton = { 475.0f,850.0f,100,70 };
-	Rectangle MushroomButton = { 640.0f,850.0f,150,70 };
-	Rectangle MushroomOption = { 800.0f,850.0f,30,70 };
-	Rectangle HatButton = { 850.0f,850.0f,250,70 };
+	Rectangle MushroomButton = { 640.0f,850.0f,170,70 };
+	Rectangle MushroomOption = { 820.0f,850.0f,30,70 };
+	Rectangle HatButton = { 880.0f,850.0f,270,70 };
 	Rectangle SaveButton = { 1400.0f,850.0f,120,70};
 
 	// Cloud Options
@@ -186,6 +186,8 @@ void EditingTool(Scene* scene, lua_State* L)
 		DrawRectangleRec(CloudButton, WHITE);
 		DrawText("Cloud", CloudButton.x + 5, CloudButton.y + 25, 30, BLACK);
 		DrawRectangleRec(CloudOption, WHITE);
+		DrawText("|", CloudOption.x + 10, CloudOption.y + 25, 40, BLACK);
+		DrawText("^", CloudOption.x + 5, CloudOption.y + 20, 30, BLACK);
 
 		DrawRectangleRec(TreeButton, WHITE);
 		DrawText("Tree", TreeButton.x + 5, TreeButton.y + 25, 30, BLACK);
@@ -199,6 +201,8 @@ void EditingTool(Scene* scene, lua_State* L)
 		DrawRectangleRec(MushroomButton, WHITE);
 		DrawText("Mushroom", MushroomButton.x + 5, MushroomButton.y + 25, 30, BLACK);
 		DrawRectangleRec(MushroomOption, WHITE);
+		DrawText("|", MushroomOption.x + 10, MushroomOption.y + 25, 40, BLACK);
+		DrawText("^", MushroomOption.x + 5, MushroomOption.y + 20, 30, BLACK);
 
 		DrawRectangleRec(HatButton, WHITE);
 		if (HatThrow == 2)

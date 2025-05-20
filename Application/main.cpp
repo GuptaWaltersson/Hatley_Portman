@@ -186,8 +186,8 @@ void EditingTool(Scene* scene, lua_State* L)
 		DrawRectangleRec(CloudButton, WHITE);
 		DrawText("Cloud", CloudButton.x + 5, CloudButton.y + 25, 30, BLACK);
 		DrawRectangleRec(CloudOption, WHITE);
-		DrawText("|", CloudOption.x + 10, CloudOption.y + 25, 40, BLACK);
-		DrawText("^", CloudOption.x + 5, CloudOption.y + 20, 30, BLACK);
+		DrawText("|", CloudOption.x + 10, CloudOption.y + 25, 20, BLACK);
+		DrawText("^", CloudOption.x + 5, CloudOption.y + 20, 40, BLACK);
 
 		DrawRectangleRec(TreeButton, WHITE);
 		DrawText("Tree", TreeButton.x + 5, TreeButton.y + 25, 30, BLACK);
@@ -201,8 +201,8 @@ void EditingTool(Scene* scene, lua_State* L)
 		DrawRectangleRec(MushroomButton, WHITE);
 		DrawText("Mushroom", MushroomButton.x + 5, MushroomButton.y + 25, 30, BLACK);
 		DrawRectangleRec(MushroomOption, WHITE);
-		DrawText("|", MushroomOption.x + 10, MushroomOption.y + 25, 40, BLACK);
-		DrawText("^", MushroomOption.x + 5, MushroomOption.y + 20, 30, BLACK);
+		DrawText("|", MushroomOption.x + 10, MushroomOption.y + 25, 20, BLACK);
+		DrawText("^", MushroomOption.x + 5, MushroomOption.y + 20, 40, BLACK);
 
 		DrawRectangleRec(HatButton, WHITE);
 		if (HatThrow == 2)

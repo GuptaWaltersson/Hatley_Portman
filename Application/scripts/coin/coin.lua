@@ -2,6 +2,7 @@ local coin = {}
 coin.cor = {}
 coinCounter = 0
 framedelta = 0
+
 function coin.OnCreate(self)
 	print("Lua Coin created!")
 	local entity = self.ID
@@ -38,6 +39,12 @@ function coin.OnCollision(self, other)
 	print("Lua Coin collected!")
 	coinCounter = coinCounter + 1
 	coinNumber.SetNumber(text1, coinCounter)
+
+	if coinStarter == coinCounter then
+		scene.WinText(self.ID)
+		print("You Win!")
+	end
+
 	scene.RemoveEntity(self.ID)
 end
 

@@ -55,6 +55,7 @@ void StartMenu(Scene* scene, lua_State* L)
 	Rectangle editingButton = { (float)(ScreenWidth / 2) - 100, (float)(ScreenHeight / 2), 200, 100 };
 	Rectangle quitButton = { (float)(ScreenWidth / 2) - 100, (float)(ScreenHeight / 2) + 150, 200, 100 };
 
+
 	bool running = true;
 	while (running)
 	{
@@ -512,7 +513,7 @@ void EditingTool(Scene* scene, lua_State* L)
 void GameLoop(Scene* scene, lua_State* L)
 {
 	Scene::lua_openScene(L, scene);
-
+	scene->wintext = false;
 	LoadScene(L, scene);
 
 	bool running = true;
@@ -531,6 +532,13 @@ void GameLoop(Scene* scene, lua_State* L)
 
 		float delta = GetFrameTime();
 		scene->UpdateSystems(delta);
+
+		if (scene->wintext) {
+			DrawText("Hat-Trick", (float)(ScreenWidth / 2 - 440), 50, 200, WHITE);
+			DrawText("You Win!", (float)(ScreenWidth / 2 - 220), 200, 100, GREEN);
+
+		}
+			
 
 		EndDrawing();
 	}

@@ -381,18 +381,3 @@ public:
 		return false;
 	}
 };
-
-class InfoSystem : public System
-{
-public:
-	bool OnUpdate(entt::registry& registry, float delta) final
-	{
-		auto gravityView = registry.view<Gravity>();
-		auto playertagView = registry.view<PlayerTag>();
-		printf("\n----update---\n");
-		printf("gravityentitites: \t%i\n", gravityView.size());
-		printf("player entities: \t%i\n", playertagView.size());
-
-		return false;
-	}
-};

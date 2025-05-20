@@ -65,6 +65,7 @@ void Scene::lua_openScene(lua_State* L, Scene* scene)
 		{ "IsEntity", lua_IsEntity },
 		{ "GetEntityCount", lua_GetEntityCount },
 		{ "RemoveEntity", lua_RemoveEntity },
+		{ "WinText", lua_WinText },
 		{ NULL, NULL }
 	};
 
@@ -85,6 +86,14 @@ void Scene::UpdateSystems(float delta)
 
 	}
 }
+
+int Scene::lua_WinText(lua_State* L)  
+{  
+   Scene* scene = lua_GetSceneUpValue(L);  
+   scene->wintext = true;  
+   return 0;  
+}
+
 
 Scene* Scene::lua_GetSceneUpValue(lua_State* L)
 {

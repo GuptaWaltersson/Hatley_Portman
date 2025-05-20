@@ -26,6 +26,11 @@ public:
 	static void lua_openScene(lua_State* L, Scene* scene);
 
 	void UpdateSystems(float delta);
+
+	int WinText();
+
+	bool wintext = false;
+
 	
 
 public:
@@ -60,6 +65,7 @@ private:
 	static int lua_GetComponent(lua_State* L);
 	static int lua_SetComponent(lua_State* L);
 	static int lua_RemoveComponent(lua_State* L);
+	static int lua_WinText(lua_State* L);
 
 };
 
